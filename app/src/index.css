@@ -1,0 +1,97 @@
+/* Lloyds-style font: geometric, friendly, bold-capable. Must precede other imports. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+/*
+  Design tokens — Lloyds app design language (illustrative)
+  Extracted from the two reference app screenshots in /assets.
+  Approximations for a concept demo, not official brand assets.
+*/
+@theme {
+  /* Surfaces (dark theme) */
+  --color-ink: #0a0a0a;          /* app background, near-black */
+  --color-surface: #1a1a1a;      /* cards */
+  --color-surface-2: #242424;    /* raised / nested cards */
+  --color-line: #2e2e2e;         /* hairline borders */
+
+  /* Text */
+  --color-text: #ffffff;
+  --color-muted: #9a9a9a;
+  --color-faint: #6b6b6b;
+
+  /* Accent — bright lime green (primary actions, active states) */
+  --color-accent: #00e15b;
+  --color-accent-press: #00c24d;
+  --color-on-accent: #06210f;    /* dark text on green */
+
+  /* Brand greens (welcome / hero surfaces) */
+  --color-brand: #1fa873;
+  --color-brand-dark: #0c5c43;
+
+  /* Pastel icon chips (from the app tiles) */
+  --color-chip-pink: #f4b6d2;
+  --color-chip-purple: #b5a8f0;
+  --color-chip-teal: #7fd9c4;
+  --color-chip-amber: #f4cf8a;
+
+  /* Signal / status colours */
+  --color-risk: #ff6b6b;
+  --color-opportunity: #00e15b;
+  --color-info: #6ba9ff;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-pill: 999px;
+
+  /* Type */
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide scrollbars inside device frames for a cleaner mock */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Demo animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.anim-fadeUp { animation: fadeUp 0.45s ease both; }
+.anim-popIn { animation: popIn 0.35s ease both; }
+.anim-slideUp { animation: slideUp 0.5s ease both; }
