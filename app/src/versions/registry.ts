@@ -9,7 +9,7 @@ export const versions: Version[] = [v1, v2];
 export const DEFAULT_VERSION_ID = 'v2';
 
 /** Flip to false for the final cut to hide the switcher entirely. */
-export const SHOW_SWITCHER = true;
+export const SHOW_SWITCHER = false;
 
 export function getVersion(id: string | null | undefined): Version {
   return versions.find((v) => v.id === id) ?? versions[0];
