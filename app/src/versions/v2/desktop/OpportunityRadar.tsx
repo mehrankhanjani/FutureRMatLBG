@@ -11,6 +11,8 @@ const priorityStyle: Record<RadarItem['priority'], { chip: string; bar: string }
 };
 
 const productIcon: Record<string, IconName> = {
+  'Acquisition finance · Cash · FX': 'trendingUp',
+  'Acquisition finance': 'trendingUp',
   'Working capital · FX': 'trendingUp',
   'Liquidity / deposits': 'building',
   'Sustainable finance': 'globe',
@@ -56,7 +58,7 @@ export function OpportunityRadar() {
       <div className="space-y-3">
         {radar.map((r, i) => {
           const ps = priorityStyle[r.priority];
-          const isOwn = r.client === 'Avonmore Components';
+          const isOwn = r.client === 'Avonmore Group';
           const isActioned = actioned.has(i);
           return (
             <Card

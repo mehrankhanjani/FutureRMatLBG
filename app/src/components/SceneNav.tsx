@@ -4,19 +4,15 @@ export function SceneNav({
   scenes,
   index,
   onSelect,
-  onPrev,
-  onNext,
 }: {
   scenes: Scene[];
   index: number;
   onSelect: (i: number) => void;
-  onPrev: () => void;
-  onNext: () => void;
 }) {
   const current = scenes[index];
 
   return (
-    <aside className="flex w-72 shrink-0 flex-col gap-4">
+    <aside className="flex w-72 shrink-0 flex-col gap-4 pt-2">
       {/* progress */}
       <div className="flex items-center gap-2">
         {scenes.map((s, i) => (
@@ -69,24 +65,7 @@ export function SceneNav({
         })}
       </nav>
 
-      {/* prev / next */}
-      <div className="mt-auto flex gap-2">
-        <button
-          onClick={onPrev}
-          disabled={index === 0}
-          className="flex-1 rounded-full border border-line py-3 text-sm font-bold text-text transition disabled:opacity-30"
-        >
-          ← Prev
-        </button>
-        <button
-          onClick={onNext}
-          disabled={index === scenes.length - 1}
-          className="flex-1 rounded-full bg-accent py-3 text-sm font-bold text-on-accent transition active:scale-[0.98] disabled:opacity-30"
-        >
-          Next →
-        </button>
-      </div>
-      <p className="text-center text-[11px] text-faint">Use ← → arrow keys</p>
+      <p className="mt-auto text-center text-[11px] text-faint">Use ← → arrow keys</p>
     </aside>
   );
 }

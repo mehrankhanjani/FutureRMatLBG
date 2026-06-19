@@ -1,18 +1,19 @@
 /**
- * scenario.ts — iteration 2 ("the RM wins the deal").
+ * scenario.ts — iteration 2 ("the M&A event").
  *
- * Same Avonmore story, reframed around a single structured deal that the RM,
- * Daisy, originates, shapes and progresses to a win. A `deal` thread runs
- * through every scene so the pitch reads as one continuous journey.
+ * An M&A Event Alert: Avonmore Components (Client A, Daisy's client) has just
+ * acquired Calderwood Engineering (Client B), a Lloyds client under a different
+ * coverage team. Two Lloyds clients are now one group — a material opportunity
+ * and risk moment. Daisy originates and shapes the group mandate to a win.
  * All data is illustrative / mocked — no real client information.
  */
 
 export const client = {
   name: 'Avonmore Components Ltd',
   contact: 'Sarah Whitfield',
-  role: 'Chief Financial Officer',
+  role: 'Group CFO',
   sector: 'Industrial Manufacturing',
-  segment: 'BCB · Mid-Corporate', // unified platform also serves CIB
+  segment: 'BCB · Mid-Corporate',
   relationshipValue: '£42m',
   tenureYears: 7,
   rm: 'Daisy Bennett',
@@ -21,8 +22,28 @@ export const client = {
   initials: 'AC',
 };
 
+/** Client B — the acquired entity, banked by a different coverage team. */
+export const clientB = {
+  name: 'Calderwood Engineering Ltd',
+  sector: 'Precision Engineering',
+  segment: 'CIB · Mid-Corporate',
+  relationshipValue: '£28m',
+  rm: 'Marcus Reed',
+  rmRole: 'Relationship Director · CIB Coverage',
+  initials: 'CE',
+};
+
+/** The combined group created by the acquisition. */
+export const group = {
+  name: 'Avonmore Group',
+  combinedRevenue: '£70m',
+  combinedExposure: '£31m',
+  footprint: 'UK · Midlands & North',
+  sector: 'Industrial & precision manufacturing',
+};
+
 export const meeting = {
-  title: 'Quarterly review',
+  title: 'Integration & funding call',
   location: 'Client HQ, Birmingham',
   date: 'Tue 18 Jun · 11:00',
 };
@@ -54,71 +75,70 @@ export type DealSnapshot = {
 
 /** Stable headline for the deal, shown in the desktop deal strip. */
 export const deal = {
-  name: 'Avonmore — Germany growth facility',
-  summary: 'Cross-border working capital + EUR FX hedge',
-  target: '£8.0m',
-  product: 'Working capital · FX',
+  name: 'Avonmore Group — acquisition & integration mandate',
+  summary: 'Acquisition finance + group consolidation (cash & FX)',
+  target: '£12.0m',
+  product: 'Acquisition finance · Cash · FX',
   /** Total stages in the pipeline (for the progress indicator). */
   totalStages: 6,
 };
 
 /**
- * The deal's state at each desktop scene — the same opportunity, progressing.
- * Keyed by the six desktop scene ids (the two mobile scenes don't show the
- * strip). The win-probability curve climbs as the RM works the deal.
+ * The deal's state at each desktop scene — the same group mandate, progressing.
+ * Keyed by the desktop scene ids (the two mobile scenes don't show the strip).
+ * The win-probability curve climbs as the RM works the deal.
  */
 export const dealStages: Record<string, DealSnapshot> = {
   ignition: {
     stage: 'Identified',
     stageIndex: 1,
-    value: '£6–8m',
+    value: '£12m+',
     winProb: 45,
-    momentum: 'Surfaced proactively before the call',
+    momentum: 'M&A event surfaced proactively before competitors',
     downside: '−12% win-probability if not progressed this week',
-  },
-  capture: {
-    stage: 'Qualified',
-    stageIndex: 2,
-    value: '£8.0m',
-    winProb: 58,
-    winProbDelta: 13,
-    momentum: 'Need confirmed and captured in the room',
-    downside: '−8% if momentum is lost after the meeting',
   },
   structure: {
     stage: 'Shaping',
+    stageIndex: 2,
+    value: '£12.0m',
+    winProb: 62,
+    winProbDelta: 17,
+    momentum: 'Group mandate structured to the integration need',
+    downside: '−6% if indicative terms slip past this week',
+  },
+  capture: {
+    stage: 'Qualified',
     stageIndex: 3,
-    value: '£8.0m',
-    winProb: 68,
+    value: '£12.0m',
+    winProb: 72,
     winProbDelta: 10,
-    momentum: 'Facility structured to the need',
-    downside: '−6% if indicative terms slip past today',
+    momentum: 'Need confirmed and captured in the room',
+    downside: '−8% if momentum is lost after the meeting',
   },
   orchestrate: {
     stage: 'Progressing',
     stageIndex: 4,
-    value: '£8.0m',
-    winProb: 72,
-    winProbDelta: 4,
-    momentum: 'Credit and product engaged in parallel',
-    downside: '−5% if approvals stall',
-  },
-  'where-you-win': {
-    stage: 'Credit',
-    stageIndex: 5,
-    value: '£8.0m',
-    winProb: 78,
-    winProbDelta: 6,
-    momentum: 'Decision-makers mapped — coverage broadened',
-    downside: '−4% while the relationship is single-threaded',
+    value: '£12.0m',
+    winProb: 80,
+    winProbDelta: 8,
+    momentum: 'Credit, product & Client B coverage engaged in parallel',
+    downside: '−5% if approvals or group alignment stall',
   },
   scale: {
     stage: 'Positioned to win',
-    stageIndex: 6,
-    value: '£8.0m',
-    winProb: 84,
+    stageIndex: 5,
+    value: '£12.0m',
+    winProb: 86,
     winProbDelta: 6,
-    momentum: 'A repeatable play across the book',
+    momentum: 'A repeatable M&A play across the book',
+  },
+  unified: {
+    stage: 'Positioned to win',
+    stageIndex: 6,
+    value: '£12.0m',
+    winProb: 90,
+    winProbDelta: 4,
+    momentum: 'One platform — group deal visible end-to-end',
   },
 };
 
@@ -133,39 +153,45 @@ export type IgnitionSignal = {
 
 /** The proactive triggers that ignite the deal before the meeting. */
 export const ignition = {
-  headline: 'Your highest-value call today',
-  when: '11:00 · Quarterly review · Birmingham',
-  estValue: '£6–8m',
-  predictedNeed: 'Cross-border working capital + EUR FX',
+  headline: 'M&A event — two of your clients just became one group',
+  when: 'Detected today · group-level opportunity',
+  estValue: '£12m+',
+  predictedNeed: 'Acquisition finance + group cash & FX consolidation',
   confidence: 'High',
   signals: [
     {
+      icon: 'globe',
+      label: 'Market news',
+      detail: 'Press: Avonmore Components acquires Calderwood Engineering',
+      source: 'External market data',
+    },
+    {
       icon: 'doc',
-      label: 'Filing',
-      detail: 'Q3 accounts filed — order book up 18%, capex rising',
+      label: 'Change of control',
+      detail: 'Companies House filing confirms Calderwood ownership transfer',
       source: 'Companies House',
     },
     {
-      icon: 'globe',
-      label: 'Market',
-      detail: 'EUR/GBP volatility up 12% this quarter',
-      source: 'Market data',
+      icon: 'users',
+      label: 'Both Lloyds clients',
+      detail: 'Calderwood is banked by CIB Coverage (Marcus Reed) — separate team',
+      source: 'Internal CRM',
     },
     {
       icon: 'building',
-      label: 'Sector',
-      detail: '2 peers financed DACH expansion in the last 90 days',
-      source: 'Sector intelligence',
+      label: 'Exposure overlap',
+      detail: 'Combined group exposure £31m across two coverage models',
+      source: 'Internal limits',
     },
     {
       icon: 'trendingUp',
       label: 'Portfolio pattern',
-      detail: 'Matches 14 clients who took WC facilities pre-expansion',
+      detail: 'Matches acquisitive clients who refinanced + consolidated within 90 days',
       source: 'Portfolio model',
     },
   ] as IgnitionSignal[],
   whyNow:
-    'Strong fundamentals, rising FX exposure and a sector-wide expansion trend point to a working-capital need now — ahead of the competition.',
+    'Two Lloyds clients are now one group. Acting first lets you shape the acquisition financing and consolidate group cash and FX — before another bank, or our own teams working in silos, fragments the relationship.',
 };
 
 /* ---- scene 5: Structure the deal ----------------------------------------- */
@@ -182,56 +208,56 @@ export type StructureOption = {
   recommended?: boolean;
 };
 
-/** Three ways to structure the facility — the agent recommends one. */
+/** Three ways to structure the group mandate — the agent recommends one. */
 export const structureOptions: StructureOption[] = [
   {
     id: 'lean',
     name: 'Lean',
-    subtitle: 'Working capital only',
-    value: '£6.0m',
+    subtitle: 'Acquisition finance only',
+    value: '£8.0m',
     fit: 'Good fit',
-    revenue: '£300k',
+    revenue: '£410k',
     rorwa: '2.1%',
-    note: 'Lowest commitment — covers the core cash-timing gap.',
+    note: 'Funds the acquisition alone — leaves group cash and FX fragmented across two banks-within-the-bank.',
   },
   {
     id: 'recommended',
     name: 'Recommended',
-    subtitle: 'Working capital + EUR FX hedge',
-    value: '£8.0m',
+    subtitle: 'Acquisition finance + group cash consolidation',
+    value: '£12.0m',
     fit: 'Best fit',
-    revenue: '£420k',
-    rorwa: '2.4%',
-    note: 'Matches the expansion need and hedges the euro exposure she flagged.',
+    revenue: '£640k',
+    rorwa: '2.5%',
+    note: 'Funds the deal and consolidates both entities’ cash into one group structure — the win that locks the whole relationship.',
     recommended: true,
   },
   {
     id: 'stretch',
     name: 'Stretch',
-    subtitle: 'WC + FX + trade finance',
-    value: '£10.0m',
+    subtitle: '+ FX hedge & working capital',
+    value: '£15.0m',
     fit: 'Stretch',
-    revenue: '£560k',
-    rorwa: '2.3%',
-    note: 'Adds a trade line for the new German entity — upside if appetite is there.',
+    revenue: '£820k',
+    rorwa: '2.4%',
+    note: 'Adds group FX hedging and a combined working-capital line — full mandate if integration appetite is there.',
   },
 ];
 
 /** The structured facility — components and indicative terms. */
 export const dealStructure = {
   components: [
-    { name: 'Revolving working capital facility', value: '£8.0m', detail: 'Committed · 3-year', tag: 'Core' },
-    { name: 'EUR FX hedge', value: '£1.2m notional', detail: 'Forward + collar', tag: 'Risk' },
-    { name: 'Trade finance line', value: '£2.0m', detail: 'Optional add-on', tag: 'Upsell' },
+    { name: 'Acquisition / term facility', value: '£8.0m', detail: 'Funds the Calderwood purchase · 5-year', tag: 'Core' },
+    { name: 'Group cash consolidation', value: '£4.0m', detail: 'Single group cash pool across both entities', tag: 'Cash' },
+    { name: 'Group FX hedge', value: '£1.5m notional', detail: 'Hedges combined currency exposure', tag: 'Risk' },
   ],
   terms: [
-    { label: 'Tenor', value: '3 years' },
-    { label: 'Indicative margin', value: '+2.15%' },
-    { label: 'Arrangement fee', value: '0.75%' },
-    { label: 'Security', value: 'Debenture + receivables' },
+    { label: 'Tenor', value: '5 years' },
+    { label: 'Indicative margin', value: '+2.25%' },
+    { label: 'Arrangement fee', value: '0.85%' },
+    { label: 'Security', value: 'Cross-guarantees · group debenture' },
   ],
   rationale:
-    'Structured from the conversation and Avonmore’s filings — sized to the cash-conversion gap, with the FX hedge covering euro receivables from day one.',
+    'Structured from the integration conversation and both entities’ filings — sized to fund the acquisition and consolidate group cash and FX into one relationship, with cross-guarantees across the new group.',
 };
 
 /** The conversation, surfaced as a live transcript ticker in the mobile scene. */
@@ -244,19 +270,19 @@ export type TranscriptLine = {
 };
 
 export const transcript: TranscriptLine[] = [
-  { speaker: 'rm', name: 'Daisy', text: 'Good to see you, Sarah. How has trading been this quarter?' },
-  { speaker: 'client', name: 'Sarah', text: 'Strong, actually — order book is the healthiest it has been in years.' },
-  { speaker: 'rm', name: 'Daisy', text: 'That is great to hear. Anything on the horizon you are weighing up?' },
+  { speaker: 'rm', name: 'Daisy', text: 'Congratulations on the Calderwood deal, Sarah — how is the integration going?' },
+  { speaker: 'client', name: 'Sarah', text: 'Thanks. It is exciting, but honestly the finances are a tangle — two sets of banking, two sets of accounts.' },
+  { speaker: 'rm', name: 'Daisy', text: 'That is exactly where we can help. What is the most pressing piece?' },
   {
     speaker: 'client',
     name: 'Sarah',
-    text: 'We are thinking of expanding into Germany next year, but the cash flow timing is a real concern.',
+    text: 'We need to refinance the acquisition and pull both companies’ cash and FX into one place — ideally with one bank.',
     key: true,
   },
 ];
 
 export const spokenLine =
-  'We are thinking of expanding into Germany next year, but the cash flow timing is a real concern.';
+  'We need to refinance the acquisition and pull both companies’ cash and FX into one place — ideally with one bank.';
 
 /** What the system detects from the spoken line. */
 export type Signal = {
@@ -267,12 +293,12 @@ export type Signal = {
 };
 
 export const signals: Signal[] = [
-  { id: 'need', label: 'Need / intent', detail: 'Expansion into Germany', tone: 'need' },
-  { id: 'risk', label: 'Risk signal', detail: 'Cash flow / liquidity timing', tone: 'risk' },
-  { id: 'product', label: 'Deal shape', detail: 'Working capital · FX', tone: 'opportunity' },
-  { id: 'urgency', label: 'Urgency', detail: 'High intent · next year', tone: 'context' },
-  { id: 'context', label: 'Context', detail: 'Peer expansions in DACH', tone: 'context' },
-  { id: 'emotion', label: 'Emotion', detail: 'Hesitation in tone', tone: 'emotion' },
+  { id: 'need', label: 'Need / intent', detail: 'Refinance acquisition + consolidate', tone: 'need' },
+  { id: 'risk', label: 'Risk signal', detail: 'Fragmented ownership & banking', tone: 'risk' },
+  { id: 'product', label: 'Deal shape', detail: 'Acquisition finance · Cash · FX', tone: 'opportunity' },
+  { id: 'urgency', label: 'Urgency', detail: 'High intent · integration underway', tone: 'context' },
+  { id: 'context', label: 'Context', detail: 'Both companies are Lloyds clients', tone: 'context' },
+  { id: 'emotion', label: 'Emotion', detail: 'Pressure — wants it simplified', tone: 'emotion' },
 ];
 
 /** Subtle prompts surfaced on the RM's device in the moment. */
@@ -290,57 +316,57 @@ export type Prompt = {
 export const prompts: Prompt[] = [
   {
     id: 'p1',
-    insight: 'Germany expansion + cash-timing concern — shape an £8m working capital facility.',
-    rationale: 'Cross-border expansion typically widens the cash-conversion cycle by 30–45 days.',
-    action: 'Position a revolving working capital facility',
-    value: '£8m facility · ~£420k revenue Y1',
-    timing: 'Move first — 2 peers financed DACH expansion in 90 days',
+    insight: 'Acquisition + consolidation intent — shape a £12m group facility.',
+    rationale: 'Acquirers who refinance and pool group cash early reduce integration cost and lock the relationship.',
+    action: 'Position an acquisition facility with group cash consolidation',
+    value: '£12m mandate · ~£640k revenue Y1',
+    timing: 'Move first — the integration window is open now',
   },
   {
     id: 'p2',
-    insight: 'Rising EUR receivables exposure — pair the facility with an FX hedge.',
-    rationale: 'EUR/GBP volatility is up 12% this quarter; unhedged euro income erodes her margin.',
-    action: 'Bring an FX hedging view alongside the facility',
-    value: '£1.2m notional hedge · de-risks the deal',
-    timing: 'Lock indicative terms before the next FX swing',
+    insight: 'Both companies are Lloyds clients — align one group coverage strategy.',
+    rationale: 'Calderwood is covered by CIB (Marcus Reed). A single group view wins the full mandate and avoids internal silos.',
+    action: 'Flag to loop in Client B’s coverage team',
+    value: 'Unifies £70m group revenue under one strategy',
+    timing: 'Align internally before another bank pitches',
   },
   {
     id: 'p3',
-    insight: 'Client tone suggests hesitation — low confidence on timing.',
-    rationale: 'Guiding questions surface the real constraint and move the deal forward.',
-    action: 'Ask: “What does the cash timing look like month by month?”',
-    value: 'Qualifies the need — unlocks the deal',
-    timing: 'Resolve the timing objection in the room, not after',
+    insight: 'Client wants it simplified — consolidate cash and FX into one place.',
+    rationale: 'Group cash pooling and a single FX hedge remove the “two of everything” pain she just described.',
+    action: 'Ask: “Shall we map both entities’ cash and FX into one group structure?”',
+    value: 'Adds cash & FX to the mandate — deepens the win',
+    timing: 'Capture the requirement while it is top of mind',
   },
 ];
 
 /** Auto-generated post-meeting summary, lands in the CRM. */
 export const summary = {
   keyMoments: [
-    'Client confirmed strongest order book in years.',
-    'Stated intent to expand into Germany next year.',
-    'Flagged cash flow timing as the primary concern.',
+    'Client confirmed the Calderwood acquisition has completed.',
+    'Stated intent to refinance the acquisition and consolidate.',
+    'Wants both companies’ cash and FX with one bank.',
   ],
   opportunities: [
-    { title: 'Working capital facility', value: '£6–8m', confidence: 'High' },
-    { title: 'FX hedging programme (EUR)', value: '£1.2m notional', confidence: 'Medium' },
+    { title: 'Acquisition / term facility', value: '£8.0m', confidence: 'High' },
+    { title: 'Group cash & FX consolidation', value: '£4.0m+', confidence: 'High' },
   ],
   actions: [
-    { label: 'Issue working capital indicative terms', owner: 'Agent', due: 'Today' },
-    { label: 'Book product specialist (Trade & WC)', owner: 'Agent', due: 'Tomorrow' },
-    { label: 'Prepare DACH expansion peer pack', owner: 'Agent', due: 'Thu' },
-    { label: 'RM follow-up call to lock the timing', owner: 'Daisy', due: 'Fri' },
+    { label: 'Issue group acquisition facility indicative terms', owner: 'Agent', due: 'Today' },
+    { label: 'Notify Calderwood coverage team (Marcus Reed, CIB)', owner: 'Agent', due: 'Today' },
+    { label: 'Model group cash pooling & FX consolidation', owner: 'Agent', due: 'Thu' },
+    { label: 'RM call to align one group coverage strategy', owner: 'Daisy', due: 'Fri' },
   ],
   email: {
     to: 'Sarah Whitfield',
-    subject: 'Great to catch up — supporting your Germany expansion',
+    subject: 'Great to catch up — supporting the Avonmore Group integration',
     body: `Hi Sarah,
 
-Thank you for your time today. It was great to hear the order book is so strong.
+Thank you for your time today, and congratulations again on the Calderwood acquisition.
 
-On the Germany expansion, I would like to share how a working capital facility could smooth the cash flow timing you mentioned, alongside a simple EUR hedging approach. I will send indicative terms and a short view on how similar businesses have approached this.
+I would like to share how we can refinance the acquisition and bring both companies’ cash and FX into a single group structure — one bank, one view. As both businesses already bank with us, we can move quickly and remove the “two of everything” complexity you described. I will send indicative terms shortly.
 
-I will follow up Friday to find time with our trade specialist.
+I will follow up Friday once I have aligned our group coverage team.
 
 Best regards,
 Daisy`,
@@ -374,34 +400,34 @@ export const agentBench: {
   rmOnly: { name: string; desc: string }[];
 } = {
   autonomous: [
-    { name: 'Meeting prep', desc: 'Briefing pack assembled', status: 'done', meta: '2 min ago' },
-    { name: 'Data gathering', desc: 'Filings, balances + market signals pulled', status: 'running', meta: 'In progress' },
-    { name: 'Product input', desc: 'WC + FX specs drafted to the need', status: 'done', meta: 'Just now' },
-    { name: 'Internal coordination', desc: 'Credit, product & legal aligned', status: 'running', meta: '3 tasks' },
-    { name: 'Fulfilment initiation', desc: 'Facility set-up pre-staged', status: 'running', meta: 'Queued' },
+    { name: 'Meeting prep', desc: 'Group briefing pack assembled', status: 'done', meta: '2 min ago' },
+    { name: 'Data gathering', desc: 'Both entities’ filings, balances + market signals pulled', status: 'running', meta: 'In progress' },
+    { name: 'Product input', desc: 'Acquisition finance + cash & FX specs drafted', status: 'done', meta: 'Just now' },
+    { name: 'Internal coordination', desc: 'Credit, product & Client B coverage aligned', status: 'running', meta: '3 tasks' },
+    { name: 'Fulfilment initiation', desc: 'Group facility set-up pre-staged', status: 'running', meta: 'Queued' },
     { name: 'Opportunity monitoring', desc: 'Scanning the book for signals', status: 'running', meta: 'Live' },
   ],
   humanInLoop: [
-    { name: 'Credit committee pack', desc: 'Narrative + financials assembled for early read', status: 'waiting', meta: 'Needs approval' },
+    { name: 'Credit committee pack', desc: 'Group narrative + financials assembled for early read', status: 'waiting', meta: 'Needs approval' },
     {
       name: 'Pricing recommendation',
       desc: 'Agent-modelled indicative margin',
       status: 'waiting',
       meta: 'Needs your call',
       override: {
-        agentValue: 'Agent: +2.15%',
-        rmValue: 'Your call: +2.40%',
-        note: 'You hold the pricing judgement — 7-year relationship and low risk support a firmer margin.',
+        agentValue: 'Agent: +2.25%',
+        rmValue: 'Your call: +2.45%',
+        note: 'You hold the pricing judgement — a full group mandate across two entities supports a firmer margin.',
       },
     },
-    { name: 'Indicative proposal', desc: 'Working capital £8m + EUR FX hedge', status: 'waiting', meta: 'Needs approval' },
+    { name: 'Indicative proposal', desc: 'Acquisition £8m + group cash & FX consolidation', status: 'waiting', meta: 'Needs approval' },
     { name: 'Client follow-up', desc: 'Drafted for Sarah Whitfield', status: 'waiting', meta: 'Needs approval' },
   ],
   rmOnly: [
-    { name: 'Strategic client conversations', desc: 'Lead the expansion discussion' },
-    { name: 'Relationship building', desc: 'Deepen the CFO relationship' },
-    { name: 'Challenging discussions', desc: 'Navigate timing & risk trade-offs' },
-    { name: 'Commercial judgement', desc: 'Shape the right structure to win' },
+    { name: 'Strategic client conversations', desc: 'Lead the integration discussion' },
+    { name: 'Relationship building', desc: 'Deepen the group CFO relationship' },
+    { name: 'Challenging discussions', desc: 'Navigate group structure & risk trade-offs' },
+    { name: 'Commercial judgement', desc: 'Shape the right group mandate to win' },
   ],
 };
 
@@ -410,8 +436,8 @@ export const creditProgress = {
   stage: 'Early credit read',
   narrative: 'Drafted by agent',
   approvals: { done: 1, total: 3 },
-  missing: ['Updated management accounts', 'German entity structure'],
-  note: 'Agent has drafted the credit narrative and flagged the risks — you review before it goes to committee.',
+  missing: ['Consolidated group accounts', 'Calderwood entity & ownership structure'],
+  note: 'Agent has drafted the group credit narrative and flagged the risks — you review before it goes to committee.',
 };
 
 /** WorkIQ-style data sources behind the always-on intelligence engine. */
@@ -438,26 +464,26 @@ export type RadarItem = {
 
 export const radar: RadarItem[] = [
   {
-    client: 'Avonmore Components',
-    trigger: 'Germany growth facility — positioned to win',
-    reason: 'The play you just ran — now repeatable across similar names',
-    product: 'Working capital · FX',
+    client: 'Avonmore Group',
+    trigger: 'M&A event — acquired Calderwood, group mandate in flight',
+    reason: 'The play you just ran — now repeatable across acquisitive names',
+    product: 'Acquisition finance · Cash · FX',
     priority: 'High',
     when: 'In flight',
   },
   {
     client: 'Halethorpe Foods',
-    trigger: 'Filed accounts — cash up 22%',
-    reason: 'Surplus liquidity; deposit & investment opportunity',
-    product: 'Liquidity / deposits',
-    priority: 'Medium',
+    trigger: 'Press: acquiring a regional competitor',
+    reason: 'Likely acquisition finance + consolidation need',
+    product: 'Acquisition finance',
+    priority: 'High',
     when: 'This week',
   },
   {
     client: 'Northwind Logistics',
-    trigger: 'Peer issued £200m green bond',
-    reason: 'Likely to explore sustainable financing',
-    product: 'Sustainable finance',
+    trigger: 'Filed accounts — cash up 22%',
+    reason: 'Surplus liquidity; deposit & investment opportunity',
+    product: 'Liquidity / deposits',
     priority: 'Medium',
     when: 'This week',
   },
@@ -466,7 +492,7 @@ export const radar: RadarItem[] = [
     trigger: 'Facility maturing in 90 days',
     reason: 'Refinancing window opening',
     product: 'Refinancing',
-    priority: 'High',
+    priority: 'Medium',
     when: 'Within 2 weeks',
   },
 ];
@@ -483,14 +509,14 @@ export type GraphNode = {
 export const relationship = {
   healthScore: 78,
   trend: '+6',
-  singleThreadRisk: 'Sarah Whitfield (CFO) is the only strong contact — succession risk if she leaves.',
-  whiteSpace: 'No coverage in Treasury or the new German entity.',
+  singleThreadRisk: 'Sarah Whitfield (Group CFO) is the only strong contact — succession risk if she leaves.',
+  whiteSpace: 'No coverage of the acquired Calderwood entity or its finance team.',
   nodes: [
-    { id: 'cfo', label: 'Sarah Whitfield', role: 'CFO', strength: 'strong', key: true },
+    { id: 'cfo', label: 'Sarah Whitfield', role: 'Group CFO', strength: 'strong', key: true },
     { id: 'ceo', label: 'Mark Avon', role: 'CEO', strength: 'medium' },
     { id: 'fd', label: 'Priya Shah', role: 'Finance Director', strength: 'medium' },
-    { id: 'treas', label: 'Treasury', role: 'Open white-space', strength: 'weak' },
-    { id: 'de', label: 'German entity', role: 'No coverage', strength: 'weak' },
+    { id: 'cald', label: 'Calderwood finance', role: 'Acquired — new contacts', strength: 'weak' },
+    { id: 'treas', label: 'Group Treasury', role: 'Open white-space', strength: 'weak' },
   ] as GraphNode[],
 };
 
@@ -511,23 +537,88 @@ export const crossBank = {
       contact: 'Daisy Bennett',
       role: 'Lead Relationship Manager',
       status: 'Primary',
-      traction: 'Leading the £8m Germany growth facility',
+      traction: 'Leading the £12m group acquisition mandate',
     },
     {
-      team: 'CIB · Markets',
-      contact: 'Tom Albright',
-      role: 'FX & rates specialist',
+      team: 'CIB · Coverage',
+      contact: 'Marcus Reed',
+      role: 'Calderwood relationship director',
       status: 'Active',
-      traction: 'EUR hedging line already live with treasury',
+      traction: 'Holds the acquired entity — align to one group strategy',
     },
     {
       team: 'Transaction Banking',
       contact: 'Priya Nair',
       role: 'Payments & cash management',
       status: 'Light',
-      traction: 'Domestic payments only — DACH cash white-space',
+      traction: 'Group cash pooling white-space across both entities',
     },
   ] as CoverageRow[],
   recommend:
-    'Bring Transaction Banking in now — the German entity needs cross-border cash management to win the full mandate.',
+    'Loop in CIB Coverage now — aligning both teams to one group strategy wins the full mandate and avoids internal silos.',
+};
+
+/* ---- scene 8: Unified platform ------------------------------------------- */
+
+export type UnifiedPane = {
+  icon: 'building' | 'doc' | 'bot';
+  title: string;
+  subtitle: string;
+  rows: { label: string; value: string }[];
+};
+
+export type GlassPipeStage = {
+  label: string;
+  detail: string;
+  status: 'done' | 'active' | 'next';
+};
+
+/** Single pane of glass — the group deal flows end-to-end across the bank. */
+export const unifiedPlatform = {
+  intro:
+    'One platform across the group. Client, deal and workflow data flow end-to-end — no rekeying, CRM running headless in the background.',
+  panes: [
+    {
+      icon: 'building',
+      title: 'Client — Avonmore Group',
+      subtitle: 'Two entities, one relationship',
+      rows: [
+        { label: 'Group revenue', value: '£70m' },
+        { label: 'Group exposure', value: '£31m' },
+        { label: 'Coverage', value: 'BCB + CIB, unified' },
+      ],
+    },
+    {
+      icon: 'doc',
+      title: 'Deal — group mandate',
+      subtitle: 'Acquisition + cash & FX',
+      rows: [
+        { label: 'Value', value: '£12.0m' },
+        { label: 'Stage', value: 'Positioned to win' },
+        { label: 'Win probability', value: '90%' },
+      ],
+    },
+    {
+      icon: 'bot',
+      title: 'Workflow — agent bench',
+      subtitle: 'Running in the background',
+      rows: [
+        { label: 'Credit pack', value: 'Drafted' },
+        { label: 'Pricing', value: 'RM-confirmed' },
+        { label: 'Client B coverage', value: 'Aligned' },
+      ],
+    },
+  ] as UnifiedPane[],
+  glassPipe: [
+    { label: 'Signal', detail: 'M&A event detected', status: 'done' },
+    { label: 'Shape', detail: 'Group mandate structured', status: 'done' },
+    { label: 'Capture', detail: 'Need confirmed in-meeting', status: 'done' },
+    { label: 'Orchestrate', detail: 'Agents executing', status: 'active' },
+    { label: 'Win', detail: 'Group deal positioned', status: 'next' },
+  ] as GlassPipeStage[],
+  principles: [
+    { icon: 'globe' as const, title: 'Glass pipe', detail: 'Every step visible end-to-end — full deal transparency' },
+    { icon: 'building' as const, title: 'Headless CRM', detail: 'The record writes itself — no separate system to update' },
+    { icon: 'zap' as const, title: 'No rekeying', detail: 'Captured once, reused everywhere across the bank' },
+  ],
 };

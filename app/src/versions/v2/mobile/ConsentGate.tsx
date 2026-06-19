@@ -153,11 +153,11 @@ export function ConsentGate() {
         <div className="rounded-2xl border border-accent/30 bg-accent/10 p-4">
           <div className="flex items-center gap-2 text-sm font-bold text-accent">
             <Icon name="trendingUp" size={16} />
-            Deal signal already on your radar
+            M&A opportunity already on your radar
           </div>
           <p className="mt-1.5 text-xs text-muted">
-            Pre-read flagged a likely cross-border working capital need — you walk
-            in already knowing where the opportunity is.
+            Pre-read flagged a group-level event — Avonmore has acquired Calderwood,
+            another Lloyds client. You walk in already knowing where the opportunity is.
           </p>
         </div>
 
