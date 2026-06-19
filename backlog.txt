@@ -1,8 +1,424 @@
-what needs to go into the flow even before the interview starts
-landing page, work planning dashboard
 
-connecting to the data lakes
 
-plus 
+1. Live moment flow - adapt conversation to reflect real convo with a CIB and BCB client, and the actual signals it may detect - same for post-meeting summary content
+2. Agent bench - needs to include the agents identified in prop
+3. Opportunity radar - can we simulate what this feature is pulling data from? This would be a good place to then talk about WorkIQ - how it pulls on data from internal and external sources including unstructured content capture in conversations
+4. Relationship intelligence - is this also where we want to show a single view of the relationships across the bank e.g. what RM is already on this, who is the main contact - deep dive info on traction they’ve already made in the space
+5. Other future of tech themes I think we need to include:
+5a. No rekeying of information - fully integrated data source - single pane of glass / visibility across organisation and beyond for broker led interactions (glass pipe system i.e. a fully transparent, end‑to‑end view of a deal as it flows through the bank, visible to both internal teams and brokers - One View today only shows pricing and approval not workflows)
+5b. Headless CRM - unified interface like Cowork (could be covered in examples that Varshini Nimmagadda is working on)
 
-mobile capability 
+It's not anchored enough in our journey scope . Right now it feels too like “AI insights” vs “RM winning deals". Let's build in journey language (Origination/Deal shaping/Credit progression/£ value/ deal progression/win probability/ timing advantage)
+We are using Daisy as our persona and therefore the narrative and experience should reflect that as she goes through the key phases,
+maybe - Daisy is a Senior BCB RM, 
+London | 10+ years | Owns a portfolio of mid-corporate clients so we’re showing where the model stretches into more complex deal scenarios? gives us permission to:
+include deal structuring
+include multi-stakeholder relationship graphs
+include larger opportunities (£m range)
+
+couple of real people we got, but do not use these personas one to one >> a kind of mix would be perfect:
+Sabrina - 8 years at Lloyds
+
+Supports global business services (e.g. Circo, BIFA), payment companies
+Operating within CIB (Corporate & Investment Banking) segment - focus on £500m+ turnover clients
+6-7 client meetings a weel
+Spending as much of day to day time with clients
+Success is driven by proximity to clients and relationship building
+
+Ben Head - RM for Services, Public Sector & Regions corporate coverage. Been with LBG 3.5 years
+
+Nassly Zambrano - works in same sectors as Ben. Has been with LBG nearly 10 years, starting as a customer service assistant.
+
+Amy Kleinman - RM across Professional Services. Been with LBG 1.5 years
+
+
+Current
+	
+New
+
+
+Consent gate
+	
+Activate intelligence
+
+
+Live moment
+	
+Shape opportunity
+
+
+Post-meeting
+	
+Capture momentum
+
+
+Agent bench
+	
+Orchestrate the deal
+
+
+Opportunity radar
+	
+Scale across portfolio
+
+
+Relationship graph
+	
+Where you win
+ 
+Overall, the prototype should tell one connected story: Daisy identifies the opportunity before the client asks, activates intelligence for the meeting, uses live prompts to shape the conversation, structures a stronger proposition, mobilises the bank instantly, manages the deal through agents and strengthens the relationships needed to win.
+ 
+
+here is a narrative:
+The flow should start before the meeting, with an Opportunity Ignition moment. This shows why Daisy is engaging the client in the first place. The system surfaces a high-value prospect or existing client opportunity based on market movement, client behaviour, peer activity, portfolio performance or upcoming liquidity / funding events. This moment should answer: “Why this client, why now, and why are we ahead of competitors?” Prospecting becomes signal-led rather than manually driven. Daisy is guided towards the clients and opportunities most likely to convert, with estimated value, urgency, rationale and suggested next action. 
+
+ 
+
+The next moment is Consent / Activate Intelligence. This should not feel like an admin gate. It should feel like Daisy switching on live intelligence for the meeting. Consent unlocks real-time signal detection, opportunity shaping, risk identification and automated follow-up. If consent is declined, Daisy can still continue manually, but with reduced live intelligence. The message should be: consent enables the bank to convert the conversation into action, while keeping the RM in control. 
+
+ 
+
+The third moment is the Live Client Moment. As Daisy speaks with the client, the platform detects intent, urgency, risk and opportunity in real time. This should move beyond transcription. The system should surface prompts that help Daisy shape the conversation while it is happening — for example, expansion into Germany, liquidity pressure, FX exposure, working capital need or timing risk. The prompt should show commercial value, why the signal matters, what Daisy could say next and how acting now creates advantage before competitors engage. 
+
+ 
+
+The fourth moment should be a separate Deal Structuring screen. This is important because it brings the “winning clients” angle to life. Once the opportunity is detected, Daisy should not just receive a follow-up task — the platform should help shape the best proposition. This screen could show recommended deal structures, options to compare, pricing / risk considerations, product combinations, likely client fit, internal constraints and competitor positioning. For CIB, this could include financing strategy, hedging options, capital structure or RFP positioning. For BCB, this could include working capital, lending, deposits, FX, payments or growth funding. The key message is: Daisy is supported to shape a better answer before the client formally asks or goes to market. 
+
+The fifth moment is Post-Meeting Momentum. The meeting should immediately convert into structured outputs: key decisions, client intent, commercial opportunity, follow-up communication, internal actions and CRM / pipeline updates. The screen should feel less like “summary written automatically” and more like “opportunity now progressing”. It should show what happens next, who is mobilised, what is needed, what is due today and what risk exists if action is delayed. The value is not just fewer notes — it is faster conversion from client conversation into executable sales motion. 
+ 
+
+The sixth moment is Agent Bench / Deal Orchestration. This should show Daisy orchestrating the deal rather than doing the work manually. A bench of agents should progress activity in the background: credit readiness, product input, data gathering, pricing support, meeting prep, internal coordination, fulfilment initiation and client follow-up. Daisy should only be pulled in where judgement, challenge or relationship ownership is required. This screen should make the distinction clear: agents handle execution; Daisy handles judgement, trust and deal direction. This aligns strongly to the proposal’s ambition for CRM and AI to reduce manual work, improve prioritisation and increase RM client-facing time 
+.  
+
+The seventh moment is Relationship Intelligence / Win Strategy. This should not be a static relationship graph. It should show where Daisy is strong, where she is exposed and what relationships need to be built to win the opportunity. For example, if the German expansion opportunity requires Treasury engagement, the graph should highlight missing coverage and recommend introductions. This is especially important for CIB, where access, influence and multi-stakeholder engagement can make the difference between being in the process and shaping the process. The message should be: deals are won through relationship coverage as much as product capability. 
+  
+
+The final moment can return to Portfolio Opportunity Radar, showing that this is not a one-off journey. Daisy’s whole book is continuously monitored for signals, risks, whitespace and next-best-action. The system prioritises where she should spend time today based on value, urgency and likelihood to progress. This reinforces the shift from reactive portfolio coverage to always-on origination. It links directly to the future sales journey ambition in the proposal: AI-ranked client opportunities, tailored client preparation, origination, internal mobilisation, lending progression and automated outcome capture. 
+
+
+then a bit of background of the work we had with LBG:
+We have previously worked with you to identify key areas where AI agents could support RMs in the end-to-end sales journey​
+ Through interviews with RMs across CIB and BCB, we have identified three areas with the most prevalent pain points across the current journey and where agentic AI could provide the most immediate value: 
+ 1. Origination​
+Lead generation, pitching, insight​
+RMs spend significant time manually researching, assembling insights and preparing pitches instead of proactively driving high-value client opportunities.​
+Pitching work – fact sheet / briefing notes / better client insights / pitch books ​
+
+​AI-powered pitching is orchestrated by a set of agents working together. Contextual insights enable tailored, proactive and differentiated client pitches.​
+Lead generation and origination​
+
+Identification of product opportunities or deal structures based on client need drawn from internal and external signals ​
+
+Likelihood of further spend and/or share of wallet​
+
+Summarise financials, industry trends and strategic goals to enable RMs to have insightful client conversations​
+
+​AI transforms lead generation from manual prospecting to a data-driven continuously running pipeline. Predictive insights identify high value opportunities and next best actions.​
+
+2.AI transforms lead generation from manual prospecting to a data-driven continuously running pipeline. Predictive insights identify high value opportunities and next best actions.​
+Reporting to pricing / risk / credit committees,  maintaining and updating account plans​
+AI shifts internal governance from a manual control process to embedded, real-time assurance across the sales journey. Embedded intelligence improves decision quality across pricing, credit and risk.​
+
+3.External Requirements​
+Client servicing, onboarding, queries, audit​
+RMs are pulled into reactive, low-value servicing and data tasks that do not require their expertise but consume capacity.​
+Client Management Teams - Query Management​
+AI enables rapid, accurate query resolution by surfacing relevant client information​
+Client Servicing Team​
+AI supports proactive, insight-led servicing through continuous client monitoring and personalised engagement​
+Audit Requests​
+AI automates audit readiness by ensuring complete, traceable documentation and compliance by design​
+Onboarding / CMT – DCF form ​
+AI streamlines onboarding with proactive data capture and validation to support accuracy, validation and early opportunity assessment​
+
+When every bank has AI, the RM relationship becomes the difference​
+AI will not replace the Relationship Manager, it changes where their value sits. As AI absorbs routine work, the advantage concentrates around client insight, trust and high-value, complex client decisions, spurring growth and revenue through origination and cross-selling.​
+
+​
+
+The future sales journey is defined by the following shifts:​
+1.The human connection becomes the premium​
+From:  Task executor​
+
+To: Trusted advisor ​
+
+AI absorbs routine preparation, data capture, workflow tracking and follow-up activity. ​
+
+The RM’s value shifts towards trust, empathy, relationship depth and high-value client judgement.​
+RM time focused on revenue generating client activity & client origination.​
+
+Less effort lost to manual preparation, rekeying, routing and reporting.​
+
+Deeper relationships through more focused and regular human engagement.​
+2. The RM knows the clients' needs before they do​
+From: Relationship recorder​
+
+To: Predictive client intelligence​
+
+AI moves the RM beyond static CRM records and reactive service. It brings together client context, lifecycle signals, interactions, portfolio activity, service issues and market triggers to generate timely, personalised insight. ​
+
+The RM turns that intelligence into proactive sales opportunities. ​
+
+​
+A simpler frontline experience with richer client context and better data capture.​
+
+Proactive, personalised sales & cross sell opportunities in real time.​
+
+Earlier retention signals: identify dissatisfaction/triggers and prompt RM intervention.​
+
+Stronger pipeline visibility, next-best-actions and client memory across the bank.​
+
+3.The RM scales ​
+
+through AI agents​
+From: Individual banker ​
+
+To: Client value orchestrator​
+
+Future high-performing RMs will be delegating, orchestrating and quality-controlling AI agents that are specialised in tasks that support the RM to deliver exceptional client experience. The skill shift will be honing judgement and context to know what to delegate, and the authority to act on what comes back. ​
+Exponential RM capacity (one human, many agents).​
+
+Clear skillsets and expectations for the workforce of the future: commercial and relationship judgement and AI fluency.​
+
+More sustainable value by aligning workflow, data, AI, governance and colleague change.​
+
+Standard products fulfilled automatically; RM focus shifts to complex opportunities​
+
+​
+4.The RM is the human override​
+From: Human in the loop ​
+
+To: Human point of accountability​
+
+AI can recommend, summarise, benchmark and prompt, but relationship-sensitive decisions still need human judgement. The RM becomes the trusted authority: validating recommendations, querying outputs, explaining decisions and knowing when to override automation. ​
+Greater confidence in AI-supported decisions ​
+
+Clear accountability for advice, conduct and risk-sensitive moments​
+
+Better explainability where client trust matters ​
+
+Higher adoption of AI because RMs remain in control​
+
+How customer value can be delivered through a reimagined future RM sales journey​
+We have re-imagine a day in the life of the RM showcasing how CRM, AI agents and straight-through workflows reshape activities around client value. ​
+
+8.30am ​
+
+​
+
+Prioritise my client book ahead of client meetings​
+
+9.00am​
+
+​
+
+Prepare with tailored client points of view​
+
+10.00am-2.30pm ​
+
+​
+
+Originate and deepen client relationships​
+
+3.00pm​
+
+​
+
+Mobilise the bank around live opportunities​
+
+4.00pm​
+
+​
+Progress lending and credit with fewer handoffs​
+
+5.00pm​
+
+​
+Capture outcomes and trigger next actions​
+
+“I start with an AI-ranked view of my clients, including live portfolio performance, risks and emerging triggers for new opportunities. ​
+
+I know who needs my attention today and why.”​
+
+​
+
+​
+
+“Before my client meetings, I get the full client picture: relationship history, product usage, pipeline, service issues, credit position and suggested talking points.”​
+
+“I bring distinctive perspectives to every client conversation. My clients value my point-of-view and I deepen my relationship with every interaction.”​
+
+​
+
+My AI agents support me to surface opportunities, capturing notes and decisions, while I lead the relationship.”​
+
+"Once an opportunity is live, CRM can instantly identify and mobilise the right people, teams and agents around my clients: from product, credit, service and operations. AI Agents prepare materials, track actions and monitor governance steps and keep momentum.”​
+
+"For lending, I use AI-supported workflows to prepare credit narratives, flag missing information, monitor approvals and explain key risks or mitigants and provide instant decisions. I remain accountable for the relationship context and client outcome.”​
+
+“When a deal is won, lost or deferred, outcomes are captured automatically. ​
+
+​
+
+AI turns them into clear insight of what happened, what we learned, and what comes next, so every result strengthens the relationship.”​
+
+Time is focused on the highest-value origination, retention and risk opportunities.​
+
+Less preparation time, more relevant client conversations and advice. ​
+
+Better conversion from insight into opportunities, no repeat conversations, wallet growth and deeper client trust.​
+
+​
+
+​
+
+Faster deal progression, fewer handoffs and a more joined-up client experience.​
+
+Rapid lending journeys with clear accountability, accurate credit quality and no rework.​
+
+Stronger client memory, better next-best-actions and improved future performance insight.​
+
+Lead identification​
+
+Prospecting​
+
+Opportunity prioritisation​
+
+Meeting preparation​
+
+Client context​
+
+Advisory planning​
+
+Origination​
+
+Advice​
+
+Cross-sell ​
+
+Relationship building​
+
+Deal initiation​
+
+Pipeline management​
+
+Specialist engagement​
+
+Governance​
+
+Credit preparation​
+
+Lending workflow ​
+
+Decision support​
+
+Post-sale activity​
+
+Win/loss learning​
+
+Next-best actions​
+
+Performance analytics​
+
+CRM is evolving from a system of record into an AI-driven execution ecosystem​
+Traditional CRM applications will evolve into composable services where core capabilities are exposed via APIs, AI agents orchestrate work across systems and user experience is delivered through a unified interface. ​
+We are seeing 5 key shifts across the market:​
+CRM platforms are being decomposed into composable services​
+
+​
+
+What this means: ​
+
+Monolithic CRM suites are being broken apart into data layers, orchestration layers and channel-specific experiences.​
+
+​
+
+​
+
+​
+
+Implication: ​
+Organisation will assemble modular CRM capabilities.​
+The CRM native UI is no longer the primary interface​
+
+​
+
+​
+
+What this means: ​
+
+With core CRM capabilities now exposed via APIs, organisations can decouple the front-end from the platform and design purpose-built experiences that better reflect how users actually work. ​
+
+​
+
+Implication: ​
+RM user experience is ‘headless’, embedded into RMs day-to-day operations.​
+A single, intelligent system​
+
+​
+
+​
+
+​
+
+What this means:​
+
+As CRM capabilities become more distributed, RMs will operate through a single system that brings together client intelligence, workflows and actions across the journey. ​
+
+​
+
+Implication: ​
+CRM enables a seamless, end-to-end operating environment where users no longer need to navigate between systems. ​
+CRM workflows are being executed by AI Agents​
+
+​
+
+​
+
+What this means: ​
+
+Cases, tasks and queues are being executed by AI Agents that plan actions, act autonomously across systems and adapt in real-time.​
+
+​
+
+​
+
+Implication: ​
+Static workflow constructs are being replaced by dynamic execution.​
+CRM becomes part of an AI-led operating model​
+
+​
+
+​
+
+What this means:​
+
+CRM no longer operates as a standalone system of record. Its data, workflows and capabilities are embedded into AI Agents, productivity tools and other enterprise platforms. ​
+
+​
+
+Implication: ​
+CRM is being absorbed into the AI enterprise stack rather than evolving within its own boundary.​
+CRM becomes part of an AI-led operating model​
+
+​
+
+​
+
+What this means:​
+
+CRM no longer operates as a standalone system of record. Its data, workflows and capabilities are embedded into AI Agents, productivity tools and other enterprise platforms. ​
+
+​
+
+Implication: ​
+CRM is being absorbed into the AI enterprise stack rather than evolving within its own boundary.​
+
+Dynamics 365’s roadmap emphasises a holistic platform that brings together CRM, collaboration, analytics and AI on a single infrastructure​
+1. AI Copilot in every sales workflow to help craft emails, prepare for meetings and update CRM data, freeing up RMs from manual tasks to focus on selling.​
+2. Seamless integration with Microsoft 365 tools to bring CRM and sales workflows into the tools RMs already use, eliminating context switching and providing real-time client intelligence.​
+3. The platform unifies customer data and applies AI / analytics to improve pipeline quality, lead scoring and forecasting accuracy, enabling RMs to prioritise the right opportunities.​
+
+​
+
+​4. Automation and low code customisation via the Power Platform to automate repetitive sales processes and create custom AI Agents to tailor the sales platform to their unique workflows for further efficiency gains. ​

@@ -2,17 +2,44 @@ import { useCallback, useEffect, useState } from 'react';
 import { BrandMark } from './components/brand/BrandMark';
 import { DeviceFrame } from './components/DeviceFrame';
 import { SceneNav } from './components/SceneNav';
-import { scenes } from './scenes/scenes';
+import {
+  DEFAULT_VERSION_ID,
+  SHOW_SWITCHER,
+  getVersion,
+  versionFromUrl,
+  versions,
+} from './versions/registry';
+import { VersionSwitcher } from './versions/VersionSwitcher';
+import { DigitalTwin } from './versions/v2/twin/DigitalTwin';
 
 export default function App() {
+  const [versionId, setVersionId] = useState(
+    () => getVersion(versionFromUrl() ?? DEFAULT_VERSION_ID).id,
+  );
   const [index, setIndex] = useState(0);
-  const scene = scenes[index];
+
+  const version = getVersion(versionId);
+  const scenes = version.scenes;
+  const scene = scenes[index] ?? scenes[0];
   const SceneComponent = scene.component;
+
+  const selectVersion = useCallback((id: string) => {
+    setVersionId(id);
+    setIndex(0);
+  }, []);
 
   const goPrev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
   const goNext = useCallback(
     () => setIndex((i) => Math.min(scenes.length - 1, i + 1)),
-    [],
+    [scenes.length],
+  );
+
+  const goToScene = useCallback(
+    (id: string) => {
+      const i = scenes.findIndex((s) => s.id === id);
+      if (i >= 0) setIndex(i);
+    },
+    [scenes],
   );
 
   useEffect(() => {
@@ -30,6 +57,13 @@ export default function App() {
       <header className="flex items-center justify-between border-b border-line px-6 py-4">
         <BrandMark wordmark="Lloyds" subtext="CIB Relationship · concept" />
         <div className="flex items-center gap-3">
+          {SHOW_SWITCHER && (
+            <VersionSwitcher
+              versions={versions}
+              activeId={version.id}
+              onSelect={selectVersion}
+            />
+          )}
           <span className="rounded-full border border-line px-3 py-1 text-xs font-semibold text-muted">
             CIB &amp; BCB
           </span>
@@ -63,6 +97,9 @@ export default function App() {
           </div>
         </main>
       </div>
+
+      {/* always-on digital twin — v2 only */}
+      {version.id === 'v2' && <DigitalTwin onNavigate={goToScene} />}
     </div>
   );
 }
