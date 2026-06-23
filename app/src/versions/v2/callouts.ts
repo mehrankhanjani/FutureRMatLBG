@@ -72,11 +72,11 @@ export const callouts: Record<string, Callout> = {
     concept:
       'The meeting immediately converts into structured outputs, actions and deal progression.',
     benefits: [
-      'Focuses on momentum, not just summaries',
+      'Glass pipe — conversation → structured data, transparently',
+      'Headless CRM — Cowork writes the record; no separate system to update',
+      'No re-keying — captured once, reused everywhere across the bank',
       'Clear next steps, owners, deadlines and risks',
-      'Automatic CRM and pipeline updates (no rekeying)',
-      'Faster internal mobilisation',
-      'Reduces drop-off between meeting and execution',
+      'Faster internal mobilisation and reduced drop-off',
     ],
     outcome: { label: 'Technology', text: 'Event-driven architecture on the Agentic AI Platform' },
   },

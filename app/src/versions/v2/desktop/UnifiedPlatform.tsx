@@ -90,24 +90,7 @@ export function UnifiedPlatform() {
         </div>
       </Card>
 
-      {/* platform principles */}
-      <div className="anim-fadeUp mt-4 grid grid-cols-3 gap-4" style={{ animationDelay: '360ms' }}>
-        {unifiedPlatform.principles.map((pr) => (
-          <div key={pr.title} className="flex items-start gap-3 rounded-2xl bg-surface-2 p-4">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <Icon name={pr.icon} size={16} />
-            </span>
-            <div className="min-w-0">
-              <p className="text-sm font-bold">{pr.title}</p>
-              <p className="mt-0.5 text-xs leading-snug text-muted">{pr.detail}</p>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      <p className="mt-4 text-center text-[11px] text-faint">
-        CRM runs headless in the background — the platform writes the record, so nothing is keyed twice.
-      </p>
     </DesktopChrome>
   );
 }

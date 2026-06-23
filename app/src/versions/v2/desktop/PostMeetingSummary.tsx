@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DesktopChrome } from './DesktopChrome';
 import { Card, Chip, SectionLabel, Avatar } from '../../../ui/primitives';
 import { Icon } from '../../../ui/icons';
-import { client, meeting, summary, dealStages, captureCapabilities } from '../scenario';
+import { client, meeting, summary, dealStages } from '../scenario';
 
 /**
  * Capture momentum — the CRM "one-view" that writes itself minutes after the
@@ -33,21 +33,6 @@ export function PostMeetingSummary() {
         <span className="ml-auto flex items-center gap-1.5 text-xs font-bold text-accent">
           <Icon name="check" size={14} /> CRM updated
         </span>
-      </div>
-
-      {/* capability tags — the architecture beneath the magic */}
-      <div className="anim-fadeUp mb-4 flex flex-wrap gap-2" style={{ animationDelay: '30ms' }}>
-        {captureCapabilities.map((c) => (
-          <span
-            key={c.label}
-            className="flex items-center gap-2 rounded-full border border-line bg-surface-2 py-1.5 pl-2.5 pr-3.5 text-xs"
-          >
-            <Icon name={c.icon} size={13} className="text-accent" />
-            <span className="font-bold">{c.label}</span>
-            <span className="text-faint">·</span>
-            <span className="text-muted">{c.detail}</span>
-          </span>
-        ))}
       </div>
 
       <div className="grid grid-cols-5 gap-4">
