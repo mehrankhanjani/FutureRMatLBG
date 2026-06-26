@@ -1,0 +1,86 @@
+we asked "what does great look like when understanding what a client really needs"
+Client needs are validated with reasons and benchmarked against industry comapartors
+Proactive / predictive analysis in real time
+Agent led ‘24/7’ discovery - like Jack in the earlier Jack & Jill recruitment example
+at risk flags, why was deal lost, where we perform well
+We compare needs to both our client portfolios and their sector
+interpretation how it would affect portfolios
+360 insights - internal, external, competitors, opportunities
+client vs lbg competitors
+Look at trends and who is affected - for prospecting
+Predictive insights, alerts, and nudges guide RMs to take the right action at the right moment, enabling smarter, faster decisions and more impactful client conversations
+Understanding how non clients may be impacted by external events to support prospecting, do we have warm leads        
+
+we asked"what does great look like when knowing this is worth pursuing"
+the needs is analysed against the product suite and inidicative/predictive approvals are granted.  IE cleint needs money - potential debt capacity is given / defualt grade assesed / likelihood is established
+Propensity and appetite (credit, product etc.) analysis to support with prioritisation
+Enable soft searches to empower the RM to persue opportunities
+Only collect bare minimum at opportunity capture to encourage in -the-moment entry
+I can view the market openly, with insight  guiding me to where there may be opportunities
+Understanding if a clients need meets our appetite / strengths (Geographic , credit appetite etc)
+RM confidence in numbers
+Support the RM’s judgement with AI assisted qualification i.e. it doesn’t replace it
+Present clear unambiguous gateways to progression, human in the loop check/validation
+Propensity scoring & background checks
+Next best action for possibility for AI data for opportunity conversion
+growth trajectory + geography where focus is required including where the red lines are
+pricing integration (when pricing opportunity). linear vs flexible pricing
+reg flags to automatically rule out certain clients, e.g., ones in south africa
+
+we asked "what does great look like when shaping the best solutions?
+Opportunities are both suggested to me and can be iterated quickly with AI support
+Proposition built on client circumstances but provides benchmarking and insights to support
+Dont restrict to a single product, give a flavour and let the Product specialist design the right outcome
+Confidence in delivery e.g. supported by credit models or product - even if not ‘out of the box’
+Modelling to support affordability / benefit / sustainability for clients.
+How to tempt clients with LBG USP
+Have a ‘client’ file everyone can access - same information for everyone - insights across different service line
+Product go to RM and not RM go to Product - reverse proactivity.
+RM then kept in the loop off the back or product chats. single source of truth
+Product solutions maintain pace with internal product enhancements automatically
+Options in line with bankers delegations given ie bespoke pricing potential
+Ability to apply an overarching portfolio strategy / product suite preference
+show how the solution benefits the client, the bank and then bankers portfolio
+Structured in a way that allows internal flexibility - RWA movements etc
+Educating RMs on new products , not all RMs have a strong understanding  of the whole suite
+bring the right people in at the right time
+
+we asked "what does great look like when managing rish and approvals without slowing progress"
+My approvals are integrated into my workflow, not requiring emails
+Sufficient data collection at initial client interaction to support with approval i.e. in meeting prompts for info linked to requirements needed for approvals (e.g. Credit, KYC, Product specific requirements).
+Data freshness is proactive, owners are prompted to ensure relevency
+In-life monitoring of existing facilities / sensitivity analysis
+Covenants and promises!
+Is the client meeting their obligations / promises to us
+Approvals are reviewed by AI ahead of being fed to approvers, with suggested outcomes provided to RM & Credit
+Predictive analytics + impact on downstream metrics
+Automated triage - not human to push along
+Need to be confident that the reccomendations/Opps are genuine/accuarate/appropriate
+Internal balance sheets - ensure business strategy and revenue implications are visible with client recommendations
+
+we asked "what does great look like in how interactions between RM, client work"
+A insight to the clients last interaction with the bank regardless of channel ie Call Centre/RM/digital (outreach too)
+RMs are central to the client experience but are empowered by insight and a team of agents
+Automated alerts and Insights for proactive interaction
+Timely proactive outreach at moments that matter
+Predictive analytics and alerts prompt RMs to reach out at the right moments with tailored advice
+Every interaction is personalised through a complete, real-time view of client activity, needs, and history, ensuring consistently relevant engagement
+Clients experience a fully joined-up journey with no need to repeat information, receiving faster, more informed responses across every touchpoint
+Multiple RMs on a single deal - ensure collaboration (esp across specialties/geographies)
+Full picture view (across all channels+ Channel of choice) along with logs / history
+Approval and judgement points by RM - controls
+AI lead drafting, RM led outbox
+Email agent - Intuitive outreach to clients
+Silent AI = Tone of voice of RM, clients sometimes dislike having AI being pushed onto them
+Persona-based = mimicking rm
+
+we asked"what needs to be true to move forward smoothly without rework or delays"
+We input data only once, its then fed to all who need it
+Data Alignment for Seamless onboarding across SME to complex clients of CIB
+We only approch the client for info we cant get our selves
+Clarity on requirements so it covers all product needs at the start of the journey - Only one ask from the client
+Intuative process. Complexities supported by Coach
+All workflows and SLAs can be tracked in one place
+Need be able to easily know what stage onabording is at  
+
+

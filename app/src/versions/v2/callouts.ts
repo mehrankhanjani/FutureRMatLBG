@@ -46,7 +46,7 @@ export const callouts: Record<string, Callout> = {
       'Real-time detection of intent, risk and opportunity helps Daisy actively shape the conversation.',
     benefits: [
       'Moves beyond transcription to live guidance',
-      'Detects signals (expansion, liquidity, FX, working capital)',
+      'Detects signals (acquisition refinance, fragmented banking, cash & FX consolidation)',
       'Suggests what to say next in the moment',
       'Explains commercial relevance instantly',
       'Enables action before competitors engage',

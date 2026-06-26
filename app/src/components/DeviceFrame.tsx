@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { DeviceType } from '../types';
 
 /** Phone mock — status bar, content, bottom indicator. ~390×844 (iPhone-ish). */
-function PhoneFrame({ children }: { children: ReactNode }) {
+export function PhoneFrame({ children }: { children: ReactNode }) {
   return (
     <div className="relative h-[740px] w-[360px] shrink-0 rounded-[48px] bg-neutral-800 p-[11px] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.85)] ring-1 ring-white/15">
       {/* side buttons */}
@@ -31,6 +31,39 @@ function PhoneFrame({ children }: { children: ReactNode }) {
         <div className="flex justify-center py-2">
           <div className="h-1 w-32 rounded-full bg-text/40" />
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Tablet mock — slim-bezel slate with a resting digital pen down the right edge. */
+export function TabletFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative h-[660px] w-[520px] shrink-0 rounded-[34px] bg-neutral-800 p-[14px] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.85)] ring-1 ring-white/15">
+      {/* front camera */}
+      <span className="absolute left-1/2 top-[7px] z-20 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-neutral-600" />
+
+      {/* screen */}
+      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[24px] bg-ink">
+        {children}
+      </div>
+
+      {/* digital pen / stylus resting against the right edge */}
+      <div className="pointer-events-none absolute -right-[10px] top-28 z-30 h-72 w-[14px] rotate-[7deg]">
+        {/* barrel */}
+        <span className="absolute inset-0 rounded-full bg-gradient-to-b from-neutral-100 via-neutral-300 to-neutral-400 shadow-[0_10px_24px_-6px_rgba(0,0,0,0.7)]" />
+        {/* side button */}
+        <span className="absolute left-1/2 top-16 h-6 w-[3px] -translate-x-1/2 rounded-full bg-neutral-400/70" />
+        {/* tip */}
+        <span
+          className="absolute -bottom-3 left-1/2 h-0 w-0 -translate-x-1/2"
+          style={{
+            borderLeft: '7px solid transparent',
+            borderRight: '7px solid transparent',
+            borderTop: '14px solid #9ca3af',
+          }}
+        />
+        <span className="absolute -bottom-[18px] left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-neutral-700" />
       </div>
     </div>
   );
@@ -74,6 +107,10 @@ export function DeviceFrame({
   device: DeviceType;
   children: ReactNode;
 }) {
+  if (device === 'custom') {
+    // The scene composes its own device frames (e.g. phone + tablet).
+    return <div className="flex w-full items-center justify-center">{children}</div>;
+  }
   return device === 'mobile' ? (
     <PhoneFrame>{children}</PhoneFrame>
   ) : (

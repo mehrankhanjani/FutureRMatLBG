@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 
-export type DeviceType = 'mobile' | 'desktop';
+export type DeviceType = 'mobile' | 'desktop' | 'custom';
 
 export type Scene = {
   id: string;

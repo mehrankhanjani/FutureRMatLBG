@@ -1,0 +1,243 @@
+import { useState } from 'react';
+import { DesktopChrome } from '../../v2/desktop/DesktopChrome';
+import { Card } from '../../../ui/primitives';
+import { Icon, type IconName } from '../../../ui/icons';
+import { HelpSpot } from '../help/Help';
+import {
+  radar,
+  intelligenceSources,
+  dealStages,
+  radarDigest,
+  radarHorizons,
+  productSuggestion,
+  type RadarItem,
+} from '../scenario';
+
+const priorityStyle: Record<RadarItem['priority'], { chip: string; bar: string }> = {
+  High: { chip: 'bg-risk/15 text-risk', bar: 'bg-risk' },
+  Medium: { chip: 'bg-chip-amber/20 text-chip-amber', bar: 'bg-chip-amber' },
+  Low: { chip: 'bg-info/15 text-info', bar: 'bg-info' },
+};
+
+const productIcon: Record<string, IconName> = {
+  'Acquisition finance · Cash · FX': 'trendingUp',
+  'Acquisition finance': 'trendingUp',
+  'Working capital · FX': 'trendingUp',
+  'Liquidity / deposits': 'building',
+  'Sustainable finance': 'globe',
+  'FX risk solutions': 'globe',
+  Refinancing: 'clock',
+};
+
+/**
+ * Scale across the portfolio — iteration 3 override.
+ *
+ * Adds a smart-filter digest bar (collapsed by default, to counter RM overload),
+ * a data-horizon prefix on every card, and a product-suggests card variant —
+ * showing the platform pushing both ways (coverage and product, one view).
+ */
+export function OpportunityRadar() {
+  const [actioned, setActioned] = useState<Set<number>>(new Set());
+  const [expanded, setExpanded] = useState(false);
+  const highCount = radar.filter((r) => r.priority === 'High').length;
+
+  return (
+    <DesktopChrome
+      active="radar"
+      title="Scale across the portfolio"
+      subtitle="The same play, repeated across your whole book"
+      dealStage={dealStages.scale}
+    >
+      {/* smart-filter digest bar — calm summary first, expand for the full list */}
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="anim-fadeUp mb-4 flex w-full items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 text-left transition hover:border-accent/40"
+      >
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
+          <Icon name="target" size={18} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="flex items-center gap-1.5 text-sm font-bold">
+            {radarDigest.label} · {radarDigest.count} actions <HelpSpot id="scale.digest" />
+          </p>
+          <p className="truncate text-xs text-muted">{radarDigest.note}</p>
+        </div>
+        <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-xs font-bold text-accent">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+          Live scan
+        </span>
+        <Icon
+          name="chevronRight"
+          size={18}
+          className={`shrink-0 text-faint transition-transform ${expanded ? 'rotate-90' : ''}`}
+        />
+      </button>
+
+      {expanded ? (
+        <>
+          <div className="mb-3 flex items-center gap-2 px-1">
+            <p className="text-xs font-bold text-muted">
+              {radar.length + 1} opportunities surfaced · {highCount} need action today
+            </p>
+            <span className="h-px flex-1 bg-line" />
+          </div>
+
+          {/* opportunity rows */}
+          <div className="space-y-3">
+            {/* product-suggests card — origin is a product specialist, not a market signal */}
+            <Card className="anim-fadeUp flex items-stretch gap-0 overflow-hidden border-brand/30">
+              <span className="w-1.5 shrink-0 bg-brand" />
+              <div className="flex flex-1 items-center gap-4 p-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                  <Icon name="users" size={20} />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="truncate text-sm font-extrabold">{productSuggestion.client}</span>
+                    <span className="shrink-0 rounded-full bg-brand/20 px-2 py-0.5 text-[10px] font-bold text-brand">
+                      Product suggests
+                    </span>
+                    <HelpSpot id="scale.productsuggest" />
+                  </div>
+                  <p className="mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-text">
+                    <Icon name="sparkle" size={12} className="text-brand" /> {productSuggestion.trigger}
+                  </p>
+                  <p className="mt-0.5 truncate text-xs text-muted">{productSuggestion.reason}</p>
+                  <p className="mt-1 flex items-center gap-1 text-[11px] font-semibold text-brand">
+                    <Icon name="bell" size={11} /> {productSuggestion.origin}
+                  </p>
+                </div>
+                <div className="hidden w-40 shrink-0 flex-col items-start gap-1.5 sm:flex">
+                  <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-bold text-muted">
+                    {productSuggestion.product}
+                  </span>
+                  <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${priorityStyle[productSuggestion.priority].chip}`}>
+                    {productSuggestion.priority} priority
+                  </span>
+                  <span className="text-[10px] font-semibold text-faint">{productSuggestion.horizon}</span>
+                </div>
+                <div className="flex shrink-0 flex-col items-end gap-2">
+                  <span className="flex items-center gap-1 text-[11px] font-bold text-faint">
+                    <Icon name="clock" size={12} /> {productSuggestion.when}
+                  </span>
+                  <button className="flex items-center gap-1.5 rounded-full bg-brand px-3.5 py-1.5 text-xs font-bold text-ink transition active:scale-[0.98]">
+                    Review <Icon name="arrowRight" size={13} />
+                  </button>
+                </div>
+              </div>
+            </Card>
+
+            {radar.map((r, i) => {
+              const ps = priorityStyle[r.priority];
+              const isOwn = r.client === 'Avonmore Group';
+              const isActioned = actioned.has(i);
+              return (
+                <Card
+                  key={i}
+                  className="anim-fadeUp flex items-stretch gap-0 overflow-hidden"
+                  style={{ animationDelay: `${i * 70}ms` }}
+                >
+                  {/* priority bar */}
+                  <span className={`w-1.5 shrink-0 ${ps.bar}`} />
+
+                  <div className="flex flex-1 items-center gap-4 p-4">
+                    {/* product icon */}
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-accent">
+                      <Icon name={productIcon[r.product] ?? 'sparkle'} size={20} />
+                    </span>
+
+                    {/* main */}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="truncate text-sm font-extrabold">{r.client}</span>
+                        {isOwn && (
+                          <span className="shrink-0 rounded-full bg-brand/20 px-2 py-0.5 text-[10px] font-bold text-brand">
+                            Your deal
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-text">
+                        <Icon name="zap" size={12} className="text-accent" /> {r.trigger}
+                      </p>
+                      <p className="mt-0.5 truncate text-xs text-muted">{r.reason}</p>
+                      <p className="mt-1 text-[11px] font-semibold text-faint">
+                        Detected from · {radarHorizons[i] ?? 'Live scan'}
+                      </p>
+                    </div>
+
+                    {/* product + priority */}
+                    <div className="hidden w-40 shrink-0 flex-col items-start gap-1.5 sm:flex">
+                      <span className="rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-bold text-muted">
+                        {r.product}
+                      </span>
+                      <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${ps.chip}`}>
+                        {r.priority} priority
+                      </span>
+                    </div>
+
+                    {/* timing + action */}
+                    <div className="flex shrink-0 flex-col items-end gap-2">
+                      <span className="flex items-center gap-1 text-[11px] font-bold text-faint">
+                        <Icon name="clock" size={12} /> {r.when}
+                      </span>
+                      {isActioned ? (
+                        <span className="flex items-center gap-1.5 rounded-full bg-accent/15 px-3 py-1.5 text-xs font-bold text-accent">
+                          <Icon name="check" size={13} /> On it
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => setActioned((p) => new Set(p).add(i))}
+                          className="flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-xs font-bold text-on-accent transition active:scale-[0.98]"
+                        >
+                          Act now <Icon name="arrowRight" size={13} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* intelligence sources — what the always-on engine is grounded in */}
+          <Card className="anim-fadeUp mt-4 p-4" style={{ animationDelay: '320ms' }}>
+            <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 text-accent">
+                <Icon name="sparkle" size={14} />
+              </span>
+              <h3 className="text-sm font-extrabold">{intelligenceSources.label}</h3>
+              <HelpSpot id="scale.sources" />
+              <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-bold text-faint">
+                {intelligenceSources.example}
+              </span>
+              <p className="w-full text-xs text-muted sm:w-auto sm:flex-1 sm:pl-1">
+                {intelligenceSources.blurb}
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {intelligenceSources.sources.map((s) => (
+                <div key={s.name} className="flex items-start gap-3 rounded-2xl bg-surface-2 p-3.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <Icon name={s.icon} size={16} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold">{s.name}</p>
+                    <p className="mt-0.5 text-xs leading-snug text-muted">{s.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <p className="mt-4 text-center text-[11px] text-faint">
+            Every trigger is explainable — you see why it surfaced, and the sources behind it, before you act.
+          </p>
+        </>
+      ) : (
+        <p className="anim-fadeUp px-1 text-center text-[11px] text-faint">
+          {radar.length + 1} opportunities are ranked and waiting — expand the digest above when you are ready to work the book.
+        </p>
+      )}
+    </DesktopChrome>
+  );
+}

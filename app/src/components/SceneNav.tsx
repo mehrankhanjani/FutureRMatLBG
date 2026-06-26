@@ -57,7 +57,7 @@ export function SceneNav({
                   {s.title}
                 </span>
                 <span className="block truncate text-[11px] text-faint">
-                  {s.device === 'mobile' ? 'Mobile' : 'Desktop'}
+                  {s.device === 'desktop' ? 'Desktop' : 'Mobile'}
                 </span>
               </span>
             </button>

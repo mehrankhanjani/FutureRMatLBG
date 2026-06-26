@@ -5,6 +5,7 @@ import { SceneNav } from './components/SceneNav';
 import { Icon } from './ui/icons';
 import {
   DEFAULT_VERSION_ID,
+  LOCKED_VERSION_IDS,
   SHOW_SWITCHER,
   getVersion,
   versionFromUrl,
@@ -12,7 +13,11 @@ import {
 } from './versions/registry';
 import { VersionSwitcher } from './versions/VersionSwitcher';
 import { DigitalTwin } from './versions/v2/twin/DigitalTwin';
-import { callouts } from './versions/v2/callouts';
+import { DigitalTwin as DigitalTwinV3 } from './versions/v3/twin/DigitalTwin';
+import { callouts as calloutsV2 } from './versions/v2/callouts';
+import { callouts as calloutsV3 } from './versions/v3/callouts';
+import { HelpProvider, ExplainToggle, HelpDrawer, HelpSpot } from './versions/v3/help/Help';
+import { helpContent } from './versions/v3/help/helpContent';
 
 export default function App() {
   const [versionId, setVersionId] = useState(
@@ -24,7 +29,8 @@ export default function App() {
   const scenes = version.scenes;
   const scene = scenes[index] ?? scenes[0];
   const SceneComponent = scene.component;
-  const callout = version.id === 'v2' ? callouts[scene.id] : undefined;
+  const calloutMap = version.id === 'v3' ? calloutsV3 : version.id === 'v2' ? calloutsV2 : undefined;
+  const callout = calloutMap?.[scene.id];
 
   const selectVersion = useCallback((id: string) => {
     setVersionId(id);
@@ -55,16 +61,19 @@ export default function App() {
   }, [goPrev, goNext]);
 
   return (
+    <HelpProvider>
     <div className="min-h-screen bg-ink">
       {/* top bar */}
       <header className="flex items-center justify-between border-b border-line px-8 py-4">
         <BrandMark wordmark="Lloyds" subtext="CIB Relationship · concept" />
         <div className="flex items-center gap-3">
+          {version.id === 'v3' && <ExplainToggle />}
           {SHOW_SWITCHER && (
             <VersionSwitcher
               versions={versions}
               activeId={version.id}
               onSelect={selectVersion}
+              lockedIds={LOCKED_VERSION_IDS}
             />
           )}
         </div>
@@ -73,7 +82,10 @@ export default function App() {
       <div className="px-8 py-6">
         {/* presenter call-out — full-width banner across the whole stage */}
         <div className="mb-6 w-full rounded-2xl border border-line border-l-4 border-l-accent bg-surface px-5 py-4">
-          <h1 className="text-lg font-extrabold">{scene.title}</h1>
+          <h1 className="flex items-center gap-2 text-lg font-extrabold">
+            {scene.title}
+            {version.id === 'v3' && helpContent[scene.id] && <HelpSpot id={scene.id} />}
+          </h1>
           {callout ? (
             <>
               <p className="mt-1 text-sm text-muted">{callout.concept}</p>
@@ -109,8 +121,13 @@ export default function App() {
         </div>
       </div>
 
-      {/* always-on digital twin — v2 only */}
+      {/* always-on digital twin */}
       {version.id === 'v2' && <DigitalTwin onNavigate={goToScene} />}
+      {version.id === 'v3' && <DigitalTwinV3 onNavigate={goToScene} />}
+
+      {/* explain-mode help drawer — v3 only */}
+      {version.id === 'v3' && <HelpDrawer />}
     </div>
+    </HelpProvider>
   );
 }
