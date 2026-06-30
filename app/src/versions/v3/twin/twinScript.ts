@@ -40,6 +40,12 @@ export const twinFallback =
 
 export const twinExchanges: TwinExchange[] = [
   {
+    q: 'Is this prospect already a client?',
+    a: "Calderwood Engineering — yes, already with us. A CRM name search returns 14 near-matches (Calderwood Ltd, Caldwell, Calderwood Group…), but REO cross-references company number, group hierarchy and registered address to resolve it to one entity: an existing CIB client covered by Marcus Reed. No duplicate record, no cold-call to a name we already bank — one confident answer instead of a noisy list.",
+    sources: ['Internal systems', 'External market data'],
+    actions: [{ label: 'See it on one platform', sceneId: 'unified', ack: 'Opening the unified platform…' }],
+  },
+  {
     q: "What's my highest-value opportunity today?",
     a: 'Avonmore Group — your client Avonmore Components has just acquired Calderwood Engineering, another Lloyds client. Two clients are now one group: a £12m+ acquisition finance + group cash & FX consolidation opportunity, surfaced before competitors move.',
     sources: ['External market data', 'Internal systems'],

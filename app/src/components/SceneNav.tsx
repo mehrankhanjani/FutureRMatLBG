@@ -4,10 +4,13 @@ export function SceneNav({
   scenes,
   index,
   onSelect,
+  highlightIds,
 }: {
   scenes: Scene[];
   index: number;
   onSelect: (i: number) => void;
+  /** When set, scenes in this list are lit and all others dimmed. */
+  highlightIds?: string[] | null;
 }) {
   const current = scenes[index];
 
@@ -33,6 +36,7 @@ export function SceneNav({
       <nav className="flex flex-col gap-1.5">
         {scenes.map((s, i) => {
           const active = i === index;
+          const dimmed = !!highlightIds && !highlightIds.includes(s.id);
           return (
             <button
               key={s.id}
@@ -41,7 +45,7 @@ export function SceneNav({
                 active
                   ? 'border-accent/40 bg-accent/10'
                   : 'border-line bg-surface hover:border-line/80'
-              }`}
+              } ${dimmed ? 'opacity-40' : ''}`}
             >
               <span
                 className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${

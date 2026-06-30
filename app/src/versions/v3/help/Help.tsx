@@ -54,7 +54,7 @@ export function useHelp(): HelpCtx {
  * Only visible when explain mode is on and content exists for the id.
  * ====================================================================== */
 
-export function HelpSpot({ id, className = '' }: { id: string; className?: string }) {
+export function HelpSpot({ id, className = '', accent = 'ring-accent hover:bg-accent/20' }: { id: string; className?: string; accent?: string }) {
   const { explain, open } = useHelp();
   if (!explain || !helpContent[id]) return null;
 
@@ -74,7 +74,7 @@ export function HelpSpot({ id, className = '' }: { id: string; className?: strin
       onKeyDown={(e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') activate(e);
       }}
-      className={`inline-flex h-[18px] w-[18px] shrink-0 cursor-help select-none items-center justify-center rounded-full align-middle text-[11px] font-extrabold leading-none text-white ring-1 ring-accent transition hover:bg-accent/20 ${className}`}
+      className={`inline-flex h-[18px] w-[18px] shrink-0 cursor-help select-none items-center justify-center rounded-full align-middle text-[11px] font-extrabold leading-none text-white ring-1 transition ${accent} ${className}`}
     >
       ?
     </span>
@@ -116,11 +116,6 @@ export function ExplainToggle() {
 /* ========================================================================
  * HelpDrawer — right-hand panel that slides in with the open entry
  * ====================================================================== */
-
-const dimTone = (primary: boolean) =>
-  primary
-    ? 'bg-accent/15 text-accent ring-1 ring-accent/30'
-    : 'bg-surface-2 text-muted ring-1 ring-line';
 
 export function HelpDrawer() {
   const { openId, close } = useHelp();
@@ -175,20 +170,6 @@ function HelpBody({ entry, onClose }: { entry: HelpEntry; onClose: () => void })
         <div className="min-w-0 flex-1">
           <p className="text-[10px] font-bold uppercase tracking-wide text-faint">Explain this</p>
           <h2 className="text-base font-extrabold leading-tight">{entry.title}</h2>
-          <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-            <span
-              className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
-                entry.isNew ? 'bg-accent/15 text-accent' : 'bg-surface-2 text-muted'
-              }`}
-            >
-              {entry.isNew ? 'New this iteration' : 'Carried over'}
-            </span>
-            {entry.maturity && (
-              <span className="rounded-full bg-brand/15 px-2 py-0.5 text-[10px] font-bold text-brand">
-                {entry.maturity}
-              </span>
-            )}
-          </div>
         </div>
         <button
           onClick={onClose}
@@ -209,18 +190,6 @@ function HelpBody({ entry, onClose }: { entry: HelpEntry; onClose: () => void })
           <p className="text-sm leading-relaxed text-muted">{entry.whyItsHere}</p>
         </Section>
 
-        {entry.newNote && (
-          <Section label={entry.isNew ? 'New this iteration' : 'What changed'} icon="sparkle">
-            <p className="text-sm leading-relaxed text-muted">{entry.newNote}</p>
-          </Section>
-        )}
-
-        {entry.addresses && (
-          <Section label="What this improves" icon="check">
-            <p className="text-sm leading-relaxed text-muted">{entry.addresses}</p>
-          </Section>
-        )}
-
         {entry.youAskedFor && (
           <div className="rounded-2xl border-l-4 border-l-brand bg-surface-2 px-4 py-3">
             <p className="text-[10px] font-bold uppercase tracking-wide text-brand">You asked for</p>
@@ -230,35 +199,11 @@ function HelpBody({ entry, onClose }: { entry: HelpEntry; onClose: () => void })
           </div>
         )}
 
-        <Section label="What great looks like">
-          <div className="flex flex-wrap gap-1.5">
-            {entry.dimensions.map((d) => (
-              <span
-                key={d.name}
-                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold ${dimTone(
-                  d.primary,
-                )}`}
-              >
-                <span className="text-[8px]">{d.primary ? '●' : '◐'}</span>
-                {d.name}
-              </span>
-            ))}
-          </div>
-          <p className="mt-1.5 text-[10px] text-faint">● Primary focus · ◐ Supporting</p>
-        </Section>
-
         <div className="grid grid-cols-1 gap-3">
           <Meta label="RM journey stage" value={entry.stage} icon="target" />
           {entry.reoRole && <Meta label="REO’s role" value={entry.reoRole} icon="bot" />}
           {entry.source && <Meta label="Where the intelligence comes from" value={entry.source} icon="globe" />}
         </div>
-      </div>
-
-      {/* footer */}
-      <div className="border-t border-line px-5 py-3">
-        <p className="text-[10px] leading-relaxed text-faint">
-          Mapped to the workshop’s six “what great looks like” dimensions and the four-stage RM journey.
-        </p>
       </div>
     </>
   );

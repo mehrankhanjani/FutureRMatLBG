@@ -24,6 +24,7 @@ export const scenes: Scene[] = [
   {
     id: 'ignition',
     title: 'Opportunity ignition',
+    subtitle: 'A reason to call today — surfaced and qualified before you dial',
     caption:
       'Daisy knows her client — REO surfaces why now is the moment to act.',
     device: 'desktop',
@@ -33,6 +34,7 @@ export const scenes: Scene[] = [
   {
     id: 'relationship',
     title: 'Relationship intelligence',
+    subtitle: 'The full group picture — before you walk in',
     caption:
       'Before walking in — seven years of context, the health of the group, and every touchpoint, in one place.',
     device: 'desktop',
@@ -60,6 +62,7 @@ export const scenes: Scene[] = [
   {
     id: 'structure',
     title: 'Deal structuring & win strategy',
+    subtitle: 'Shape the right facility before it goes to credit',
     caption:
       'REO proposes three structures built around the client\'s situation — Daisy picks the one that serves Avonmore best.',
     device: 'desktop',
@@ -69,6 +72,7 @@ export const scenes: Scene[] = [
   {
     id: 'capture',
     title: 'Post-meeting momentum',
+    subtitle: 'Captured once — available to everyone who needs it',
     caption:
       'Captured once and available to everyone who needs it — Marcus, credit, product. Daisy\'s next action is already in front of her.',
     device: 'desktop',
@@ -78,6 +82,7 @@ export const scenes: Scene[] = [
   {
     id: 'orchestrate',
     title: 'Agent bench & orchestration',
+    subtitle: 'You orchestrate — agents progress the deal',
     caption:
       'Daisy stays in the relationships — REO orchestrates the bench to progress the deal toward credit.',
     device: 'desktop',
@@ -87,6 +92,7 @@ export const scenes: Scene[] = [
   {
     id: 'scale',
     title: 'Portfolio opportunity radar',
+    subtitle: 'The same play, repeated across your whole book',
     caption:
       "Today's three priorities across the book — ranked and ready. REO monitors continuously; Daisy focuses on what matters most.",
     device: 'desktop',
@@ -96,6 +102,7 @@ export const scenes: Scene[] = [
   {
     id: 'unified',
     title: 'Unified platform',
+    subtitle: 'One pane of glass — across the whole group',
     caption:
       'One view of the Avonmore Group relationship — client, deal and workflow. And a clear line of sight to what comes next.',
     device: 'desktop',
@@ -105,6 +112,7 @@ export const scenes: Scene[] = [
   {
     id: 'review',
     title: 'Relationship review & next cycle',
+    subtitle: 'The deal is live — and the next cycle has already begun',
     caption:
       'The deal is live — and REO has already detected the next signal. The cycle restarts from a stronger position.',
     device: 'desktop',

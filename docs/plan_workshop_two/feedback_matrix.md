@@ -393,3 +393,255 @@ How the 10-scene flow maps to the six "What Does Great Look Like" dimensions fro
 | **4. Manage risk & approvals** | Agent Bench | AI credit pre-review (P2 on Post-meeting/Agent Bench); in-life monitoring (P3); data freshness (P3) |
 | **5. RM–client interactions** | Relationship Intelligence, Activate, Live Moment, Post-meeting, Relationship Review | Comms draft in RM's voice (P2); full cross-channel interaction history (P2 on Scene A) |
 | **6. Eliminate friction** | Post-meeting, Agent Bench, Unified Platform | KYC/onboarding complexity (P3); client-only data ask (P3) |
+
+---
+
+## 6a. Six Dimensions × Scenes — Weighted
+
+The same map as section 6, but each cell is scored **0–1** for how much a scene carries that dimension. Two ranking rules apply: **(1)** within a dimension (each row) no two scenes share a weight — every scene is strictly ranked; **(2)** within a scene (each column) no two dimensions share a weight — every dimension is strictly ranked. So each cell is a unique rank both across its row and down its column.
+
+**Scale:** `1.0` built around it · `0.8–0.95` strong lead · `0.5–0.7` real support · `0.3–0.45` partial · `0.1–0.25` light · `<0.1` incidental.
+
+| Dimension | 1 · Ignition | A · Relationship | 2 · Activate | 3 · Live Moment | 4 · Structure Deal | 5 · Post-meeting | 6 · Agent Bench | 7 · Radar | 8 · Unified Platform | B · Review | **Σ** |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1. Understand client needs** | 0.90 | 1.00 | 0.20 | 0.80 | 0.50 | 0.30 | 0.10 | 0.60 | 0.40 | 0.70 | **5.50** |
+| **2. Qualify opportunities** | 0.85 | 0.35 | 0.10 | 0.50 | 1.00 | 0.15 | 0.60 | 0.80 | 0.20 | 0.40 | **4.95** |
+| **3. Shape solutions** | 0.30 | 0.12 | 0.05 | 0.40 | 0.95 | 0.60 | 0.80 | 0.20 | 0.45 | 0.15 | **4.02** |
+| **4. Manage risk & approvals** | 0.25 | 0.10 | 0.35 | 0.05 | 0.60 | 0.40 | 1.00 | 0.15 | 0.55 | 0.20 | **3.65** |
+| **5. RM–client interactions** | 0.35 | 0.95 | 0.60 | 0.85 | 0.15 | 0.90 | 0.12 | 0.25 | 0.50 | 0.65 | **5.32** |
+| **6. Eliminate friction** | 0.10 | 0.05 | 0.30 | 0.15 | 0.40 | 0.95 | 0.85 | 0.18 | 1.00 | 0.25 | **4.23** |
+| **Scene load (Σ)** | **2.75** | **2.57** | **1.60** | **2.75** | **3.60** | **3.30** | **3.47** | **2.18** | **3.10** | **2.35** | |
+
+### Lead scene per dimension (top 3 by weight)
+
+| Dimension | 1st | 2nd | 3rd |
+|---|---|---|---|
+| **1. Understand needs** | Relationship (1.00) | Ignition (0.90) | Live Moment (0.80) |
+| **2. Qualify** | Structure Deal (1.00) | Ignition (0.85) | Radar (0.80) |
+| **3. Shape** | Structure Deal (0.95) | Agent Bench (0.80) | Post-meeting (0.60) |
+| **4. Risk & approvals** | Agent Bench (1.00) | Structure Deal (0.60) | Unified (0.55) |
+| **5. Interactions** | Relationship (0.95) | Post-meeting (0.90) | Live Moment (0.85) |
+| **6. Friction** | Unified (1.00) | Post-meeting (0.95) | Agent Bench (0.85) |
+
+### Lead dimension per scene (what each scene is *most* about)
+
+| Scene | Lead dimension | 2nd |
+|---|---|---|
+| 1 · Ignition | Understand needs (0.90) | Qualify (0.85) |
+| A · Relationship | Understand needs (1.00) | Interactions (0.95) |
+| 2 · Activate | Interactions (0.60) | Risk (0.35) |
+| 3 · Live Moment | Interactions (0.85) | Understand needs (0.80) |
+| 4 · Structure Deal | Qualify (1.00) | Shape (0.95) |
+| 5 · Post-meeting | Friction (0.95) | Interactions (0.90) |
+| 6 · Agent Bench | Risk (1.00) | Friction (0.85) |
+| 7 · Radar | Qualify (0.80) | Understand needs (0.60) |
+| 8 · Unified Platform | Friction (1.00) | Risk (0.55) |
+| B · Review | Understand needs (0.70) | Interactions (0.65) |
+
+### What the totals say
+
+- **Heaviest scenes:** Structure Deal (3.60), Agent Bench (3.47), Post-meeting (3.30) — they carry the most dimension load and own a clear lead each.
+- **Lightest scenes:** Activate (1.60) and Radar (2.18) — narrow, single-purpose beats.
+- **Best-covered dimensions:** Understand needs (5.50) and Interactions (5.32) — strongest and broadest across the flow.
+- **Thinnest dimension:** Manage risk & approvals (3.65) — leans heavily on Agent Bench; thin elsewhere, so that scene is the linchpin.
+
+---
+
+## 6b. Top-3 Ranks — Per Component & Per Step
+
+Derived from the weights in 6a. Each cell is split: the **blue** top-left triangle is the rank **within the dimension** (which scenes matter most for that component, 1–3); the **orange** bottom-right triangle is the rank **within the scene** (which dimensions matter most for that step, 1–3). Empty triangles fall outside the top 3.
+
+<table style="border-collapse:collapse;text-align:center;font-size:12px">
+<tr>
+<th style="border:1px solid #ccc;padding:4px">Dimension</th>
+<th style="border:1px solid #ccc;padding:4px">1·Ign</th><th style="border:1px solid #ccc;padding:4px">A·Rel</th><th style="border:1px solid #ccc;padding:4px">2·Act</th><th style="border:1px solid #ccc;padding:4px">3·Live</th><th style="border:1px solid #ccc;padding:4px">4·Str</th><th style="border:1px solid #ccc;padding:4px">5·Post</th><th style="border:1px solid #ccc;padding:4px">6·Agent</th><th style="border:1px solid #ccc;padding:4px">7·Radar</th><th style="border:1px solid #ccc;padding:4px">8·Unif</th><th style="border:1px solid #ccc;padding:4px">B·Rev</th>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>1. Understand needs</b></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;1</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>2. Qualify</b></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>3. Shape</b></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>4. Risk &amp; approvals</b></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>5. RM interactions</b></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;2</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:4px;text-align:left"><b>6. Eliminate friction</b></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#fff 49%,#fff 50%,#ffe2c2 51%)">&nbsp;&nbsp;3</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">2&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">3&nbsp;&nbsp;2</td>
+<td style="border:1px solid #ccc"></td>
+<td style="border:1px solid #ccc;background:linear-gradient(135deg,#cfe2ff 49%,#fff 50%,#ffe2c2 51%)">1&nbsp;&nbsp;1</td>
+<td style="border:1px solid #ccc"></td>
+</tr>
+</table>
+
+**Legend:** <span style="background:#cfe2ff">&nbsp;blue (top-left)&nbsp;</span> = rank within the dimension (most relevant scenes per component) · <span style="background:#ffe2c2">&nbsp;orange (bottom-right)&nbsp;</span> = rank within the scene (most relevant components per step). A cell with both numbers is a top-3 on both axes — its strongest combinations: **Relationship × Understand needs**, **Structure × Qualify**, **Agent Bench × Risk**, **Unified × Friction**.
+
+---
+
+## 6c. Pod Allocation — Option B (top-3 + orphan patch)
+
+Six pods, one per component. Each pod reviews its **top-3 scenes** from 6a (① ② ③ = priority order), plus the two orphaned scenes are handed to their lead component (★). This keeps the top-3 logic and guarantees all 10 scenes get a reviewer. **2·Activate → Pod 5** and **B·Review → Pod 1**. Load: most pods review 3 scenes, Pods 1 and 5 review 4.
+
+| Pod (component) | 1·Ign | A·Rel | 2·Act | 3·Live | 4·Str | 5·Post | 6·Agent | 7·Radar | 8·Unif | B·Rev |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **1 · Understand needs** | ② | ① | | ③ | | | | | | ★ |
+| **2 · Qualify** | ② | | | | ① | | | ③ | | |
+| **3 · Shape** | | | | | ① | ③ | ② | | | |
+| **4 · Risk & approvals** | | | | | ② | | ① | | ③ | |
+| **5 · Interactions** | | ① | ★ | ③ | | ② | | | | |
+| **6 · Friction** | | | | | | ② | ③ | | ① | |
+| **Reviewers / scene** | 2 | 2 | 1 | 2 | 3 | 3 | 3 | 1 | 2 | 1 |
+
+**Pros:** minimal change, every scene covered, heavy scenes get triple review. **Cons:** Activate, Radar, Review get just one pod; uneven load.
+
+---
+
+## 6d. Pod Allocation — Option C (balanced ownership)
+
+Each scene has one **primary owner pod** (★, ~2 scenes per pod, all 10 covered evenly) plus a **secondary** pod from the top-3 (○) for a second pair of eyes. Pods review their owned scenes first, then their secondary if time allows.
+
+| Pod (component) | 1·Ign | A·Rel | 2·Act | 3·Live | 4·Str | 5·Post | 6·Agent | 7·Radar | 8·Unif | B·Rev |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **1 · Understand needs** | ★ | ★ | | ○ | | | | | | |
+| **2 · Qualify** | | | | | ○ | | | ★ | | |
+| **3 · Shape** | | | | | ★ | | ○ | | | |
+| **4 · Risk & approvals** | | | | | | | ★ | | ○ | |
+| **5 · Interactions** | | | ★ | ★ | | ○ | | | | |
+| **6 · Friction** | | | | | | ★ | | | ★ | ★ |
+| **Reviewers / scene** | 1 | 1 | 1 | 2 | 2 | 2 | 2 | 1 | 2 | 1 |
+
+Owners: P1 → Ignition, Relationship · P2 → Radar · P3 → Structure · P4 → Agent Bench · P5 → Activate, Live · P6 → Post, Unified, Review. Each pod owns 1–3, every scene owned once, with secondary cover on the heavier scenes.
+
+**Pros:** even load, no gaps, all 10 owned once. **Cons:** lighter scenes get a single reviewer; some pods (e.g. Shape) review steps not led by their dimension.
+
+### Choosing between them
+
+- **Option B** if you want depth on the high-stakes scenes (Structure, Agent, Post each get 3 pods) and accept thin coverage on Activate/Radar/Review.
+- **Option C** if even pod workload and guaranteed single-owner coverage matter more — better for a fixed-time workshop where every scene must be touched once.
+
+---
+
+## 7. The Five Components
+
+The five components that frame the RM journey, each broken into its constituent jobs-to-be-done.
+
+### 1. Identify client need
+
+- Identify high-potential prospects using internal and external signals
+- Prioritise target prospects using strategic and financial thresholds
+- Build a clear, up-to-date understanding of each high-potential prospect and their context
+- Establish clear ownership of prospects to ensure coordinated engagement
+- Identify triggers, events, and emerging needs to inform outreach
+
+### 2. Qualify the opportunity
+
+- Confirm client needs, priorities, and strategic objectives through interaction
+- Engage prospects using the right channel, timing and context
+- Gather and structure relevant information to assess opportunity value and define product proposition
+- Progress opportunities through internal set up, credit and risk approval processes
+
+### 3. Shape the proposition
+
+- Define a clear, value-led solution aligned to client needs and bank capability (financial and non-financial products)
+- Align external and internal stakeholders on solution direction and approach
+- Structure and shape opportunities into clear, actionable deals
+
+### 4. Handover origination
+
+- Coordinate activities across internal teams and external stakeholders
+- Maintain a complete, accurate view of opportunity status and history
+- Provide consistent visibility of client and deal context to stakeholders
+
+### 5. Deepen client relationship
+
+- Maintain a deep understanding of client context, priorities and performance
+- Sustain ongoing engagement to strengthen relationships and identify emerging risks or changes in performance
+- Determine and execute the next best action for each client
+- Ensure time-sensitive actions and client follow ups are completed and communicated clearly
+- Capture and maintain accurate, up-to-date client interaction records
+
+---
+
+## 7a. Mapping the 10 Scenes to the Five Components
+
+The 10-scene flow maps onto the five components **in flow order**, as built — a **3-2-1-2-2 split**. Each scene sits in its *true* component (the job it actually carries), so the bundles are deliberately uneven: Identify carries three scenes, Shape carries one. The flow still walks the components in sequence — Identify → Qualify → Shape → Handover → Deepen.
+
+| Component | Primary scene bundle | Why these scenes carry it | Supporting touch |
+|---|---|---|---|
+| **1 · Identify client need** | 1 · Ignition + A · Relationship Intelligence + 7 · Radar | Surface, contextualise and prioritise high-potential prospects from internal and external signals — Ignition is the single-client trigger, Relationship Intelligence holds the prospect's context and history, Radar is the always-on book-wide scan | B · Relationship Review (the next signal restarts the cycle) |
+| **2 · Qualify the opportunity** | 2 · Activate + 3 · Live Moment | Engage at the right channel and moment, then confirm needs, priorities and objectives live — capturing and structuring intent, risk and opportunity from the conversation | 4 · Structure Deal (opportunity value assessment) |
+| **3 · Shape the proposition** | 4 · Structure Deal | Define the value-led, multi-product solution aligned to client needs and bank capability, and shape it into a clear, actionable deal — the single clean owner of this component | 6 · Agent Bench (iterates the structure toward credit) |
+| **4 · Handover origination** | 5 · Post-meeting + 6 · Agent Bench | Convert the conversation into a shared record and coordinate across internal teams — Post-meeting hands the captured deal to colleagues and credit; Agent Bench orchestrates team assembly, cross-coverage and credit/risk routing | 8 · Unified Platform (status & history visibility) |
+| **5 · Deepen client relationship** | 8 · Unified Platform + B · Relationship Review | Provide a single accurate view of the live relationship and drive ongoing engagement — next best action, time-sensitive follow-ups, interaction capture, and the next cycle's first signal | A · Relationship Intelligence (longitudinal history) |
+
+### Bundle view
+
+- **1 · Identify client need** ← `1 · Ignition` + `A · Relationship Intelligence` + `7 · Radar`
+- **2 · Qualify the opportunity** ← `2 · Activate` + `3 · Live Moment`
+- **3 · Shape the proposition** ← `4 · Structure Deal`
+- **4 · Handover origination** ← `5 · Post-meeting` + `6 · Agent Bench`
+- **5 · Deepen client relationship** ← `8 · Unified Platform` + `B · Relationship Review`
+
+Every one of the 10 scenes maps to exactly one component as a primary owner — a **3-2-1-2-2 split** that follows the flow in order (Identify → Qualify → Shape → Handover → Deepen). The bundles are uneven by design: each scene is placed in the component whose job it genuinely does, rather than forcing a neat two-per-component symmetry.

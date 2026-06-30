@@ -26,7 +26,7 @@ export const callouts: Record<string, Callout> = {
     benefits: [
       'Relationship context first — the signal explains itself within the history Daisy already owns',
       'Clear "why this client, why now, why us" rationale before she picks up the phone',
-      'Estimated opportunity value and confidence grounded in Ring 2 and Ring 3 data',
+      'Estimated opportunity value and confidence grounded in internal MI and external market data',
       'Early-mover position — REO detected the filing before the client has briefed advisers',
       'Powered by REO — internal, external and relationship data combined',
     ],

@@ -3,13 +3,21 @@ import { DesktopChrome } from '../../v2/desktop/DesktopChrome';
 import { Card, StatusPill } from '../../../ui/primitives';
 import { Icon, type IconName } from '../../../ui/icons';
 import { HelpSpot } from '../help/Help';
+import { SceneTabs, DEAL_DESK_TABS } from './SceneTabs';
 import {
   agentBench,
   creditProgress,
   dealStages,
   productWorkstream,
   crossCoverageApproval,
+  teamAssembled,
 } from '../scenario';
+
+const toneCls: Record<'accent' | 'brand' | 'info', string> = {
+  accent: 'bg-accent/15 text-accent',
+  brand: 'bg-brand/15 text-brand',
+  info: 'bg-info/15 text-info',
+};
 
 /**
  * Orchestrate the deal — iteration 3 override.
@@ -36,6 +44,8 @@ export function AgentBench() {
       subtitle="You orchestrate — agents progress the deal"
       dealStage={dealStages.orchestrate}
     >
+      <SceneTabs active="orchestrate" tabs={DEAL_DESK_TABS} />
+
       {/* credit progression strip */}
       <Card className="anim-fadeUp mb-4 flex flex-wrap items-center gap-x-6 gap-y-3 p-4">
         <div className="flex items-center gap-3">
@@ -43,7 +53,7 @@ export function AgentBench() {
             <Icon name="shield" size={18} />
           </span>
           <div>
-            <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-muted">Credit progression <HelpSpot id="orchestrate.credit" /></p>
+            <p className="text-xs font-bold uppercase tracking-wide text-muted">Credit progression</p>
             <p className="text-sm font-extrabold">{creditProgress.stage}</p>
           </div>
         </div>
@@ -63,31 +73,78 @@ export function AgentBench() {
             </span>
           ))}
         </div>
-        <p className="w-full text-[11px] leading-relaxed text-faint">{creditProgress.note}</p>
       </Card>
 
-      {/* summary strip */}
-      <div className="anim-fadeUp mb-4 grid grid-cols-3 gap-3">
-        <Stat icon="bot" tone="info" value={agentBench.autonomous.length + 1} label="Working autonomously" />
-        <Stat icon="bell" tone="amber" value={pending} label="Awaiting your approval" />
-        <Stat icon="heart" tone="accent" value={agentBench.rmOnly.length} label="Only you can do" />
+      {/* business-development agent — team assembled for the opportunity */}
+      <Card className="anim-fadeUp mb-4 p-4">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
+            <Icon name="users" size={14} />
+          </span>
+          <span className="text-[11px] font-bold uppercase tracking-wide text-brand">
+            {teamAssembled.agent} — team assembled
+          </span>
+          <span className="ml-auto flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-bold text-brand">
+            <Icon name="bot" size={11} /> REO · pulled in for this deal
+          </span>
+        </div>
+        <p className="mb-3 text-xs leading-relaxed text-muted">{teamAssembled.rationale}</p>
+        <div className="grid grid-cols-4 gap-3">
+          {teamAssembled.members.map((m) => (
+            <div key={m.name} className="rounded-2xl bg-surface-2 p-3.5">
+              <div className="mb-1.5 flex items-center gap-2">
+                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${toneCls[m.tone]}`}>
+                  <Icon name={m.icon} size={15} />
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-extrabold leading-tight">{m.name}</p>
+                  <p className="truncate text-[10px] font-semibold text-muted">{m.role}</p>
+                </div>
+              </div>
+              <p className="flex items-start gap-1 text-[11px] leading-snug text-faint">
+                <Icon name="check" size={11} className="mt-0.5 shrink-0 text-accent" /> {m.reason}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* column headers + counts */}
+      <div className="anim-fadeUp mb-4 grid grid-cols-3 gap-4">
+        <ColHeader
+          icon="bot"
+          tone="info"
+          value={agentBench.autonomous.length + 1}
+          title="Running in parallel"
+          note="Agents & colleagues"
+          helpId="orchestrate.parallel"
+        />
+        <ColHeader
+          icon="bell"
+          tone="amber"
+          value={pending}
+          title="Human in the loop"
+          note="Awaiting your approval"
+          helpId="orchestrate.humanloop"
+        />
+        <ColHeader
+          icon="heart"
+          tone="accent"
+          value={agentBench.rmOnly.length}
+          title="Only you"
+          note="Human judgement"
+          helpId="orchestrate.rmonly"
+        />
       </div>
 
       <div className="grid grid-cols-3 gap-4">
-        {/* tier 1 — autonomous */}
-        <Column
-          icon="bot"
-          title="Autonomous"
-          note="Runs without you"
-          accent="text-info"
-          delay={60}
-        >
+        {/* tier 1 — running in parallel (agents + product colleague) */}
+        <Column delay={60}>
           {/* product-specialist parallel workstream */}
           <div className="rounded-2xl border border-brand/30 bg-brand/5 p-3.5">
             <div className="mb-1 flex items-center justify-between gap-2">
               <span className="flex items-center gap-1.5 text-sm font-bold">
                 <Icon name="users" size={13} className="text-brand" /> {productWorkstream.name}
-                <HelpSpot id="orchestrate.productws" />
               </span>
               <StatusPill status="running" />
             </div>
@@ -108,13 +165,7 @@ export function AgentBench() {
         </Column>
 
         {/* tier 2 — human in the loop */}
-        <Column
-          icon="bell"
-          title="Human in the loop"
-          note="Needs your approval"
-          accent="text-chip-amber"
-          delay={120}
-        >
+        <Column delay={120}>
           {/* cross-coverage approval */}
           <div
             className={`rounded-2xl border p-3.5 transition ${
@@ -124,7 +175,6 @@ export function AgentBench() {
             <div className="mb-1 flex items-center justify-between gap-2">
               <span className="flex items-center gap-1.5 text-sm font-bold">
                 <Icon name="users" size={13} className="text-brand" /> {crossCoverageApproval.name}
-                <HelpSpot id="orchestrate.crossapproval" />
               </span>
               <StatusPill status={crossSettled ? 'done' : 'waiting'} />
             </div>
@@ -178,7 +228,6 @@ export function AgentBench() {
                     <span className={`font-extrabold ${isOverridden ? 'text-accent' : 'text-text'}`}>
                       {a.override.rmValue}
                     </span>
-                    <HelpSpot id="orchestrate.override" />
                   </div>
                 )}
 
@@ -224,13 +273,7 @@ export function AgentBench() {
         </Column>
 
         {/* tier 3 — RM only */}
-        <Column
-          icon="heart"
-          title="Only you"
-          note="Human judgement"
-          accent="text-accent"
-          delay={180}
-        >
+        <Column delay={180}>
           {agentBench.rmOnly.map((a, i) => (
             <div key={i} className="rounded-2xl bg-gradient-to-b from-accent/10 to-transparent p-3.5">
               <div className="mb-1 flex items-center gap-2">
@@ -252,16 +295,20 @@ export function AgentBench() {
 }
 
 /* ---- helpers ------------------------------------------------------------- */
-function Stat({
+function ColHeader({
   icon,
   tone,
   value,
-  label,
+  title,
+  note,
+  helpId,
 }: {
   icon: IconName;
   tone: 'info' | 'amber' | 'accent';
   value: number;
-  label: string;
+  title: string;
+  note: string;
+  helpId: string;
 }) {
   const map = {
     info: 'bg-info/15 text-info',
@@ -269,42 +316,33 @@ function Stat({
     accent: 'bg-accent/15 text-accent',
   }[tone];
   return (
-    <Card className="flex items-center gap-3 p-3.5">
-      <span className={`flex h-10 w-10 items-center justify-center rounded-xl ${map}`}>
-        <Icon name={icon} size={18} />
+    <Card className="relative flex items-center gap-3 p-4 pr-9">
+      <div className="absolute right-3 top-3 z-10">
+        <HelpSpot id={helpId} />
+      </div>
+      <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${map}`}>
+        <Icon name={icon} size={20} />
       </span>
       <div>
-        <p className="text-xl font-extrabold leading-none">{value}</p>
-        <p className="mt-1 text-xs text-muted">{label}</p>
+        <div className="flex items-baseline gap-2">
+          <p className="text-2xl font-extrabold leading-none">{value}</p>
+          <h3 className="text-sm font-extrabold leading-tight">{title}</h3>
+        </div>
+        <p className="mt-1 text-xs text-muted">{note}</p>
       </div>
     </Card>
   );
 }
 
 function Column({
-  icon,
-  title,
-  note,
-  accent,
   delay,
   children,
 }: {
-  icon: IconName;
-  title: string;
-  note: string;
-  accent: string;
   delay: number;
   children: React.ReactNode;
 }) {
   return (
     <Card className="anim-fadeUp p-4" style={{ animationDelay: `${delay}ms` }}>
-      <div className="mb-3 flex items-center gap-2">
-        <Icon name={icon} size={16} className={accent} />
-        <div>
-          <h3 className="text-sm font-extrabold leading-tight">{title}</h3>
-          <p className="text-[11px] text-muted">{note}</p>
-        </div>
-      </div>
       <div className="space-y-2.5">{children}</div>
     </Card>
   );

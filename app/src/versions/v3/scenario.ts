@@ -11,6 +11,8 @@ import {
   dealStages as dealStagesBase,
   intelligenceSources as intelligenceSourcesBase,
   type DealSnapshot,
+  type IgnitionSignal,
+  type GlassPipeStage,
 } from '../v2/scenario';
 
 /* =========================================================================
@@ -47,6 +49,48 @@ export const intelligenceSources = {
   ...intelligenceSourcesBase,
   example: 'e.g. REO',
 };
+
+/* =========================================================================
+   Phase 9 — Unified platform: align the glass pipe to the five future-state
+   components, and reframe the workflow pane as a live, REO-triggered queue
+   that replaces the RM manually driving PEGA + email/Teams.
+   ========================================================================= */
+
+/**
+ * Glass-pipe stages relabelled to the five future-state components and ordered
+ * in component sequence. On Scene 9 the deal sits at "Handover origination" —
+ * the first three components are complete, handover is live, the relationship
+ * (next cycle) is queued.
+ */
+export const groupGlassPipe: GlassPipeStage[] = [
+  { label: 'Identify client need', detail: 'M&A event detected', status: 'done' },
+  { label: 'Qualify the opportunity', detail: 'Need confirmed, value assessed', status: 'done' },
+  { label: 'Shape the proposition', detail: 'Group mandate structured', status: 'done' },
+  { label: 'Handover origination', detail: 'Routed to credit & risk', status: 'active' },
+  { label: 'Deepen client relationship', detail: 'Relationship live — next cycle', status: 'next' },
+];
+
+/**
+ * The next action the platform fired automatically when the deal reached the
+ * active stage — the moment that replaces the RM opening a PEGA case by hand
+ * and chasing over email/Teams.
+ */
+export const stageTrigger = {
+  stage: 'Handover origination',
+  action: 'REO opened the credit case in PEGA and routed it to credit risk',
+  meta: 'Case CR-4471 · SLA 48h · no email or Teams chase',
+};
+
+/** Live workflow queue — each action carries what triggered it and its state. */
+export const workflowQueue: {
+  action: string;
+  trigger: string;
+  state: 'done' | 'active' | 'waiting';
+}[] = [
+  { action: 'Credit pack assembled', trigger: 'On "Shape" complete', state: 'done' },
+  { action: 'Credit case opened in PEGA', trigger: 'On "Handover" stage', state: 'active' },
+  { action: 'Marcus — cross-coverage sign-off', trigger: 'Routed for approval', state: 'waiting' },
+];
 
 /* =========================================================================
    Phase 3 — Scene A: Relationship Intelligence
@@ -114,16 +158,22 @@ export const interactionHistory: InteractionEvent[] = [
   },
 ];
 
-/** Monthly relationship sentiment scores (0–100) over the past 6 months. */
-export type SentimentPoint = { month: string; score: number };
+/** Monthly relationship sentiment index (0–100) plus interactions logged, past 12 months. */
+export type SentimentPoint = { month: string; score: number; interactions: number };
 
 export const sentimentData: SentimentPoint[] = [
-  { month: 'Jan', score: 62 },
-  { month: 'Feb', score: 65 },
-  { month: 'Mar', score: 68 },
-  { month: 'Apr', score: 64 },
-  { month: 'May', score: 71 },
-  { month: 'Jun', score: 78 },
+  { month: 'Jul', score: 58, interactions: 3 },
+  { month: 'Aug', score: 60, interactions: 4 },
+  { month: 'Sep', score: 63, interactions: 2 },
+  { month: 'Oct', score: 61, interactions: 5 },
+  { month: 'Nov', score: 64, interactions: 3 },
+  { month: 'Dec', score: 62, interactions: 2 },
+  { month: 'Jan', score: 62, interactions: 4 },
+  { month: 'Feb', score: 65, interactions: 3 },
+  { month: 'Mar', score: 68, interactions: 6 },
+  { month: 'Apr', score: 64, interactions: 4 },
+  { month: 'May', score: 71, interactions: 5 },
+  { month: 'Jun', score: 78, interactions: 7 },
 ];
 
 /** A contact node in the group network map. */
@@ -134,6 +184,16 @@ export type GroupNode = {
   strength: 'strong' | 'medium' | 'weak';
   /** Which company this contact belongs to */
   entity: 'Avonmore' | 'Calderwood';
+  /** Direct email — verified internally or enriched from an external source */
+  email?: string;
+  /** Influence in a deal — economic buyer, champion, influencer, gatekeeper */
+  decisionRole?: string;
+  /** Where the contact detail came from (provenance) */
+  source?: string;
+  /** True when this is an uncovered gap with a contact found via enrichment */
+  suggested?: boolean;
+  /** The person discovered for a suggested (white-space) node */
+  suggestedName?: string;
 };
 
 /**
@@ -150,13 +210,13 @@ export const groupRelationship = {
   knowledgeShared: 4,
   knowledgePersonal: 2,
   nodes: [
-    { id: 'aw-cfo',   label: 'Sarah Whitfield', role: 'Group CFO',          strength: 'strong',  entity: 'Avonmore'   },
-    { id: 'aw-ceo',   label: 'Mark Avon',        role: 'CEO',                strength: 'medium',  entity: 'Avonmore'   },
-    { id: 'aw-fd',    label: 'Priya Shah',        role: 'Finance Director',   strength: 'medium',  entity: 'Avonmore'   },
-    { id: 'aw-de',    label: 'Group HoldCo',      role: 'New — no coverage',  strength: 'weak',    entity: 'Avonmore'   },
-    { id: 'ce-ceo',   label: 'Paul Whitaker',     role: 'CEO',                strength: 'strong',  entity: 'Calderwood' },
-    { id: 'ce-cfo',   label: 'Claire Booth',      role: 'CFO',                strength: 'medium',  entity: 'Calderwood' },
-    { id: 'ce-treas', label: 'Treasury',           role: 'Open white-space',   strength: 'weak',    entity: 'Calderwood' },
+    { id: 'aw-cfo',   label: 'Sarah Whitfield', role: 'Group CFO',          strength: 'strong',  entity: 'Avonmore',   decisionRole: 'Economic buyer', email: 'sarah.whitfield@avonmore.co.uk', source: 'Verified · One View' },
+    { id: 'aw-ceo',   label: 'Mark Avon',        role: 'CEO',                strength: 'medium',  entity: 'Avonmore',   decisionRole: 'Champion',       email: 'mark.avon@avonmore.co.uk',       source: 'Verified · One View' },
+    { id: 'aw-fd',    label: 'Priya Shah',        role: 'Finance Director',   strength: 'medium',  entity: 'Avonmore',   decisionRole: 'Influencer',     email: 'priya.shah@avonmore.co.uk',      source: 'Enriched · Apollo' },
+    { id: 'aw-de',    label: 'Group HoldCo',      role: 'New — no coverage',  strength: 'weak',    entity: 'Avonmore',   suggested: true, suggestedName: 'James Holloway', decisionRole: 'Group Finance Director', email: 'j.holloway@avonmoregroup.com', source: 'Found via Apollo' },
+    { id: 'ce-ceo',   label: 'Paul Whitaker',     role: 'CEO',                strength: 'strong',  entity: 'Calderwood', decisionRole: 'Champion',       email: 'paul.whitaker@calderwood-eng.com', source: 'Verified · One View' },
+    { id: 'ce-cfo',   label: 'Claire Booth',      role: 'CFO',                strength: 'medium',  entity: 'Calderwood', decisionRole: 'Economic buyer', email: 'claire.booth@calderwood-eng.com',  source: 'Enriched · Apollo' },
+    { id: 'ce-treas', label: 'Treasury',           role: 'Open white-space',   strength: 'weak',    entity: 'Calderwood', suggested: true, suggestedName: 'Daniel Mercer', decisionRole: 'Group Treasurer', email: 'd.mercer@calderwood-eng.com', source: 'Found via Apollo' },
   ] as GroupNode[],
 };
 
@@ -285,7 +345,7 @@ export const nextBestActions: NextBestAction[] = [
    ========================================================================= */
 
 /** A pre-deal qualification check shown as a pass/flag row. */
-export type Disqualifier = { label: string; value: string; status: 'pass' | 'flag' };
+export type Disqualifier = { label: string; value: string; status: 'pass' | 'flag'; source?: string };
 
 /**
  * Qualification, benchmark and ownership context for the Ignition scene —
@@ -301,17 +361,19 @@ export const ignitionQualification = {
     { label: 'Jurisdiction', value: 'UK — clear',        status: 'pass' },
     { label: 'Sector limit',  value: 'Within bounds',     status: 'pass' },
     { label: 'Sanctions',     value: 'Screened — clear',  status: 'pass' },
+    { label: 'Credit & ratings', value: 'Investment-grade headroom', status: 'pass', source: 'Moody’s · S&P ratings' },
   ] as Disqualifier[],
   /**
    * Data horizon label per ignition signal, aligned by index to
    * `ignition.signals`. Surfaced as a prefix on each source chip.
    */
   horizons: [
-    'Live event · Ring 3',
-    'Live event · Ring 3',
-    'Historical · Ring 2',
-    'Historical · Ring 2',
-    'Predicted · REO model',
+    'Live event',
+    'Live event',
+    'Historical',
+    'Historical',
+    'Historical',
+    'Historical',
   ],
   /** Peer/sector benchmark — how this opportunity compares. */
   benchmark: {
@@ -321,11 +383,40 @@ export const ignitionQualification = {
       { label: 'Raised acquisition + integration funding', value: '3 of 5 peers' },
       { label: 'Median time to refinance & consolidate',   value: '< 12 months' },
     ],
+    /** Sourced peer/sector evidence behind the benchmark. */
+    evidence: [
+      {
+        icon: 'check',
+        label: 'Trade-credit health',
+        detail: 'Calderwood is paying suppliers on time — no deterioration in trade credit',
+        source: 'D&B · Experian',
+      },
+      {
+        icon: 'target',
+        label: 'Sector outlook',
+        detail: 'Consolidation is accelerating across UK precision manufacturing',
+        source: 'IBIS World',
+      },
+      {
+        icon: 'zap',
+        label: 'Debt-market read',
+        detail: 'Comparable acquisition facilities are clearing at competitive margins',
+        source: 'Debt Domain',
+      },
+      {
+        icon: 'trendingUp',
+        label: 'Portfolio pattern',
+        detail: 'Matches acquisitive clients who refinanced + consolidated within 90 days',
+        source: 'Internal MI & Reporting · REO model',
+      },
+    ] as IgnitionSignal[],
   },
   /** Ownership confirmation — the group is jointly covered. */
   coverage: {
     owner: 'Daisy Bennett · BCB',
     notify: 'Marcus Reed · CIB',
+    privateSide: 'Founder pensions & protection sit with the group',
+    privateSideSource: 'Scottish Widows',
   },
 };
 
@@ -405,6 +496,48 @@ export const crossCoverageApproval = {
   who: 'Marcus Reed · CIB',
 };
 
+/**
+ * Business Development agent — assembles the right team for the opportunity.
+ * REO compiles the prospect pack and pulls in the lead RM, cross-coverage RM
+ * and the product & credit partners the deal actually needs, with the reason
+ * each was brought in. The human leads; the agent does the legwork.
+ */
+export const teamAssembled = {
+  agent: 'Business Development agent',
+  rationale:
+    'Group M&A mandate — cross-segment, acquisition finance with cross-border FX. REO assembled the team to match the opportunity.',
+  members: [
+    {
+      name: 'Daisy Bennett',
+      role: 'Lead RM · BCB',
+      reason: 'Owns the Avonmore relationship',
+      icon: 'heart' as const,
+      tone: 'accent' as const,
+    },
+    {
+      name: 'Marcus Reed',
+      role: 'Cross-coverage RM · CIB',
+      reason: 'Covers Calderwood — now one group',
+      icon: 'users' as const,
+      tone: 'brand' as const,
+    },
+    {
+      name: 'Aisha Khan',
+      role: 'Trade & Working Capital',
+      reason: 'Acquisition finance + cross-border FX',
+      icon: 'globe' as const,
+      tone: 'info' as const,
+    },
+    {
+      name: 'Tom Fletcher',
+      role: 'Credit partner · Risk',
+      reason: 'Early credit read on £31m group exposure',
+      icon: 'shield' as const,
+      tone: 'info' as const,
+    },
+  ],
+};
+
 /* =========================================================================
    Phase 8 — Enrich Scenes 2, 7 & 8: Activate, Radar & Unified Platform
    ========================================================================= */
@@ -413,7 +546,25 @@ export const crossCoverageApproval = {
 export const radarDigest = {
   label: "Today's priorities",
   count: 3,
-  note: 'The three that need you today. The rest stay ranked on your radar — expand when you are ready.',
+  note: 'The five that need you today. The rest stay ranked on your radar — expand when you are ready.',
+};
+
+/**
+ * "Your Portfolio" scorecard ribbon for the radar — the *why* behind what to
+ * target next. RM-private enablement, not a leaderboard: each target links to
+ * the client action that closes it. Includes book value across Crown
+ * Dependencies, which previously had no consolidated view.
+ */
+export const portfolioScorecard = {
+  bookValue: '£1.84bn',
+  bookValueNote: 'Now includes your Crown Dependencies book — visible for the first time',
+  targets: [
+    { label: 'Income', value: '£4.2m', target: '£5.0m', pct: 84, tone: 'accent' as const },
+    { label: 'Returns · RoRWA', value: '2.3%', target: '2.5%', pct: 92, tone: 'brand' as const },
+    { label: 'Cross-sell', value: '2.1', target: '3.0', pct: 70, tone: 'info' as const },
+    { label: 'New-to-bank', value: '7', target: '10', pct: 70, tone: 'amber' as const },
+  ],
+  drive: 'Avonmore Group covers ~60% of your cross-sell gap and lifts returns — REO has ranked it top below.',
 };
 
 /**

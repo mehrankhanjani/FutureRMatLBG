@@ -77,8 +77,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.qualify, primary: true },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — REO watches continuously and raises its hand when it is worth your time.',
-    source: 'Live external data (news, Companies House) joined to what the bank already knows about the client.',
+    source: 'Live external sources — CapIQ, S&P, Companies House, D&B — joined to the bank’s own One View CRM and Internal MI & Reporting.',
     maturity: 'Next horizon',
   },
   'ignition.hero': {
@@ -95,8 +94,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — scores appetite and suitability; Daisy decides whether to act.',
-    source: 'The bank’s own appetite and product data, applied to this client’s situation.',
+    source: 'The bank’s own appetite, limits and product data from One View CRM and Internal MI & Reporting, applied to this client’s situation.',
     maturity: 'Next horizon',
   },
   'ignition.signals': {
@@ -114,8 +112,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — gathers and time-stamps the evidence.',
-    source: 'A blend of historical context, current position, the live event, and a predicted outcome.',
+    source: 'A blend of external sources (CapIQ, S&P, Companies House, D&B) and internal systems (One View CRM, BSM, Internal MI & Reporting) — past, present, live and predicted.',
     maturity: 'Next horizon',
   },
   'ignition.prequal': {
@@ -132,9 +129,25 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.risk, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — runs the checks; flags anything that needs a human decision.',
-    source: 'Internal policy, limits and coverage records.',
+    source: 'Internal policy and limits (BSM, Internal MI & Reporting), sanctions screening, Moody’s & S&P credit ratings, and coverage records in One View CRM.',
     maturity: 'Next horizon',
+  },
+  'ignition.coverage': {
+    title: 'Coverage & ownership',
+    whatItIs:
+      'Who owns the relationship and who else needs to be in the loop on this opportunity from the outset.',
+    whyItsHere:
+      'It makes joint coverage explicit before any work starts — so the right RM leads, the right colleagues are notified, and nothing is pursued in isolation or duplicated across teams.',
+    isNew: true,
+    newNote: 'New this iteration.',
+    addresses: 'Coverage and ownership were not surfaced at the point an opportunity was raised.',
+    dimensions: [
+      { name: D.interactions, primary: true },
+      { name: D.friction, primary: false },
+    ],
+    stage: STAGE.prospect,
+    source: 'Coverage and relationship-ownership records in One View CRM, plus group wealth holdings in Scottish Widows.',
+    maturity: 'Available now',
   },
   'ignition.benchmark': {
     title: 'Peer / sector benchmark',
@@ -150,8 +163,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.shape, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — assembles the comparison.',
-    source: 'Sector and portfolio data across comparable clients.',
+    source: 'Sector and peer data (IBIS World, S&P, D&B, Experian) with the bank’s own portfolio MI.',
     maturity: 'Next horizon',
   },
 
@@ -173,7 +185,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: true },
     ],
     stage: STAGE.needs,
-    reoRole: 'Autonomous — assembles the picture; Daisy brings the judgement and the relationship.',
     source: 'Years of meetings, calls, emails and CRM notes across both coverage teams.',
     maturity: 'Next horizon',
   },
@@ -190,8 +201,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.needs,
-    reoRole: 'Autonomous — maps the contacts and coverage.',
-    source: 'Contact and engagement records across both teams.',
+    source: 'Contact and engagement records across both teams — coverage and contacts from One View CRM, meeting and call activity from MS Teams, and email threads from MS Outlook.',
     maturity: 'Next horizon',
   },
   'relationship.health': {
@@ -208,8 +218,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — scores engagement depth, recency and breadth over time.',
-    source: 'Engagement frequency, recency, product breadth and conversation sentiment.',
+    source: 'AI synthesises client feedback and survey signals from Qualtrics, engagement cadence from MS Teams and MS Outlook, and product breadth from One MI — all on the consolidated Client 360 view.',
     maturity: 'Next horizon',
   },
   'relationship.risk': {
@@ -225,8 +234,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — detects concentration in the contact network.',
-    source: 'The contact network and engagement pattern.',
+    source: 'Derived from the contact and coverage records in Client 360 and the engagement pattern across MS Outlook and MS Teams.',
     maturity: 'Next horizon',
   },
   'relationship.whitespace': {
@@ -242,8 +250,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.qualify, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — compares coverage against the group’s likely needs.',
-    source: 'Product holdings against the group’s profile.',
+    source: 'Product and revenue holdings from One MI and planned opportunities in KAP, set against the group’s profile in Client 360.',
     maturity: 'Next horizon',
   },
   'relationship.knowledge': {
@@ -260,8 +267,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — distinguishes shared records from personal notes.',
-    source: 'Shared CRM records versus an RM’s private notes.',
+    source: 'Shared records in Client 360 and KAP account plans versus an RM’s private workings in MS Excel and MS Outlook.',
     maturity: 'Future vision',
   },
   'relationship.history': {
@@ -278,8 +284,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — consolidates touchpoints across channels and teams.',
-    source: 'Calls, emails, meetings and CRM notes across both threads.',
+    source: 'Calls and meetings from MS Teams, emails from MS Outlook, and CRM notes in Client 360 — across both coverage threads.',
     maturity: 'Available now',
   },
 
@@ -300,8 +305,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.qualify, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — REO models the options; Daisy chooses and shapes.',
-    source: 'Pricing, appetite and product models applied to the client’s need.',
+    source: 'Options and pricing modelled in MS Excel, set against deal status in CIDT and credit-appetite reporting in Power BI.',
     maturity: 'Available now',
   },
   'structure.draftmode': {
@@ -318,7 +322,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'RM-led — you control when exploration becomes commitment.',
     maturity: 'Available now',
   },
   'structure.options': {
@@ -335,8 +338,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.qualify, primary: true },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — REO proposes; Daisy selects.',
-    source: 'Credit appetite and product models.',
+    source: 'Indicative pricing worked up in MS Excel, set against deal status in CIDT and credit-appetite reporting in Power BI.',
     maturity: 'Available now',
   },
   'structure.fork': {
@@ -354,24 +356,38 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — runs the credit track in the background; Daisy stays with the client.',
     maturity: 'Available now',
   },
-  'structure.economics': {
-    title: 'Indicative economics',
+  'structure.components': {
+    title: 'Facility components',
     whatItIs:
-      'The numbers for the selected structure — value, first-year revenue, return and client fit — with a “why this structure” rationale.',
+      'The building blocks of the selected structure broken out line by line — the acquisition / term facility, group cash consolidation and the FX hedge — each with its size and role.',
     whyItsHere:
-      'It keeps the commercial picture honest and explainable, framed after the client benefit rather than before it.',
+      'It shows what the headline number is actually made of, so the client sees a single relationship facility rather than separate products bolted together.',
     isNew: false,
-    newNote: 'Carried over; now sits behind the client-first framing.',
+    newNote: 'Carried over; now broken out as its own scannable card.',
     dimensions: [
       { name: D.shape, primary: true },
       { name: D.qualify, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — REO does the modelling; Daisy shapes the inputs.',
-    source: 'Pricing and return models.',
+    source: 'Component sizing modelled in MS Excel and tracked against the deal record in CIDT.',
+    maturity: 'Available now',
+  },
+  'structure.economics': {
+    title: 'Indicative economics & terms',
+    whatItIs:
+      'The numbers for the selected structure — value, first-year revenue, return and client fit — alongside the indicative terms: tenor, margin, arrangement fee and security.',
+    whyItsHere:
+      'It keeps the commercial picture honest and explainable, framed after the client benefit rather than before it, with the headline terms in the same view so the shape and the price stay together.',
+    isNew: false,
+    newNote: 'Carried over; economics and indicative terms now sit together behind the client-first framing.',
+    dimensions: [
+      { name: D.shape, primary: true },
+      { name: D.qualify, primary: false },
+    ],
+    stage: STAGE.origination,
+    source: 'Priced inline in the ePricer / EPC engine, then carried straight into the credit pack (Bolt) and CIDT — captured once, no re-keying across systems.',
     maturity: 'Available now',
   },
   'structure.specialist': {
@@ -389,7 +405,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — you choose to hand off; the context travels automatically.',
+    source: 'The shaped deal record from CIDT, handed to the product partner over MS Teams and MS Outlook.',
     maturity: 'Available now',
   },
 
@@ -410,8 +426,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous capture with human-in-the-loop sign-off on anything that leaves the bank.',
-    source: 'The meeting conversation, structured automatically.',
+    source: 'The meeting conversation, structured automatically into the deal record in CIDT.',
     maturity: 'Available now',
   },
   'capture.banner': {
@@ -425,8 +440,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: true },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — structures and files the record.',
-    source: 'The captured conversation.',
+    source: 'The captured conversation, written into the deal record in CIDT and reported through Power BI.',
     maturity: 'Available now',
   },
   'capture.crosscoverage': {
@@ -444,7 +458,23 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — notifies the right colleagues and sets visibility.',
+    source: 'The deal record in CIDT, with colleagues notified over MS Teams and MS Outlook.',
+    maturity: 'Available now',
+  },
+  'capture.actions': {
+    title: 'Actions to progress the deal',
+    whatItIs:
+      'The next steps that move the deal forward — each with an owner (Daisy or the agent) and a due date.',
+    whyItsHere:
+      'It turns the conversation into a clear, accountable task list so nothing falls through the cracks after the meeting.',
+    isNew: false,
+    newNote: 'Carried over; owners and due dates now sit on every action.',
+    dimensions: [
+      { name: D.friction, primary: true },
+      { name: D.interactions, primary: false },
+    ],
+    stage: STAGE.origination,
+    source: 'Actions tracked against the deal record in CIDT, with owners notified over MS Teams and MS Outlook.',
     maturity: 'Available now',
   },
   'capture.creditnarrative': {
@@ -461,8 +491,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — REO drafts; Daisy reviews before it progresses.',
-    source: 'The meeting, the client’s filings and the shaped structure.',
+    source: 'The meeting and the shaped structure from CIDT, drafted into the credit submission with the pack assembled in MS PowerPoint.',
     maturity: 'Available now',
   },
   'capture.comms': {
@@ -479,8 +508,8 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: true },
       { name: D.friction, primary: false },
     ],
-    stage: STAGE.ongoing,
-    reoRole: 'Human-in-the-loop — drafts in your tone; you approve before it sends.',
+    stage: STAGE.origination,
+    source: 'The meeting and the shaped deal, drafted into a follow-up in MS Outlook for the RM to approve and send.',
     maturity: 'Available now',
   },
 
@@ -520,53 +549,51 @@ export const helpContent: Record<string, HelpEntry> = {
     source: 'The live state of the credit workflow.',
     maturity: 'Available now',
   },
-  'orchestrate.productws': {
-    title: 'Product specialist workstream',
+  'orchestrate.parallel': {
+    title: 'Running in parallel',
     whatItIs:
-      'A parallel workstream showing the product partner already working alongside the deal, autonomously.',
+      'Work that progresses without you — agent tasks running on their own, plus the product specialist’s workstream moving alongside the deal.',
     whyItsHere:
-      'It makes cross-team collaboration visible and continuous, not a hand-off that disappears into someone else’s queue.',
+      'It makes the parallel effort visible: agents clear the routine steps while a colleague advances their part, so the deal keeps moving without waiting on you.',
     isNew: true,
     newNote: 'New this iteration.',
-    youAskedFor: 'Scope beyond RMs — product colleagues as active participants.',
+    youAskedFor: 'Scope beyond RMs — agents and product colleagues as active participants.',
     dimensions: [
-      { name: D.shape, primary: true },
-      { name: D.friction, primary: false },
+      { name: D.friction, primary: true },
+      { name: D.shape, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — runs the product workstream in parallel.',
+    source: 'The live state of the agent tasks and the product workstream, tracked in CIDT.',
     maturity: 'Available now',
   },
-  'orchestrate.crossapproval': {
-    title: 'Cross-coverage approval',
+  'orchestrate.humanloop': {
+    title: 'Human in the loop',
     whatItIs:
-      'A human-in-the-loop card where the other RM’s approval is needed to consolidate the relationship under one group mandate.',
+      'The items an agent has prepared but parked for your approval — including the other RM’s cross-coverage sign-off and any agent recommendation you can accept or override.',
     whyItsHere:
-      'It makes the two-RM story explicit and keeps a human accountable for a relationship-level decision — with Accept or Discuss.',
+      'It keeps a human accountable for the decisions that matter: the agent advises and prepares, but judgement and the final call stay with you.',
     isNew: true,
     newNote: 'New this iteration.',
-    addresses: 'The two-RM coordination the story implied was never actually shown.',
-    youAskedFor: 'Show the Daisy + Marcus cross-coverage moment directly.',
-    dimensions: [
-      { name: D.interactions, primary: true },
-      { name: D.risk, primary: false },
-    ],
-    stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — the decision sits with the RMs.',
-    maturity: 'Available now',
-  },
-  'orchestrate.override': {
-    title: 'Accept or override',
-    whatItIs:
-      'On approval items, the agent shows its recommendation and the RM can accept it or override with their own call.',
-    whyItsHere:
-      'It keeps accountability human: the agent advises, but judgement and the final decision stay with the RM.',
-    isNew: false,
+    addresses: 'Approvals and the two-RM coordination the story implied were never actually shown.',
     dimensions: [
       { name: D.risk, primary: true },
+      { name: D.interactions, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Human-in-the-loop — REO recommends; you decide.',
+    source: 'Agent recommendations and approval items, surfaced over MS Teams and MS Outlook and tracked in CIDT.',
+    maturity: 'Available now',
+  },
+  'orchestrate.rmonly': {
+    title: 'Only you',
+    whatItIs:
+      'The work that stays with the RM — the relationship, the judgement calls and the conversations no agent should own.',
+    whyItsHere:
+      'It draws a clear line: agents clear the busywork so your time goes to relationships, judgement and winning the deal.',
+    isNew: false,
+    dimensions: [
+      { name: D.interactions, primary: true },
+    ],
+    stage: STAGE.origination,
     maturity: 'Available now',
   },
 
@@ -586,8 +613,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — scans the book continuously and ranks what matters.',
-    source: 'Live signals across the whole portfolio.',
+    source: 'Internal MI & Reporting and One View, enriched with external market signals from Companies House, CapIQ, D&B and Experian.',
     maturity: 'Next horizon',
   },
   'scale.digest': {
@@ -605,8 +631,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — ranks and curates the daily shortlist.',
-    source: 'Continuous scanning across the book.',
+    source: 'Continuous scanning across the book — Internal MI & Reporting and One View, ranked against market data from CapIQ, D&B, Moody’s and S&P.',
     maturity: 'Next horizon',
   },
   'scale.productsuggest': {
@@ -624,7 +649,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Human-in-the-loop — a colleague’s suggestion, surfaced for you to review.',
+    source: 'A product specialist’s idea, surfaced to the RM over MS Teams and MS Outlook.',
     maturity: 'Next horizon',
   },
   'scale.sources': {
@@ -638,7 +663,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: true },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — continuously ingests and grounds the signals.',
     source: 'Internal systems and external market data.',
     maturity: 'Next horizon',
   },
@@ -660,7 +684,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — keeps the single view current across client, deal and workflow.',
     maturity: 'Available now',
   },
   'unified.panes': {
@@ -675,7 +698,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.shape, primary: false },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — consolidates the three views.',
     source: 'Client, deal and workflow systems, joined up.',
     maturity: 'Available now',
   },
@@ -691,7 +713,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: true },
     ],
     stage: STAGE.origination,
-    reoRole: 'Autonomous — carries the single record through each stage.',
     maturity: 'Available now',
   },
   'unified.interactionlog': {
@@ -708,7 +729,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — aggregates touchpoints across channels and teams.',
     source: 'Calls, emails, meetings and CRM notes across both threads.',
     maturity: 'Available now',
   },
@@ -727,7 +747,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — surfaces the next review and the next signal.',
     maturity: 'Available now',
   },
 
@@ -749,7 +768,6 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: true },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous monitoring; RM-led on the relationship and the next conversation.',
     maturity: 'Next horizon',
   },
   'review.mandate': {
@@ -766,8 +784,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.friction, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — tracks covenants and obligations on a schedule.',
-    source: 'The live facility and servicing data.',
+    source: 'The live facility and servicing data, tracked in Client 360 and One MI.',
     maturity: 'Future vision',
   },
   'review.relreview': {
@@ -783,8 +800,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.needs, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — scores and summarises the period.',
-    source: 'Engagement across the relationship since close.',
+    source: 'Engagement across the relationship since close — drawn from Client 360, MS Outlook, MS Teams and Qualtrics.',
     maturity: 'Next horizon',
   },
   'review.nextsignal': {
@@ -802,8 +818,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.qualify, primary: false },
     ],
     stage: STAGE.prospect,
-    reoRole: 'Autonomous — continuously watches for the next opportunity.',
-    source: 'Live external data joined to the group’s profile.',
+    source: 'Live external signals from Companies House, CapIQ, D&B and Experian, joined to the group’s profile in One View.',
     maturity: 'Next horizon',
   },
   'review.nextactions': {
@@ -819,8 +834,7 @@ export const helpContent: Record<string, HelpEntry> = {
       { name: D.interactions, primary: false },
     ],
     stage: STAGE.ongoing,
-    reoRole: 'Autonomous — recommends; the RM decides and acts.',
-    source: 'The accumulated relationship history across the journey.',
+    source: 'The accumulated relationship history across the journey, held in KAP and Client 360.',
     maturity: 'Next horizon',
   },
 };

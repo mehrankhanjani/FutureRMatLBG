@@ -31,6 +31,7 @@ export function DigitalTwin({ onNavigate }: { onNavigate: (sceneId: string) => v
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([{ role: 'twin', text: twinIntro }]);
   const [input, setInput] = useState('');
+  const [showExamples, setShowExamples] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -156,20 +157,51 @@ export function DigitalTwin({ onNavigate }: { onNavigate: (sceneId: string) => v
                 </div>
               );
             })}
+
+            {/* example questions — nicely listed at the start so they can be read */}
+            {messages.length === 1 && (
+              <div className="anim-fadeUp space-y-1.5 pt-1">
+                <button
+                  onClick={() => setShowExamples((s) => !s)}
+                  className="flex w-full items-center gap-1.5 px-1 text-[11px] font-bold uppercase tracking-wide text-faint transition hover:text-muted"
+                >
+                  <Icon
+                    name="chevronRight"
+                    size={12}
+                    className={`shrink-0 transition-transform ${showExamples ? 'rotate-90' : ''}`}
+                  />
+                  Try asking
+                </button>
+                {showExamples &&
+                  twinExchanges.map((e) => (
+                    <button
+                      key={e.q}
+                      onClick={() => ask(e.q)}
+                      className="flex w-full items-center gap-2 rounded-xl border border-line bg-surface-2/50 px-3 py-2 text-left text-[12px] font-semibold text-text transition hover:border-accent/40 hover:bg-surface-2"
+                    >
+                      <Icon name="sparkle" size={12} className="shrink-0 text-accent" />
+                      <span className="flex-1">{e.q}</span>
+                      <Icon name="arrowRight" size={12} className="shrink-0 text-faint" />
+                    </button>
+                  ))}
+              </div>
+            )}
           </div>
 
-          {/* suggested questions */}
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-line px-3 py-2">
-            {twinExchanges.map((e) => (
-              <button
-                key={e.q}
-                onClick={() => ask(e.q)}
-                className="shrink-0 rounded-full border border-line px-3 py-1.5 text-[11px] font-semibold text-muted transition hover:border-accent/40 hover:text-text"
-              >
-                {e.q}
-              </button>
-            ))}
-          </div>
+          {/* suggested questions — compact strip, only once the conversation has started */}
+          {messages.length > 1 && (
+            <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-line px-3 py-2">
+              {twinExchanges.map((e) => (
+                <button
+                  key={e.q}
+                  onClick={() => ask(e.q)}
+                  className="shrink-0 rounded-full border border-line px-3 py-1.5 text-[11px] font-semibold text-muted transition hover:border-accent/40 hover:text-text"
+                >
+                  {e.q}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* input */}
           <form onSubmit={submit} className="flex items-center gap-2 border-t border-line px-3 py-2.5">

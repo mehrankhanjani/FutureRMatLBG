@@ -8,6 +8,8 @@ export type Scene = {
   title: string;
   /** Longer caption shown under the device for the presenter */
   caption: string;
+  /** Short phrase shown after the title in the call-out (e.g. "A reason to call today …") */
+  subtitle?: string;
   /** Which device frame this scene renders inside */
   device: DeviceType;
   /** Chapter grouping for the pitch narrative */

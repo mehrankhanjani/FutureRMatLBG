@@ -1,19 +1,32 @@
 import { DesktopChrome } from '../../v2/desktop/DesktopChrome';
-import { Card, SectionLabel } from '../../../ui/primitives';
+import { Card } from '../../../ui/primitives';
 import { Icon, type IconName } from '../../../ui/icons';
 import { HelpSpot } from '../help/Help';
+import { SceneTabs, CLIENT_360_TABS } from './SceneTabs';
+import { useSceneNav } from '../../../sceneNavContext';
 import {
   dealStages,
   unifiedPlatform,
-  group,
   interactionHistory,
   whatsNext,
+  groupGlassPipe,
+  stageTrigger,
+  workflowQueue,
 } from '../scenario';
 
 const stageStyle: Record<string, { dot: string; line: string; label: string }> = {
   done: { dot: 'bg-accent text-on-accent', line: 'bg-accent', label: 'text-text' },
   active: { dot: 'bg-accent text-on-accent ring-4 ring-accent/20', line: 'bg-line', label: 'text-accent' },
   next: { dot: 'bg-surface-2 text-faint', line: 'bg-line', label: 'text-muted' },
+};
+
+const queueStyle: Record<
+  'done' | 'active' | 'waiting',
+  { pill: string; label: string; icon: IconName }
+> = {
+  done: { pill: 'bg-accent/10 text-accent', label: 'Done', icon: 'check' },
+  active: { pill: 'bg-accent text-on-accent', label: 'Live', icon: 'zap' },
+  waiting: { pill: 'bg-surface-2 text-muted', label: 'Awaiting', icon: 'clock' },
 };
 
 const channelIcon: Record<string, IconName> = {
@@ -33,6 +46,7 @@ const channelIcon: Record<string, IconName> = {
  * cycle (#3).
  */
 export function UnifiedPlatform() {
+  const nav = useSceneNav();
   return (
     <DesktopChrome
       active="summary"
@@ -40,19 +54,11 @@ export function UnifiedPlatform() {
       subtitle="One pane of glass — across the whole group"
       dealStage={dealStages.unified}
     >
-      <Card className="anim-fadeUp mb-4 flex items-start gap-3 border-l-4 border-l-accent p-4">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-          <Icon name="sparkle" size={18} />
-        </span>
-        <div>
-          <p className="flex items-center gap-1.5 text-sm font-bold">{group.name} — one relationship <HelpSpot id="unified.panes" /></p>
-          <p className="mt-0.5 text-xs leading-relaxed text-muted">{unifiedPlatform.intro}</p>
-        </div>
-      </Card>
+      <SceneTabs active="unified" tabs={CLIENT_360_TABS} />
 
       {/* three panes — client / deal / workflow */}
       <div className="grid grid-cols-3 gap-4">
-        {unifiedPlatform.panes.map((p, i) => (
+        {unifiedPlatform.panes.slice(0, 2).map((p, i) => (
           <Card
             key={p.title}
             className="anim-fadeUp p-5"
@@ -80,18 +86,57 @@ export function UnifiedPlatform() {
             </div>
           </Card>
         ))}
+
+        {/* workflow — live action queue, triggered by deal stage (replaces PEGA + email/Teams) */}
+        <Card className="anim-fadeUp p-5" style={{ animationDelay: '220ms' }}>
+          <div className="mb-3 flex items-center gap-2.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/15 text-brand">
+              <Icon name="bot" size={18} />
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-extrabold">Workflow — driven by REO</p>
+              <p className="truncate text-[11px] text-muted">Next actions triggered by deal stage</p>
+            </div>
+          </div>
+          <div className="space-y-2">
+            {workflowQueue.map((q) => {
+              const qs = queueStyle[q.state];
+              return (
+                <div
+                  key={q.action}
+                  className="flex items-center gap-2 rounded-xl bg-surface-2 px-2.5 py-2"
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs font-bold text-text">{q.action}</p>
+                    <p className="truncate text-[10px] text-faint">{q.trigger}</p>
+                  </div>
+                  <span
+                    className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold ${qs.pill}`}
+                  >
+                    <Icon name={qs.icon} size={10} /> {qs.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
       </div>
 
       {/* glass pipe — the deal flowing end-to-end */}
-      <Card className="anim-fadeUp mt-4 p-5" style={{ animationDelay: '300ms' }}>
-        <div className="flex items-center gap-1.5">
-          <SectionLabel>Captured once — group deal, end-to-end</SectionLabel>
+      <Card className="anim-fadeUp relative mt-4 p-5" style={{ animationDelay: '300ms' }}>
+        <div className="absolute right-3 top-3 z-10">
           <HelpSpot id="unified.glasspipe" />
         </div>
+        <div className="mb-3 flex items-center gap-2 pr-7">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
+            <Icon name="doc" size={14} />
+          </span>
+          <span className="text-[11px] font-bold uppercase tracking-wide text-brand">Captured once — group deal, end-to-end</span>
+        </div>
         <div className="flex items-start justify-between">
-          {unifiedPlatform.glassPipe.map((s, i) => {
+          {groupGlassPipe.map((s, i) => {
             const st = stageStyle[s.status];
-            const isLast = i === unifiedPlatform.glassPipe.length - 1;
+            const isLast = i === groupGlassPipe.length - 1;
             return (
               <div key={s.label} className="flex flex-1 flex-col items-center text-center">
                 <div className="flex w-full items-center">
@@ -109,13 +154,31 @@ export function UnifiedPlatform() {
             );
           })}
         </div>
+
+        {/* triggered next action — the stage change fires the workflow, not the RM */}
+        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-accent/10 p-3.5">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-accent text-on-accent">
+            <Icon name="zap" size={16} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-extrabold text-text">
+              <span className="text-accent">{stageTrigger.stage} reached</span> · {stageTrigger.action}
+            </p>
+            <p className="mt-0.5 text-[11px] text-muted">{stageTrigger.meta}</p>
+          </div>
+        </div>
       </Card>
 
       {/* interaction log — full history across both coverage threads (#21) */}
-      <Card className="anim-fadeUp mt-4 p-5" style={{ animationDelay: '380ms' }}>
-        <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1">
-          <SectionLabel>Interaction log — every touchpoint, both threads</SectionLabel>
+      <Card className="anim-fadeUp relative mt-4 p-5" style={{ animationDelay: '380ms' }}>
+        <div className="absolute right-3 top-3 z-10">
           <HelpSpot id="unified.interactionlog" />
+        </div>
+        <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 pr-7">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
+            <Icon name="clock" size={14} />
+          </span>
+          <span className="text-[11px] font-bold uppercase tracking-wide text-brand">Interaction log — every touchpoint, both threads</span>
           <span className="ml-auto flex items-center gap-1.5 rounded-full bg-surface-2 px-2.5 py-1 text-[10px] font-bold text-muted">
             <Icon name="users" size={11} /> Daisy · BCB + Marcus · CIB
           </span>
@@ -151,27 +214,33 @@ export function UnifiedPlatform() {
       </Card>
 
       {/* forward-looking close — the next cycle starts here (#3) */}
-      <Card className="anim-fadeUp mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 border-l-4 border-l-brand p-5" style={{ animationDelay: '460ms' }}>
-        <div className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/15 text-brand">
-            <Icon name="arrowRight" size={18} />
+      <Card className="anim-fadeUp relative mt-4 border-l-4 border-l-brand p-5" style={{ animationDelay: '460ms' }}>
+        <div className="absolute right-3 top-3 z-10">
+          <HelpSpot id="unified.whatsnext" />
+        </div>
+        <div className="mb-3 flex items-center gap-2">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
+            <Icon name="arrowRight" size={14} />
           </span>
-          <div>
-            <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-muted">What's next <HelpSpot id="unified.whatsnext" /></p>
-            <p className="text-sm font-extrabold">This is where the next cycle starts</p>
+          <span className="text-[11px] font-bold uppercase tracking-wide text-brand">What's next</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <div className="flex items-center gap-2 text-xs">
+            <Icon name="calendar" size={14} className="text-accent" />
+            <span className="font-semibold text-text">{whatsNext.reviewDate}</span>
           </div>
+          <div className="flex items-center gap-2 text-xs">
+            <Icon name="target" size={14} className="text-accent" />
+            <span className="font-semibold text-text">{whatsNext.nextSignal}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => nav?.goToScene('review')}
+            className="ml-auto flex items-center gap-1.5 rounded-full bg-brand/10 px-3 py-1.5 text-xs font-bold text-brand transition hover:bg-brand/20"
+          >
+            {whatsNext.link} <Icon name="arrowRight" size={13} />
+          </button>
         </div>
-        <div className="flex items-center gap-2 text-xs">
-          <Icon name="calendar" size={14} className="text-accent" />
-          <span className="font-semibold text-text">{whatsNext.reviewDate}</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs">
-          <Icon name="target" size={14} className="text-accent" />
-          <span className="font-semibold text-text">{whatsNext.nextSignal}</span>
-        </div>
-        <span className="ml-auto flex items-center gap-1.5 rounded-full bg-brand/10 px-3 py-1.5 text-xs font-bold text-brand">
-          {whatsNext.link} <Icon name="arrowRight" size={13} />
-        </span>
       </Card>
     </DesktopChrome>
   );

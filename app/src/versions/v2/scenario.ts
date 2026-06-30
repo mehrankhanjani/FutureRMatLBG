@@ -145,7 +145,19 @@ export const dealStages: Record<string, DealSnapshot> = {
 /* ---- scene 1: Opportunity ignition --------------------------------------- */
 
 export type IgnitionSignal = {
-  icon: 'doc' | 'globe' | 'users' | 'trendingUp' | 'building';
+  icon:
+    | 'doc'
+    | 'globe'
+    | 'users'
+    | 'trendingUp'
+    | 'building'
+    | 'shield'
+    | 'check'
+    | 'target'
+    | 'zap'
+    | 'message'
+    | 'clock'
+    | 'heart';
   label: string;
   detail: string;
   source: string;
@@ -163,7 +175,7 @@ export const ignition = {
       icon: 'globe',
       label: 'Market news',
       detail: 'Press: Avonmore Components acquires Calderwood Engineering',
-      source: 'External market data',
+      source: 'CapIQ · S&P market data',
     },
     {
       icon: 'doc',
@@ -175,19 +187,25 @@ export const ignition = {
       icon: 'users',
       label: 'Both Lloyds clients',
       detail: 'Calderwood is banked by CIB Coverage (Marcus Reed) — separate team',
-      source: 'Internal CRM',
+      source: 'One View CRM',
     },
     {
       icon: 'building',
       label: 'Exposure overlap',
       detail: 'Combined group exposure £31m across two coverage models',
-      source: 'Internal limits',
+      source: 'BSM · Internal MI & Reporting',
     },
     {
-      icon: 'trendingUp',
-      label: 'Portfolio pattern',
-      detail: 'Matches acquisitive clients who refinanced + consolidated within 90 days',
-      source: 'Portfolio model',
+      icon: 'message',
+      label: 'Transaction flows',
+      detail: 'Group card and supplier flows point to payments + FX consolidation',
+      source: 'Merchant Services · Away Spend',
+    },
+    {
+      icon: 'clock',
+      label: 'Asset & fleet finance',
+      detail: 'Overlapping vehicle and asset finance across both entities is ready to consolidate',
+      source: 'Lex/Tusker',
     },
   ] as IgnitionSignal[],
   whyNow:

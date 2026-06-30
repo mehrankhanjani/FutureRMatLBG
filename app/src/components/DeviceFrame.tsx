@@ -72,7 +72,7 @@ export function TabletFrame({ children }: { children: ReactNode }) {
 /** Laptop / desktop mock — browser chrome with URL bar. */
 function LaptopFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="w-full max-w-5xl min-w-0">
+    <div className="w-full max-w-7xl min-w-0">
       <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl shadow-black/60">
         {/* browser chrome */}
         <div className="flex items-center gap-3 border-b border-line bg-surface-2 px-4 py-3">

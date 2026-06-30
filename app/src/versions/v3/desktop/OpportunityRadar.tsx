@@ -3,13 +3,14 @@ import { DesktopChrome } from '../../v2/desktop/DesktopChrome';
 import { Card } from '../../../ui/primitives';
 import { Icon, type IconName } from '../../../ui/icons';
 import { HelpSpot } from '../help/Help';
+import { SceneTabs, PORTFOLIO_TABS } from './SceneTabs';
 import {
   radar,
-  intelligenceSources,
   dealStages,
   radarDigest,
   radarHorizons,
   productSuggestion,
+  portfolioScorecard,
   type RadarItem,
 } from '../scenario';
 
@@ -17,6 +18,13 @@ const priorityStyle: Record<RadarItem['priority'], { chip: string; bar: string }
   High: { chip: 'bg-risk/15 text-risk', bar: 'bg-risk' },
   Medium: { chip: 'bg-chip-amber/20 text-chip-amber', bar: 'bg-chip-amber' },
   Low: { chip: 'bg-info/15 text-info', bar: 'bg-info' },
+};
+
+const meterCls: Record<'accent' | 'brand' | 'info' | 'amber', string> = {
+  accent: 'bg-accent',
+  brand: 'bg-brand',
+  info: 'bg-info',
+  amber: 'bg-chip-amber',
 };
 
 const productIcon: Record<string, IconName> = {
@@ -48,30 +56,72 @@ export function OpportunityRadar() {
       subtitle="The same play, repeated across your whole book"
       dealStage={dealStages.scale}
     >
-      {/* smart-filter digest bar — calm summary first, expand for the full list */}
-      <button
-        onClick={() => setExpanded((v) => !v)}
-        className="anim-fadeUp mb-4 flex w-full items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 text-left transition hover:border-accent/40"
-      >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-          <Icon name="target" size={18} />
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="flex items-center gap-1.5 text-sm font-bold">
-            {radarDigest.label} · {radarDigest.count} actions <HelpSpot id="scale.digest" />
-          </p>
-          <p className="truncate text-xs text-muted">{radarDigest.note}</p>
+      <SceneTabs active="scale" tabs={PORTFOLIO_TABS} />
+
+      {/* your portfolio — scorecard ribbon: the *why* behind what to target next */}
+      <Card className="anim-fadeUp mb-4 p-4">
+        <div className="mb-1 flex flex-wrap items-center gap-2">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
+            <Icon name="target" size={14} />
+          </span>
+          <span className="text-[11px] font-bold uppercase tracking-wide text-brand">Your portfolio</span>
+          <span className="ml-auto flex items-baseline gap-1.5">
+            <span className="text-lg font-extrabold leading-none">{portfolioScorecard.bookValue}</span>
+            <span className="text-[11px] text-muted">book value</span>
+          </span>
         </div>
-        <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-xs font-bold text-accent">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-          Live scan
-        </span>
-        <Icon
-          name="chevronRight"
-          size={18}
-          className={`shrink-0 text-faint transition-transform ${expanded ? 'rotate-90' : ''}`}
-        />
-      </button>
+        <p className="mb-3 flex items-center gap-1 text-[11px] text-faint">
+          <Icon name="globe" size={11} className="text-brand" /> {portfolioScorecard.bookValueNote}
+        </p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {portfolioScorecard.targets.map((t) => (
+            <div key={t.label} className="rounded-2xl bg-surface-2 p-3">
+              <div className="mb-1.5 flex items-baseline justify-between gap-1">
+                <span className="truncate text-[11px] font-bold text-muted">{t.label}</span>
+                <span className="shrink-0 text-[10px] text-faint">of {t.target}</span>
+              </div>
+              <p className="text-base font-extrabold leading-none">{t.value}</p>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-line">
+                <span className={`block h-full rounded-full ${meterCls[t.tone]}`} style={{ width: `${t.pct}%` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 flex items-start gap-2 rounded-2xl bg-accent/10 p-3 text-xs">
+          <Icon name="sparkle" size={14} className="mt-0.5 shrink-0 text-accent" />
+          <p className="leading-snug text-text">{portfolioScorecard.drive}</p>
+        </div>
+      </Card>
+
+      {/* smart-filter digest bar — calm summary first, expand for the full list */}
+      <div className="anim-fadeUp relative mb-4">
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          className="flex w-full items-center gap-3 rounded-2xl border border-line bg-surface px-4 py-3 pr-11 text-left transition hover:border-accent/40"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
+            <Icon name="target" size={18} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-bold">
+              {radarDigest.label} · {radar.length + 1} need your attention
+            </p>
+            <p className="truncate text-xs text-muted">{radarDigest.note}</p>
+          </div>
+          <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-xs font-bold text-accent">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+            Live scan
+          </span>
+          <Icon
+            name="chevronRight"
+            size={18}
+            className={`shrink-0 text-faint transition-transform ${expanded ? 'rotate-90' : ''}`}
+          />
+        </button>
+        <div className="absolute right-3 top-3 z-10">
+          <HelpSpot id="scale.digest" />
+        </div>
+      </div>
 
       {expanded ? (
         <>
@@ -85,9 +135,12 @@ export function OpportunityRadar() {
           {/* opportunity rows */}
           <div className="space-y-3">
             {/* product-suggests card — origin is a product specialist, not a market signal */}
-            <Card className="anim-fadeUp flex items-stretch gap-0 overflow-hidden border-brand/30">
+            <Card className="anim-fadeUp relative flex items-stretch gap-0 overflow-hidden border-brand/30">
+              <div className="absolute right-3 top-3 z-10">
+                <HelpSpot id="scale.productsuggest" />
+              </div>
               <span className="w-1.5 shrink-0 bg-brand" />
-              <div className="flex flex-1 items-center gap-4 p-4">
+              <div className="flex flex-1 items-center gap-4 p-4 pr-9">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
                   <Icon name="users" size={20} />
                 </span>
@@ -97,7 +150,6 @@ export function OpportunityRadar() {
                     <span className="shrink-0 rounded-full bg-brand/20 px-2 py-0.5 text-[10px] font-bold text-brand">
                       Product suggests
                     </span>
-                    <HelpSpot id="scale.productsuggest" />
                   </div>
                   <p className="mt-0.5 flex items-center gap-1.5 text-xs font-semibold text-text">
                     <Icon name="sparkle" size={12} className="text-brand" /> {productSuggestion.trigger}
@@ -198,46 +250,8 @@ export function OpportunityRadar() {
               );
             })}
           </div>
-
-          {/* intelligence sources — what the always-on engine is grounded in */}
-          <Card className="anim-fadeUp mt-4 p-4" style={{ animationDelay: '320ms' }}>
-            <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 text-accent">
-                <Icon name="sparkle" size={14} />
-              </span>
-              <h3 className="text-sm font-extrabold">{intelligenceSources.label}</h3>
-              <HelpSpot id="scale.sources" />
-              <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-bold text-faint">
-                {intelligenceSources.example}
-              </span>
-              <p className="w-full text-xs text-muted sm:w-auto sm:flex-1 sm:pl-1">
-                {intelligenceSources.blurb}
-              </p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {intelligenceSources.sources.map((s) => (
-                <div key={s.name} className="flex items-start gap-3 rounded-2xl bg-surface-2 p-3.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <Icon name={s.icon} size={16} />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold">{s.name}</p>
-                    <p className="mt-0.5 text-xs leading-snug text-muted">{s.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <p className="mt-4 text-center text-[11px] text-faint">
-            Every trigger is explainable — you see why it surfaced, and the sources behind it, before you act.
-          </p>
         </>
-      ) : (
-        <p className="anim-fadeUp px-1 text-center text-[11px] text-faint">
-          {radar.length + 1} opportunities are ranked and waiting — expand the digest above when you are ready to work the book.
-        </p>
-      )}
+      ) : null}
     </DesktopChrome>
   );
 }
