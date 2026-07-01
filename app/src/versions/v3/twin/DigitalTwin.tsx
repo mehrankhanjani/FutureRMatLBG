@@ -76,9 +76,41 @@ export function DigitalTwin({ onNavigate }: { onNavigate: (sceneId: string) => v
         <span className="text-sm font-extrabold">Ask your twin</span>
       </button>
 
-      {/* chat panel */}
+      {/* chat panel + try-asking side list */}
       {open && (
-        <div className="anim-fadeUp fixed bottom-24 right-6 z-50 flex h-[560px] max-h-[80vh] w-[380px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-2xl shadow-black/60">
+        <div className="anim-fadeUp fixed bottom-24 right-6 z-50 flex items-end gap-3">
+          {/* try-asking list — opens to the left of the chat window */}
+          {showExamples && (
+            <div className="anim-fadeUp flex h-[560px] max-h-[80vh] w-[280px] max-w-[70vw] flex-col overflow-hidden rounded-3xl border border-accent/40 bg-surface shadow-2xl shadow-black/60">
+              <div className="flex items-center gap-2 border-b border-line bg-ink px-4 py-3">
+                <Icon name="sparkle" size={16} className="text-accent" />
+                <p className="text-sm font-extrabold text-accent">Try asking</p>
+                <button
+                  onClick={() => setShowExamples(false)}
+                  className="ml-auto flex h-7 w-7 items-center justify-center rounded-full text-muted transition hover:bg-surface-2 hover:text-text"
+                  aria-label="Close"
+                >
+                  <Icon name="chevronRight" size={16} />
+                </button>
+              </div>
+              <div className="no-scrollbar flex-1 space-y-1.5 overflow-y-auto px-3 py-3">
+                {twinExchanges.map((e) => (
+                  <button
+                    key={e.q}
+                    onClick={() => ask(e.q)}
+                    className="flex w-full items-center gap-2 rounded-xl border border-line bg-surface-2/50 px-3 py-2 text-left text-[12px] font-semibold text-text transition hover:border-accent/40 hover:bg-surface-2"
+                  >
+                    <Icon name="sparkle" size={12} className="shrink-0 text-accent" />
+                    <span className="flex-1">{e.q}</span>
+                    <Icon name="arrowRight" size={12} className="shrink-0 text-faint" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* chat panel */}
+          <div className="flex h-[560px] max-h-[80vh] w-[380px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-2xl shadow-black/60">
           {/* header */}
           <div className="flex items-center gap-3 border-b border-line bg-ink px-4 py-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent to-brand text-on-accent">
@@ -157,51 +189,24 @@ export function DigitalTwin({ onNavigate }: { onNavigate: (sceneId: string) => v
                 </div>
               );
             })}
-
-            {/* example questions — nicely listed at the start so they can be read */}
-            {messages.length === 1 && (
-              <div className="anim-fadeUp space-y-1.5 pt-1">
-                <button
-                  onClick={() => setShowExamples((s) => !s)}
-                  className="flex w-full items-center gap-1.5 px-1 text-[11px] font-bold uppercase tracking-wide text-faint transition hover:text-muted"
-                >
-                  <Icon
-                    name="chevronRight"
-                    size={12}
-                    className={`shrink-0 transition-transform ${showExamples ? 'rotate-90' : ''}`}
-                  />
-                  Try asking
-                </button>
-                {showExamples &&
-                  twinExchanges.map((e) => (
-                    <button
-                      key={e.q}
-                      onClick={() => ask(e.q)}
-                      className="flex w-full items-center gap-2 rounded-xl border border-line bg-surface-2/50 px-3 py-2 text-left text-[12px] font-semibold text-text transition hover:border-accent/40 hover:bg-surface-2"
-                    >
-                      <Icon name="sparkle" size={12} className="shrink-0 text-accent" />
-                      <span className="flex-1">{e.q}</span>
-                      <Icon name="arrowRight" size={12} className="shrink-0 text-faint" />
-                    </button>
-                  ))}
-              </div>
-            )}
           </div>
 
-          {/* suggested questions — compact strip, only once the conversation has started */}
-          {messages.length > 1 && (
-            <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-line px-3 py-2">
-              {twinExchanges.map((e) => (
-                <button
-                  key={e.q}
-                  onClick={() => ask(e.q)}
-                  className="shrink-0 rounded-full border border-line px-3 py-1.5 text-[11px] font-semibold text-muted transition hover:border-accent/40 hover:text-text"
-                >
-                  {e.q}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* try asking — green toggle at the bottom of the chat history */}
+          <button
+            onClick={() => setShowExamples((s) => !s)}
+            className={`flex items-center gap-1.5 border-t border-line px-3 py-2.5 text-[12px] font-bold text-accent transition ${
+              showExamples ? 'bg-accent/15' : 'bg-accent/10 hover:bg-accent/15'
+            }`}
+            aria-expanded={showExamples}
+          >
+            <Icon name="sparkle" size={13} />
+            Try asking
+            <Icon
+              name="chevronRight"
+              size={12}
+              className={`transition-transform ${showExamples ? 'rotate-180' : ''}`}
+            />
+          </button>
 
           {/* input */}
           <form onSubmit={submit} className="flex items-center gap-2 border-t border-line px-3 py-2.5">
@@ -219,6 +224,7 @@ export function DigitalTwin({ onNavigate }: { onNavigate: (sceneId: string) => v
               <Icon name="arrowRight" size={15} />
             </button>
           </form>
+          </div>
         </div>
       )}
     </>

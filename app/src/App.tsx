@@ -25,7 +25,7 @@ const COMPONENTS: { id: ComponentId; label: string; sceneIds: string[] }[] = [
   { id: 'identify', label: 'Identify', sceneIds: ['ignition', 'relationship', 'scale'] },
   { id: 'qualify', label: 'Qualify', sceneIds: ['activate', 'shape'] },
   { id: 'shape', label: 'Shape', sceneIds: ['structure'] },
-  { id: 'handover', label: 'Handover', sceneIds: ['capture', 'orchestrate'] },
+  { id: 'handover', label: 'Orchestrate', sceneIds: ['capture', 'orchestrate'] },
   { id: 'deepen', label: 'Deepen', sceneIds: ['unified', 'review'] },
 ];
 
@@ -62,7 +62,7 @@ export default function App() {
     () => getVersion(versionFromUrl() ?? DEFAULT_VERSION_ID).id,
   );
   const [index, setIndex] = useState(0);
-  const [calloutOpen, setCalloutOpen] = useState(false);
+  const [calloutOpen, setCalloutOpen] = useState(true);
   const [activeComponent, setActiveComponent] = useState<ComponentId | null>(null);
 
   const version = getVersion(versionId);
@@ -107,9 +107,9 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, [goPrev, goNext]);
 
-  // collapse the call-out whenever the scene changes
+  // expand the call-out whenever the scene changes
   useEffect(() => {
-    setCalloutOpen(false);
+    setCalloutOpen(true);
   }, [index]);
 
   return (
@@ -118,7 +118,7 @@ export default function App() {
     <div className="min-h-screen bg-ink">
       {/* top bar */}
       <header className="relative flex items-center justify-between border-b border-line px-8 py-4">
-        <BrandMark wordmark="Lloyds" subtext="CIB Relationship · concept" />
+        <BrandMark wordmark="Lloyds" subtext="Daisy Bennett · personalised workspace" />
         {isV3Like && (
           <div className="absolute left-1/2 -translate-x-1/2">
             <ComponentTabs active={activeComponent} onSelect={setActiveComponent} />
