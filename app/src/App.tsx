@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BrandMark } from './components/brand/BrandMark';
 import { DeviceFrame } from './components/DeviceFrame';
+import { PersonaChip } from './components/PersonaChip';
 import { SceneNav } from './components/SceneNav';
 import { Icon } from './ui/icons';
 import {
   DEFAULT_VERSION_ID,
   LOCKED_VERSION_IDS,
   SHOW_SWITCHER,
+  SWITCHER_VERSION_IDS,
   getVersion,
   versionFromUrl,
   versions,
@@ -66,9 +68,10 @@ export default function App() {
   const [activeComponent, setActiveComponent] = useState<ComponentId | null>(null);
 
   const version = getVersion(versionId);
-  // Iterations 3 and 4 share the same enriched narrative layer (callouts,
-  // explain-mode help and the REO digital twin); v4 only restyles the cards.
-  const isV3Like = version.id === 'v3' || version.id === 'v4';
+  // Iterations 3, 4 and 5 share the same enriched narrative layer (callouts,
+  // explain-mode help and the REO digital twin); v4/v5 restyle the cards.
+  const isV3Like = version.id === 'v3' || version.id === 'v4' || version.id === 'v5';
+  const switcherVersions = versions.filter((v) => SWITCHER_VERSION_IDS.includes(v.id));
   const scenes = version.scenes;
   const scene = scenes[index] ?? scenes[0];
   const SceneComponent = scene.component;
@@ -117,23 +120,33 @@ export default function App() {
     <SceneNavContext.Provider value={{ goToScene }}>
     <div className="min-h-screen bg-ink">
       {/* top bar */}
-      <header className="relative flex items-center justify-between border-b border-line px-8 py-4">
-        <BrandMark wordmark="Lloyds" subtext="Daisy Bennett · personalised workspace" />
+      <header className="relative flex items-center gap-4 border-b border-line px-8 py-4">
+        <div className="flex flex-1 items-center">
+          <BrandMark
+            wordmark="Lloyds"
+            subtext={
+              version.id === 'v5'
+                ? 'Corporate & Institutional Banking'
+                : 'Daisy Bennett · personalised workspace'
+            }
+          />
+        </div>
         {isV3Like && (
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="flex shrink-0 justify-center">
             <ComponentTabs active={activeComponent} onSelect={setActiveComponent} />
           </div>
         )}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-1 items-center justify-end gap-3">
           {isV3Like && <ExplainToggle />}
           {SHOW_SWITCHER && (
             <VersionSwitcher
-              versions={versions}
+              versions={switcherVersions}
               activeId={version.id}
               onSelect={selectVersion}
               lockedIds={LOCKED_VERSION_IDS}
             />
           )}
+          {version.id === 'v5' && <PersonaChip />}
         </div>
       </header>
 

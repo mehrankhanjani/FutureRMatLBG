@@ -3,18 +3,25 @@ import { v1 } from './v1';
 import { v2 } from './v2';
 import { v3 } from './v3';
 import { v4 } from './v4';
+import { v5 } from './v5';
 
 /** All cuts of the prototype, in display order. */
-export const versions: Version[] = [v1, v2, v3, v4];
+export const versions: Version[] = [v1, v2, v3, v4, v5];
 
 /** Which version loads by default (when there is no ?v= in the URL). */
-export const DEFAULT_VERSION_ID = 'v4';
+export const DEFAULT_VERSION_ID = 'v5';
 
 /** Flip to false for the final cut to hide the switcher entirely. */
-export const SHOW_SWITCHER = false;
+export const SHOW_SWITCHER = true;
+
+/**
+ * Iterations shown in the switcher. Earlier cuts remain in the codebase and
+ * reachable via ?v= but are hidden from the pill switcher.
+ */
+export const SWITCHER_VERSION_IDS = ['v4', 'v5'];
 
 /** Iterations that are shown in the switcher but cannot be opened. */
-export const LOCKED_VERSION_IDS = ['v1'];
+export const LOCKED_VERSION_IDS: string[] = [];
 
 export function getVersion(id: string | null | undefined): Version {
   const requested = versions.find((v) => v.id === id);

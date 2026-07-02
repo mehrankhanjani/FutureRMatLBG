@@ -645,3 +645,249 @@ The 10-scene flow maps onto the five components **in flow order**, as built — 
 - **5 · Deepen client relationship** ← `8 · Unified Platform` + `B · Relationship Review`
 
 Every one of the 10 scenes maps to exactly one component as a primary owner — a **3-2-1-2-2 split** that follows the flow in order (Identify → Qualify → Shape → Handover → Deepen). The bundles are uneven by design: each scene is placed in the component whose job it genuinely does, rather than forcing a neat two-per-component symmetry.
+
+---
+
+## 7b1. Identify — Feature → JTBD Map
+
+The three scenes that carry **Identify** — **1 · Ignition**, **A · Relationship Intelligence** and **7 · Radar** — contain **22 distinct features** between them. This section maps every feature to the Identify jobs-to-be-done from §7.
+
+**Identify jobs (§7):**
+
+- **J1** — Identify high-potential prospects using internal and external signals
+- **J2** — Prioritise target prospects using strategic and financial thresholds
+- **J3** — Build a clear, up-to-date understanding of each high-potential prospect and their context
+- **J4** — Establish clear ownership of prospects to ensure coordinated engagement
+- **J5** — Identify triggers, events, and emerging needs to inform outreach
+
+### Feature → JTBD
+
+| # | Step | Feature | Primary JTBD | Also serves |
+|---|---|---|:---:|:---:|
+| 1 | 1 · Ignition | Ignition alert — the "why now" trigger (headline, confidence, predicted value + need) | **J5** | J1 |
+| 2 | 1 · Ignition | Qualification summary chip — appetite, confidence, suitability | **J2** | J5 |
+| 3 | 1 · Ignition | "Why this, why now" signals — multi-source grid, each with data horizon + source | **J1** | J5 |
+| 4 | 1 · Ignition | Pre-qualification / disqualifier pass — appetite, limits, sanctions checked up front | **J2** | J4 |
+| 5 | 1 · Ignition | Ownership confirmation — coverage owner + who to notify | **J4** | — |
+| 6 | 1 · Ignition | Peer / sector benchmark — how the opportunity compares to peers/sector | **J2** | J3 |
+| 7 | 1 · Ignition | Meeting prep — why-now explainability + one-click briefing | **J3** | J5 |
+| 8 | A · Relationship | Group contact network map — entities, contacts, coverage, tie strength | **J3** | J4 |
+| 9 | A · Relationship | White-space contact discovery — new contacts found via external source (Apollo) | **J3** | J4 |
+| 10 | A · Relationship | Relationship health gauge + trend — group health score /100 | **J3** | — |
+| 11 | A · Relationship | Sentiment index (12 months) — AI-derived from tone & responsiveness | **J3** | — |
+| 12 | A · Relationship | Tangible engagement metrics — interactions logged, touchpoints/month, sentiment delta | **J3** | — |
+| 13 | A · Relationship | Single-thread risk — key-person / concentration flag | **J4** | J3 |
+| 14 | A · Relationship | White-space to cover — coverage gaps to close | **J4** | J3 |
+| 15 | A · Relationship | Knowledge visibility — shared-with-team vs personal notes | **J4** | J3 |
+| 16 | A · Relationship | Interaction history — both threads, multi-channel (meeting/call/email/CRM/Teams) | **J3** | — |
+| 17 | 7 · Radar | Portfolio scorecard — book value + targets and progress | **J2** | J1 |
+| 18 | 7 · Radar | Smart-filter digest bar — calm summary first, live-scan, expand for the full list | **J2** | J5 |
+| 19 | 7 · Radar | Ranked opportunity list — priority-scored opportunities (trigger + reason + timing) | **J2** | J1 |
+| 20 | 7 · Radar | Data-horizon provenance — every card shows what it was detected from | **J1** | J5 |
+| 21 | 7 · Radar | Product-suggests card — a specialist pushes an opportunity in (reverse proactivity) | **J1** | J5 |
+| 22 | 7 · Radar | Inline actioning — "act now / on it" per opportunity | **J5** | J4 |
+
+### JTBD → Enablers (feature clusters)
+
+Where the prototype features under one job split naturally into more than one coherent idea, the job carries **more than one enabler**. Across the five Identify jobs the 22 features cluster into **9 enablers** — every feature sits in exactly one.
+
+| JTBD | Enabler | What it makes possible | Value unlocked | Features that serve it | Count |
+|---|---|---|---|---|:---:|
+| **J1** · signals | **Always-On Signal Detection** | Continuously scans internal + external sources and surfaces high-potential prospects, each with transparent provenance across data horizons | Never miss a moment; proactive, evidence-based origination instead of gut-feel and periodic research | 3 · Why-now signals · 20 · Data-horizon provenance | 2 |
+| **J1** · signals | **Reverse Product Proactivity** | Lets product specialists push relevant opportunities to the RM — the platform surfaces ideas both ways, not only RM-to-client | Whole-bank origination; the RM sees options they would never surface alone | 21 · Product-suggests | 1 |
+| **J2** · prioritise | **Opportunity Qualification & Screening** | Scores a single opportunity for appetite, suitability and red-lines, and benchmarks it against peers before the RM invests time | Time only on viable, well-fitted opportunities; fast, clear no's | 2 · Qualification chip · 4 · Disqualifier pass · 6 · Peer benchmark | 3 |
+| **J2** · prioritise | **Portfolio Prioritisation** | Ranks the whole book against strategic/financial targets and consolidates it into one curated daily shortlist | Focus on the highest-value few; no signal overload | 17 · Portfolio scorecard · 18 · Smart-filter digest · 19 · Ranked list | 3 |
+| **J3** · context | **Connected Relationship Map** | Resolves the group's contacts, coverage and hidden white-space into one connected picture | Full stakeholder view; know exactly who to reach and who is missing | 8 · Network map · 9 · White-space discovery | 2 |
+| **J3** · context | **Relationship Health & Memory** | Tracks group health, sentiment and every logged interaction as a living relationship memory | Continuity; the relationship's state is visible and never lost between colleagues or over time | 10 · Health gauge · 11 · Sentiment index · 12 · Engagement metrics · 16 · Interaction history | 4 |
+| **J3** · context | **Instant Meeting Prep** | Turns all that context into a one-click, ready-to-use briefing before every touch | Walk in fully prepared; zero manual prep time | 7 · Meeting prep | 1 |
+| **J4** · ownership | **Coverage & Ownership Map** | Resolves who owns and covers each relationship, flags single-thread risk and coverage gaps, and makes shared vs personal knowledge visible | Coordinated engagement; no duplicated or missed coverage, resilient to RM changes | 5 · Ownership confirmation · 13 · Single-thread risk · 14 · White-space to cover · 15 · Knowledge visibility | 4 |
+| **J5** · triggers | **Trigger-to-Outreach** | Turns a detected event into a ready-to-act prompt with a one-tap path into timely outreach | The instant a trigger fires the RM can act — relevant, well-timed engagement | 1 · Ignition alert · 22 · Inline actioning | 2 |
+
+**Reading the clusters:** J4 and J5 each stay as a single clean enabler; J1, J2 and J3 split because the features under them serve genuinely different ideas — signal *detection* vs *reverse* product push (J1), single-opportunity *screening* vs book-wide *prioritisation* (J2), and the relationship *map* vs its *health/memory* vs the *briefing* it produces (J3). Nine enablers, 22 features, no overlap.
+
+---
+
+## 7b2. Qualify — Feature → JTBD Map
+
+The two scenes that carry **Qualify** — **3 · Activate (ConsentGate)** and **4 · Live Moment** — contain **13 distinct features** between them. This section maps every feature to the Qualify jobs-to-be-done from §7.
+
+**Qualify jobs (§7):**
+
+- **Q1** — Confirm client needs, priorities, and strategic objectives through interaction
+- **Q2** — Engage prospects using the right channel, timing and context
+- **Q3** — Gather and structure relevant information to assess opportunity value and define product proposition
+- **Q4** — Progress opportunities through internal set up, credit and risk approval processes
+
+### Feature → JTBD
+
+| # | Step | Feature | Primary JTBD | Also serves |
+|---|---|---|:---:|:---:|
+| 1 | 3 · Activate | Consent confirmation gate — verify & re-confirm consent before capture; capture always optional | **Q2** | Q4 |
+| 2 | 3 · Activate | Pre-read opportunity brief — the flagged M&A event shown on arrival | **Q2** | Q1 |
+| 3 | 3 · Activate | Secure live capture — on-device transcription with real-time key-moment detection | **Q1** | Q3 |
+| 4 | 3 · Activate | Notes-mode fallback (typed) — active capture surface when the client declines recording | **Q1** | Q3 |
+| 5 | 3 · Activate | Voice-to-text capture — dictate notes hands-free, appears as text | **Q1** | Q3 |
+| 6 | 3 · Activate | Handwritten tablet capture — digital-pen notebook, handwriting recognised & synced | **Q1** | Q3 |
+| 7 | 3 · Activate | Uniform post-meeting structuring — any capture → summary + CRM update + follow-ups | **Q3** | Q4 |
+| 8 | 4 · Live Moment | Live transcript — real-time speaker-attributed conversation stream | **Q1** | Q3 |
+| 9 | 4 · Live Moment | Recording status + timer — visible REC indicator | **Q1** | Q2 |
+| 10 | 4 · Live Moment | Real-time signal detection — classifies talk into need / risk / opportunity / context / emotion | **Q1** | Q3 |
+| 11 | 4 · Live Moment | In-conversation opportunity shaping — confirmed need → shaped, sized opportunity | **Q3** | Q1 |
+| 12 | 4 · Live Moment | In-moment guidance prompt — next-best-say: insight, rationale, action, value, timing | **Q1** | Q2 |
+| 13 | 4 · Live Moment | Draggable insight sheet — surface/hide AI insights to stay present in the conversation | **Q2** | Q1 |
+
+### JTBD → Enablers (feature clusters)
+
+As in §7b1, where the features under one job split into more than one coherent idea the job carries **more than one enabler**. The 13 features cluster into **4 enablers** — every feature sits in exactly one.
+
+| JTBD | Enabler | What it makes possible | Value unlocked | Features that serve it | Count |
+|---|---|---|---|---|:---:|
+| **Q1** · confirm needs | **Consented Conversation Capture** | Captures every meeting — transcript, typed, voice or handwriting — into structured text, only ever with consent | Nothing missed; the conversation is captured however it happens, and the client stays in control | 3 · Secure live capture · 4 · Notes-mode fallback · 5 · Voice-to-text · 6 · Handwritten capture · 8 · Live transcript · 9 · Recording status | 6 |
+| **Q1** · confirm needs | **Live Conversation Intelligence** | Classifies what the client says into needs, risks and opportunities live, and prompts the RM on the next best thing to say | Needs confirmed and steered in the room, not reconstructed from memory | 10 · Signal detection · 12 · Guidance prompt | 2 |
+| **Q2** · engage well | **Human-First Engagement** | Arrives with the flagged context, confirms consent before capture, and lets the RM surface or hide AI insights to stay present | Well-timed, trust-first, distraction-free engagement — the human stays in the conversation | 1 · Consent gate · 2 · Pre-read brief · 13 · Draggable insight sheet | 3 |
+| **Q3** · assess & structure | **Structured Opportunity Output** | Shapes the confirmed need into a sized opportunity and turns any capture into a summary, CRM update and follow-ups | Leave with a shaped, valued opportunity and a structured record — no re-keying | 7 · Uniform structuring · 11 · Opportunity shaping | 2 |
+
+**Coverage gap — Q4 not carried here.** These two scenes are the *conversation* of Qualify — engaging, confirming needs, capturing and shaping. **Q4 (progress through internal set up, credit and risk approval)** has **no primary enabler** in steps 3–4; it is only lightly touched by the consent gate (1) and the auto-structured capture (7, which seeds the CRM record). Q4 is genuinely carried later in the flow — indicative eligibility in **4 · Structure Deal** and credit/risk routing in **6 · Agent Bench** (Handover). This is expected and consistent with §7a: the credit/approval job belongs downstream, not in the live-conversation scenes.
+
+**Reading the clusters:** Q1 carries two enablers — *capturing* the conversation and the *live intelligence* laid on top of it. Q2 and Q3 each fold into one — *human-first engagement* and the *structured opportunity output*. Four enablers, 13 features, no overlap — with Q4 flagged as a downstream job.
+
+---
+
+## 7b3. Shape — Feature → JTBD Map
+
+The single scene that carries **Shape** — **5 · Structure Deal** — contains **10 distinct features**. This section maps every feature to the Shape jobs-to-be-done from §7.
+
+**Shape jobs (§7):**
+
+- **S1** — Define a clear, value-led solution aligned to client needs and bank capability (financial and non-financial products)
+- **S2** — Align external and internal stakeholders on solution direction and approach
+- **S3** — Structure and shape opportunities into clear, actionable deals
+
+### Feature → JTBD
+
+| # | Step | Feature | Primary JTBD | Also serves |
+|---|---|---|:---:|:---:|
+| 1 | 5 · Structure Deal | Exploring / Committed draft toggle — compare options freely; CRM untouched until committed | **S3** | S1 |
+| 2 | 5 · Structure Deal | Agent-shaped structure options — three value-led structures, recommended one badged "Agent pick" | **S1** | S3 |
+| 3 | 5 · Structure Deal | Indicative credit eligibility per option — approvable / review / escalation status up front | **S1** | S2 |
+| 4 | 5 · Structure Deal | Parallel decision-fork tracks — the stretch option spins up shaping + credit-escalation tracks side by side | **S3** | S2 |
+| 5 | 5 · Structure Deal | Facility components — the building blocks of the chosen structure (core, risk, upsell, cash) | **S1** | S3 |
+| 6 | 5 · Structure Deal | Indicative terms — tenor, margin and key terms of the structure | **S1** | S3 |
+| 7 | 5 · Structure Deal | Indicative economics — deal value, Y1 revenue, RoRWA and client fit | **S1** | S3 |
+| 8 | 5 · Structure Deal | "Why this structure" rationale — plain-English explanation of the agent's recommendation | **S1** | S3 |
+| 9 | 5 · Structure Deal | Product specialist hand-off — loop in a named product partner for input | **S2** | S3 |
+| 10 | 5 · Structure Deal | Confirm → sent to credit — locks the structure and routes it onward | **S3** | S2 |
+
+### JTBD → Enablers (feature clusters)
+
+As in §7b1–7b2, where the features under one job split into more than one coherent idea the job carries **more than one enabler**. The 10 features cluster into **3 enablers** — every feature sits in exactly one.
+
+| JTBD | Enabler | What it makes possible | Value unlocked | Features that serve it | Count |
+|---|---|---|---|---|:---:|
+| **S1** · define solution | **Agent-Shaped, Screened Solution** | Proposes value-led structures and defines each in full — components, terms, economics and credit eligibility — with a plain-English rationale | A complete, quantified, pre-screened proposition without starting from a blank page | 2 · Structure options · 3 · Credit eligibility · 5 · Facility components · 6 · Indicative terms · 7 · Indicative economics · 8 · Why-this rationale | 6 |
+| **S2** · align stakeholders | **Product Specialist Hand-off** | Loops a named product partner into the deal for specialist input | Right expertise on the deal early; internal alignment before it progresses | 9 · Specialist hand-off | 1 |
+| **S3** · actionable deal | **Draft-Safe Progression** | Explore and compare options without touching the CRM, then commit and route to credit — with shaping and credit running in parallel when needed | Freedom to iterate, then a clean, actionable hand-off that keeps moving | 1 · Draft toggle · 4 · Decision-fork tracks · 10 · Confirm to credit | 3 |
+
+**Coverage note — S2 is the lightest here.** Shaping is dense on **S1** (its single enabler bundles six of the ten features) and well covered on **S3** (draft-safe progression). **S2 (align external and internal stakeholders)** has a single primary enabler — the product-specialist hand-off — with *internal* alignment also touched by the eligibility screen (3) and the credit-escalation track (4). *External* (client) alignment happens through the shaping conversation itself rather than a dedicated feature, and the broader stakeholder-coordination job is genuinely carried downstream in **Handover** (6 · Agent Bench cross-coverage, 5 · Post-meeting notifications).
+
+**Reading the clusters:** each job now folds into one enabler — S1's *shaped, screened solution*, S2's *specialist hand-off*, and S3's *draft-safe progression*. Three enablers, 10 features, no overlap — with S2 flagged as the lightest job in this scene.
+
+---
+
+## 7b4. Handover — Feature → JTBD Map
+
+The two scenes that carry **Handover** — **6 · Post-meeting (Capture momentum)** and **7 · Agent Bench (Orchestrate the deal)** — contain **16 distinct features** between them. This section maps every feature to the Handover jobs-to-be-done from §7.
+
+**Handover jobs (§7):**
+
+- **H1** — Coordinate activities across internal teams and external stakeholders
+- **H2** — Maintain a complete, accurate view of opportunity status and history
+- **H3** — Provide consistent visibility of client and deal context to stakeholders
+
+### Feature → JTBD
+
+| # | Step | Feature | Primary JTBD | Also serves |
+|---|---|---|:---:|:---:|
+| 1 | 6 · Post-meeting | Auto-captured structured deal — generated from the live conversation, synced to CRM minutes after the meeting | **H2** | H3 |
+| 2 | 6 · Post-meeting | Cross-coverage notification — the other covering RM auto-notified of the deal | **H3** | H1 |
+| 3 | 6 · Post-meeting | Team visibility log — shows exactly which colleagues can see the record | **H3** | H1 |
+| 4 | 6 · Post-meeting | Key moments — the meeting's highlights extracted | **H2** | H3 |
+| 5 | 6 · Post-meeting | Deal components — opportunities captured with value and confidence | **H2** | H3 |
+| 6 | 6 · Post-meeting | Actions to progress — task list with owner (agent / RM) and due date | **H1** | H2 |
+| 7 | 6 · Post-meeting | AI credit-narrative preview — drafted credit submission, reviewable before it goes to credit | **H2** | H1 |
+| 8 | 6 · Post-meeting | Drafted follow-up comms — client email in the RM's tone, accept / edit / discard | **H1** | H3 |
+| 9 | 7 · Agent Bench | Credit progression strip — stage, narrative status, approvals done/total, what's missing | **H2** | H1 |
+| 10 | 7 · Agent Bench | Team assembled — REO pulls the right agents and colleagues in for the deal | **H1** | H3 |
+| 11 | 7 · Agent Bench | Three-tier orchestration board — autonomous / human-in-the-loop / RM-only, with live counts | **H1** | H2 |
+| 12 | 7 · Agent Bench | Autonomous agent workstreams — agents progressing tasks in parallel | **H1** | H2 |
+| 13 | 7 · Agent Bench | Product-specialist parallel workstream — a product colleague running alongside the agents | **H1** | H3 |
+| 14 | 7 · Agent Bench | Human-in-the-loop approvals — agent recommends, RM accepts or overrides with accountability | **H1** | H2 |
+| 15 | 7 · Agent Bench | Cross-coverage approval — the other RM signs off consolidating the relationship (accept / discuss) | **H1** | H3 |
+| 16 | 7 · Agent Bench | RM-only tier — the judgement tasks reserved for the human | **H1** | H3 |
+
+### JTBD → Enablers (feature clusters)
+
+As in §7b1–7b3, where the features under one job split into more than one coherent idea the job carries **more than one enabler**. The 16 features cluster into **5 enablers** — every feature sits in exactly one.
+
+| JTBD | Enabler | What it makes possible | Value unlocked | Features that serve it | Count |
+|---|---|---|---|---|:---:|
+| **H1** · coordinate | **Coordinated Follow-Through** | Assigns owned actions with deadlines and drafts the client follow-up in the RM's voice | Everyone who needs to act knows and moves; nothing dropped after the meeting | 6 · Actions · 8 · Comms draft | 2 |
+| **H1** · coordinate | **Cross-Team Orchestration** | Assembles the right agents and colleagues and runs them across three tiers — autonomous, human-in-the-loop and RM-only — with cross-coverage sign-off | The deal progresses across every team with the RM orchestrating, not doing | 10 · Team assembled · 11 · Orchestration board · 12 · Autonomous workstreams · 13 · Product workstream · 14 · HITL approvals · 15 · Cross-coverage approval · 16 · RM-only tier | 7 |
+| **H2** · accurate view | **Structured Deal Record** | Turns the conversation into a complete, accurate deal record — moments, opportunities and values — synced to CRM in minutes | A single accurate source of truth, no re-keying | 1 · Auto-capture · 4 · Key moments · 5 · Deal components | 3 |
+| **H2** · accurate view | **Credit Readiness & Progress** | Drafts the credit submission narrative up front and tracks approvals — what's done and what's still missing | The deal's approval status is always visible and pre-prepared | 7 · Credit narrative · 9 · Credit progression strip | 2 |
+| **H3** · stakeholder visibility | **Shared Deal Visibility** | Notifies covering colleagues and shows exactly who can see the record | Consistent shared context; knowledge not locked to one RM | 2 · Cross-coverage notification · 3 · Team visibility log | 2 |
+
+**Reading the clusters:** H1 splits into the post-meeting *follow-through* and the bench's *cross-team orchestration* — the heaviest enabler in the whole map at seven features, reflecting that Handover is fundamentally a coordination job. H2 splits into the *deal record* and its *credit readiness*. H3 stays a single visibility enabler, though the record and the orchestration reinforce it throughout (see the many "also serves H3" rows). Five enablers, 16 features, no overlap.
+
+---
+
+## 7b5. Deepen — Feature → JTBD Map
+
+The two scenes that carry **Deepen** — **9 · Unified Platform** and **10 · Relationship Review** — contain **15 distinct features** between them. This section maps every feature to the Deepen jobs-to-be-done from §7 — the fifth and final component.
+
+**Deepen jobs (§7):**
+
+- **D1** — Maintain a deep understanding of client context, priorities and performance
+- **D2** — Sustain ongoing engagement to strengthen relationships and identify emerging risks or changes in performance
+- **D3** — Determine and execute the next best action for each client
+- **D4** — Ensure time-sensitive actions and client follow-ups are completed and communicated clearly
+- **D5** — Capture and maintain accurate, up-to-date client interaction records
+
+### Feature → JTBD
+
+| # | Step | Feature | Primary JTBD | Also serves |
+|---|---|---|:---:|:---:|
+| 1 | 9 · Unified Platform | Client 360 pane — consolidated client context in a single view | **D1** | D5 |
+| 2 | 9 · Unified Platform | Deal pane — live deal summary (value, stage, terms) | **D1** | D3 |
+| 3 | 9 · Unified Platform | REO-driven workflow queue — next actions triggered by deal stage (done / live / awaiting) | **D4** | D3 |
+| 4 | 9 · Unified Platform | Group glass pipe — the deal captured once, flowing end-to-end across the group | **D5** | D1 |
+| 5 | 9 · Unified Platform | Stage-triggered automation — a stage change fires the next action, not the RM | **D4** | D3 |
+| 6 | 9 · Unified Platform | Interaction log — every touchpoint across both coverage threads, shared vs personal | **D5** | D1 |
+| 7 | 9 · Unified Platform | "What's next" strip — next review date, next detected signal, link into the next cycle | **D3** | D2 |
+| 8 | 10 · Relationship Review | Live group mandate — facility, status and next review date | **D1** | D4 |
+| 9 | 10 · Relationship Review | Covenants tracking — each covenant value vs limit, on-track | **D2** | D1 |
+| 10 | 10 · Relationship Review | Engagement gauge + trend — relationship review score /100 with direction | **D2** | D1 |
+| 11 | 10 · Relationship Review | Engagement stats grid — interactions, touchpoints and sentiment metrics | **D2** | D5 |
+| 12 | 10 · Relationship Review | Relationship highlights — what has strengthened since close | **D1** | D2 |
+| 13 | 10 · Relationship Review | Next signal card — the next opportunity REO detected, mirroring Ignition (headline, confidence, value, predicted need, timing) | **D2** | D3 |
+| 14 | 10 · Relationship Review | "Why this, why now" triggers + narrative — multi-source evidence grid, already forming | **D2** | D1 |
+| 15 | 10 · Relationship Review | Next best actions — three ranked actions drawn from the full relationship history | **D3** | D4 |
+
+### JTBD → Enablers (feature clusters)
+
+As in §7b1–7b4, where the features under one job split into more than one coherent idea the job carries **more than one enabler**. The 15 features cluster into **6 enablers** — every feature sits in exactly one.
+
+| JTBD | Enabler | What it makes possible | Value unlocked | Features that serve it | Count |
+|---|---|---|---|---|:---:|
+| **D1** · understand client | **Living Client Picture** | Consolidates client context, the live deal and mandate, and what has strengthened into one current view | Deep, up-to-date understanding of the whole client in one place | 1 · Client 360 pane · 2 · Deal pane · 8 · Live mandate · 12 · Relationship highlights | 4 |
+| **D2** · sustain & monitor | **Relationship Health Monitoring** | Tracks covenants, engagement score and trend to catch emerging risks and changes in performance | Early warning; relationship strength is measured, not assumed | 9 · Covenants · 10 · Engagement gauge · 11 · Engagement stats | 3 |
+| **D2** · sustain & monitor | **Proactive Next-Signal Detection** | Detects the next emerging opportunity from within the live relationship, with transparent why-now evidence | The cycle restarts proactively; new needs surfaced before the client asks | 13 · Next signal · 14 · Why-now triggers | 2 |
+| **D3** · next best action | **Next-Best-Action Guidance** | Turns the full relationship history into ranked next actions and a forward path into the next cycle | Always a clear, evidence-based next move | 7 · What's-next strip · 15 · Next best actions | 2 |
+| **D4** · timely follow-through | **Stage-Triggered Follow-Through** | Fires and tracks the next action automatically when the deal stage changes, with clear done / live / awaiting status | Nothing time-sensitive slips; follow-ups happen without chasing | 3 · Workflow queue · 5 · Stage-triggered automation | 2 |
+| **D5** · accurate records | **Captured-Once Record** | Captures the deal once end-to-end and logs every touchpoint across both coverage threads | A single accurate, shared interaction record — no re-keying, knowledge not siloed | 4 · Group glass pipe · 6 · Interaction log | 2 |
+
+**Reading the clusters:** D2 carries two enablers — *monitoring* the live relationship for risk and change, and the *proactive detection* of the next signal that restarts the cycle. D1, D3, D4 and D5 each fold into one clean enabler — the *living client picture*, *next-best-action guidance*, *stage-triggered follow-through* and the *captured-once record*. Six enablers, 15 features, no overlap.
+
+---
+
+*This completes the Feature → JTBD map across all five components — Identify (§7b1), Qualify (§7b2), Shape (§7b3), Handover (§7b4) and Deepen (§7b5) — covering the full 10-scene flow.*
