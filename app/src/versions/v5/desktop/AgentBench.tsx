@@ -7,7 +7,7 @@ import {
   dealStages,
   opportunityOverview,
   controlHealth,
-  nextBestActions,
+  controlNextActions,
   controlBlockers,
   originationJourney,
   activityFeed,
@@ -97,7 +97,7 @@ export function AgentBench() {
         {/* O3 · next best actions */}
         <SectionCard label="Next best actions" icon="zap" tone="accent">
           <div className="space-y-2">
-            {nextBestActions.map((a, i) => (
+            {controlNextActions.map((a, i) => (
               <div
                 key={i}
                 className={`rounded-2xl border p-3 ${a.done ? 'border-line opacity-70' : 'border-line bg-surface-2'}`}

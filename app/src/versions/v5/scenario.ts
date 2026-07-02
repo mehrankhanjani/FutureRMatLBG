@@ -244,7 +244,7 @@ export type NextAction = {
   why: string;
   done?: boolean;
 };
-export const nextBestActions: NextAction[] = [
+export const controlNextActions: NextAction[] = [
   { priority: 'High', action: 'Chase missing KYC document from Calderwood', owner: 'rm', due: 'Today', why: 'Blocking the credit submission' },
   { priority: 'High', action: 'Review the AI-generated meeting summary', owner: 'rm', due: 'Today', why: 'Needs validation before it enters the record' },
   { priority: 'Medium', action: 'Confirm client appetite for the FX hedge', owner: 'rm', due: 'This week', why: 'Unlocks the stretch structure' },
